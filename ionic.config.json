@@ -1,0 +1,7 @@
+{
+  "name": "sig.handmax",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

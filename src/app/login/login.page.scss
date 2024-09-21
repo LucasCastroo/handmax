@@ -1,0 +1,53 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, yellow 49%, transparent 49%, transparent 51%, black 51%);
+}
+
+.container {
+  background-color: white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#logo img {
+  width: 100px;
+}
+
+#logo {
+  width: 124px;
+  margin-bottom: 20px;
+}
+
+.custom-input {
+  --background: #f9f9f9;
+  --ion-color-primary: #000000;
+  --ion-text-color: #333;
+  --placeholder-color: #888;
+  --ion-color: #000000;
+  --highlight-color-focused: #333;
+  margin-bottom: 15px;
+  display: flex;
+  width: 100%;
+  --border-radius: 18px;
+}
+
+ion-icon .email {
+  color: #e12a2a;
+}
+
+
