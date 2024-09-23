@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { eye, mail, key } from 'ionicons/icons';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,14 @@ import { eye, mail, key } from 'ionicons/icons';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     addIcons({eye, mail, key});
+  }
+
+  login() {
+    this.router.navigateByUrl("/home");
   }
 
 }

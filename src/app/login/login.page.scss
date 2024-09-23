@@ -14,23 +14,27 @@ body, html {
 
 .container {
   background-color: white;
-  padding: 50px;
+  padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 90%;
   max-width: 450px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  transition: padding 0.3s ease;
+}
+
+#logo {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 #logo img {
   width: 100px;
-}
-
-#logo {
-  width: 124px;
-  margin-bottom: 20px;
 }
 
 .custom-input {
@@ -46,10 +50,10 @@ body, html {
   --border-radius: 18px;
 }
 
-ion-icon .email {
-  color: #e12a2a;
+#btn-entrar {
+  width: 100%;
+  font-size: 1rem;
 }
-
 
 .forgot-password {
   display: block;
@@ -58,9 +62,37 @@ ion-icon .email {
   text-align: left;
   color: #000000;
   text-decoration: none;
-  
+  margin-bottom: 5px;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .forgot-password:hover {
+  color: var(--ion-color-primary);
   text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  #logo img {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  #logo img {
+    width: 70px;
+  }
+
+  ion-button {
+    width: 100%;
+    font-size: 1rem;
+  }
 }

@@ -1,0 +1,54 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar id="menu-bar">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div class="menu-container">
+      <button class="btns-menu">
+        <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+        <span>Atletas</span>
+      </button>
+      <button class="btns-menu">
+        <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+        <span>Adcionar Atletas</span>
+      </button>
+      <button class="btns-menu">
+        <ion-icon name="person-circle-outline" class="user-icon"></ion-icon>
+        <span>Atletas</span>
+      </button>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<ion-header [translucent]="true">
+  <ion-toolbar class="toolbar-layout">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-img src="assets/HandMaxLogo.png" alt="HandMax Logo" class="logo-img"></ion-img>
+    </ion-buttons>
+
+    <ion-title class="header-title">
+      ATLETAS
+    </ion-title>
+
+    <ion-buttons slot="end" class="user-info">
+      <div class="user-details" [matMenuTriggerFor]="menu">
+        <span class="user-name">Nome</span><br>
+        <span class="user-role">Administrador</span>
+      </div>
+      <ion-icon name="person-circle-outline" class="user-icon" [matMenuTriggerFor]="menu"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<button class="mat-menu">
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item><ion-icon name="person-circle-outline"></ion-icon>Meu Perfil</button>
+    <button mat-menu-item (click)="logout()"><ion-icon name="log-out-outline"></ion-icon>Sair</button>
+  </mat-menu>
+</button>
+
+
+<div id="main-content"><ion-content class="ion-padding"></ion-content></div>
