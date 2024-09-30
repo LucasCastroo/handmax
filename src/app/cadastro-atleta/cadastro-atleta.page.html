@@ -1,0 +1,43 @@
+<body>
+  <div class="background">
+    <div class="container">
+      <div id="logo"></div>
+
+      <h2 class="titulo" style="margin-bottom: 20px">Cadastro Atleta</h2>
+
+      <ion-item class="custom-input">
+        <ion-input
+          labelPlacement="stacked"
+          label="Nome"
+          required
+          [(ngModel)]="atleta.nome"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="custom-input">
+        <ion-input
+          labelPlacement="stacked"
+          label="CPF"
+          required
+          [(ngModel)]="atleta.cpf"
+          pattern="\d{11}"
+          title="Digite 11 dígitos."
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="custom-input">
+        <ion-input
+          labelPlacement="stacked"
+          label="Data de Nascimento"
+          required
+          [(ngModel)]="atleta.dataNascimento"
+          placeholder="dd/mm/aaaa"
+        ></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" shape="round" type="submit" (click)="onSubmit()"
+        >Cadastrar</ion-button
+      >
+    </div>
+  </div>
+</body>
