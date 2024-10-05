@@ -80,13 +80,5 @@ $app-theme: mat.define-theme((
   --ion-color-tertiary: #060706;   /* Cor terciária */
 }
 
-html.dark {
-  --ion-background-color-dark: #000000; /* Cor de fundo escura */
-  --ion-text-color: #ffffff;       /* Cor do texto clara */
-  --ion-color-primary: #1e1e1e;    /* Cores escuras específicas */
-  --ion-color-secondary: #3b3b3b;
-  /* Defina outras variáveis para o tema escuro */
-}
-
-html, body { height: 100%; }
+html, body { height: 100%; background-color: #ffffff}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

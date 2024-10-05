@@ -1,3 +1,35 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar id="menu-bar">
+        <ion-title>Hand Max</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <div class="menu-container">
+        <button class="btns-menu" routerLink="/home">
+          <ion-icon name="people-outline" class="user-icon"></ion-icon>
+          <span>Atletas</span>
+        </button>
+        <button class="btns-menu" routerLink="/cadastro-atleta">
+          <ion-icon name="person-add-outline" class="user-icon"></ion-icon>
+          <span>Adicionar Atletas</span>
+        </button>
+        <button class="btns-menu">
+          <ion-icon name="calendar-number-outline" class="user-icon"></ion-icon>
+          <span>Agendar Treino</span>
+        </button>
+        <button class="btns-menu">
+          <ion-icon name="checkmark-circle-outline" class="user-icon"></ion-icon>
+          <span>Realizar Chamada</span>
+        </button>
+        <button class="btns-menu">
+          <ion-icon name="document-text-outline" class="user-icon"></ion-icon>
+          <span>Gerar Relatório</span>
+        </button>
+      </div>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

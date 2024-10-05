@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginPageModule),
   },
   {
-    path: 'cadastro-atleta', // Adicione esta rota
+    path: 'cadastro-atleta',
     loadChildren: () =>
       import('./cadastro-atleta/cadastro-atleta.module').then(
         (m) => m.CadastroAtletaPageModule
@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) 
+    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
   }
 ];
 

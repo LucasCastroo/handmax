@@ -14,7 +14,7 @@ body, html {
 
 .container {
   background-color: white;
-  padding: 20px; 
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-width: 450px;
@@ -26,7 +26,7 @@ body, html {
 
 #logo img {
   width: 100px;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .custom-input {
@@ -40,8 +40,13 @@ body, html {
   width: 100%;
   --border-radius: 18px;
 }
+
 .titulo {
-  color: black; 
-  text-align: center; 
+  color: black;
+  text-align: center;
+}
+
+ion-content {
+  --background: #f9f9f9;
 }
 
