@@ -33,8 +33,18 @@ const routes: Routes = [
   },
   {
     path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
-  }
+    loadChildren: () =>
+      import('./forgot-password/forgot-password.module').then(
+        (m) => m.ForgotPasswordModule
+      ),
+  },
+  {
+    path: 'cadastro-treino',
+    loadChildren: () =>
+      import('./cadastro-treino/cadastro-treino.module').then(
+        (m) => m.CadastroTreinoPageModule
+      ),
+  },
 ];
 
 @NgModule({
