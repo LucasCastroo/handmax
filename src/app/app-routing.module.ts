@@ -38,6 +38,13 @@ const routes: Routes = [
         (m) => m.CadastroTreinoPageModule
       ),
   },
+  {
+    path: 'perfil',
+    loadChildren: () =>
+      import('./perfil/perfil.module').then(
+        (m) => m.PerfilModule
+      ),
+  },
 ];
 
 @NgModule({
