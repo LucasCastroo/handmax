@@ -78,6 +78,7 @@ $app-theme: mat.define-theme((
   --ion-color-primary: #f8dc02;    /* Cor principal */
   --ion-color-secondary: #fdfdfd;  /* Cor secundária */
   --ion-color-tertiary: #060706;   /* Cor terciária */
+  --ion-color-transparent: rgba(0, 0, 0, 0);
 }
 
 html, body { height: 100%; background-color: #ffffff}

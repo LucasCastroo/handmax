@@ -3,6 +3,7 @@ import { LoadingController } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { eye, mail, key } from 'ionicons/icons';
 import {Router} from "@angular/router";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  loginForm: FormGroup | undefined;
 
   constructor(private router:Router,  private loadingController: LoadingController) { }
 
