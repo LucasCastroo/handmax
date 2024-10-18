@@ -41,8 +41,28 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () =>
-      import('./perfil/perfil.module').then(
-        (m) => m.PerfilModule
+      import('./perfil/perfil.module').then((m) => m.PerfilModule),
+  },
+  {
+    path: 'list-atleta', // Rota para a tela de listagem de atletas
+    loadChildren: () =>
+      import('./list-atleta/list-atleta.module').then(
+        (m) => m.ListatletaPageModule
+      ),
+  },
+  // Rotas para os modais, se necessário
+  {
+    path: 'edit-atleta', // Rota para o modal de edição de atleta
+    loadChildren: () =>
+      import('./edit-atleta/edit-atleta.module').then(
+        (m) => m.EditarAtletaPageModule
+      ),
+  },
+  {
+    path: 'excluir-atleta', // Rota para o modal de exclusão de atleta
+    loadChildren: () =>
+      import('./excluir-atleta/excluir-atleta.module').then(
+        (m) => m.ExcluiratletaPageModule
       ),
   },
 ];

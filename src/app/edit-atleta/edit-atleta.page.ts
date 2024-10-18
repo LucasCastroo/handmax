@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-cadastro-atleta',
-  templateUrl: './cadastro-atleta.page.html',
-  styleUrls: ['./cadastro-atleta.page.scss'],
+  selector: 'app-edit-atleta',
+  templateUrl: './edit-atleta.page.html',
+  styleUrls: ['./edit-atleta.page.scss'],
 })
-export class CadastroAtletaPage implements OnInit {
+export class EditarAtletaPage implements OnInit {
   atleta = {
     id: null,
     nome: '',
@@ -22,7 +22,7 @@ export class CadastroAtletaPage implements OnInit {
   ngOnInit() {}
 
   async onSubmit() {
-    console.log('Atleta cadastrado:', this.atleta);
+    console.log('Atleta editado:', this.atleta);
     await this.modalController.dismiss(this.atleta);
   }
 
