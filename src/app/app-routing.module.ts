@@ -31,6 +31,15 @@ const routes: Routes = [
         (m) => m.ForgotPasswordModule
       ),
   },
+
+  {
+    path: 'noticias',
+    loadChildren: () =>
+      import('./noticias/noticias-routing.module').then(
+        (m) => m.noticiasPageRoutingModule
+      ),
+  },
+
   {
     path: 'cadastro-treino',
     loadChildren: () =>
