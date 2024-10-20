@@ -22,6 +22,14 @@ const routes: Routes = [
   },
 
   {
+    path: 'noticias',
+    loadChildren: () =>
+      import('./noticias/noticias-routing.module').then(
+        (m) => m.noticiasPageRoutingModule
+      ),
+  },
+
+  {
     path: '',
     component: LayoutComponent,
     children: [

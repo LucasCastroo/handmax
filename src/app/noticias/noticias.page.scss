@@ -1,0 +1,88 @@
+ion-content {
+  --background: #f7f7f7;
+  height: 100vh; 
+}
+
+ion-grid {
+  height: 100%; 
+}
+
+ion-row {
+  height: 100%; 
+}
+
+.sidebar {
+  background-color: #e3e3e3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupará toda a altura do ion-row */
+
+  ion-title {
+    font-size: 16px;
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .menu-option {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz a seção de opções ocupar o espaço restante */
+
+    ion-button {
+      --background: #ffffff;
+      --border-color: #ccc;
+      color: black;
+      text-align: left;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  }
+
+  .view-news-btn {
+    background-color: #ffd700;
+    color: black;
+    padding: 10px;
+    margin-top: 20px; /* Espaço acima do botão */
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: left;
+  }
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  height: 100%; 
+
+  .news-preview {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+
+    .news-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .news-image {
+      width: 150px;
+      height: 150px;
+      background-color: #e0e0e0;
+      margin: 0 auto 20px;
+    }
+
+    .news-paragraph {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #666;
+      margin-top: 20px;
+    }
+  }
+}
