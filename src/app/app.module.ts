@@ -11,8 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { NoticiasPageModule } from './noticias/noticias.module';
 
 @NgModule({
-  declarations: [AppComponent],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HeaderComponent,FormsModule,NoticiasPageModule ],
+    declarations: [AppComponent],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HeaderComponent],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
