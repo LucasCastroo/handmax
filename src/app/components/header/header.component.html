@@ -5,7 +5,7 @@
       <ion-img src="assets/HandMaxLogo.png" alt="HandMax Logo" class="logo-img"></ion-img>
     </ion-buttons>
 
-    <ion-title class="header-title">{{titleHeader}}</ion-title>
+    <ion-title class="header-title">HAND MAX</ion-title>
 
     <ion-buttons slot="end" class="user-info">
       <div class="user-details" [matMenuTriggerFor]="menu" matMenuTriggerPosition="below" (click)="menuTrigger.openMenu()">
@@ -13,7 +13,7 @@
         <span class="user-role">Administrador</span>
       </div>
       <ion-icon name="person-circle-outline" class="user-icon" [matMenuTriggerFor]="menu" matMenuTriggerPosition="below"></ion-icon>
-      <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+      <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" id="arrow_drop">
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
     </ion-buttons>
@@ -24,22 +24,3 @@
   <button mat-menu-item routerLink="/perfil"><ion-icon name="person-circle-outline" class="icon-mat"></ion-icon>Meu Perfil</button>
   <button mat-menu-item (click)="logout()"><ion-icon name="log-out-outline" class="icon-mat"></ion-icon>Sair</button>
 </mat-menu>
-
-<ion-fab slot="fixed" horizontal="center" vertical="bottom" class="responsive-fab fixed-fab">
-  <ion-fab-button color="secondary">
-    <ion-icon name="apps-outline"></ion-icon>
-  </ion-fab-button>
-  <ion-fab-list side="top">
-    <ion-fab-button color="primary">
-      <ion-icon name="chevron-up"></ion-icon>
-    </ion-fab-button>
-  </ion-fab-list>
-  <ion-fab-list side="start">
-    <ion-fab-button color="danger">
-      <ion-icon name="chevron-back"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button color="dark">
-      <ion-icon name="chevron-back"></ion-icon>
-    </ion-fab-button>
-  </ion-fab-list>
-</ion-fab>

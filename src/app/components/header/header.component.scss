@@ -10,6 +10,7 @@ ion-toolbar {
 
 ion-menu-button {
   margin-right: 10px;
+  color: black;
 }
 
 .header-title {
@@ -51,7 +52,7 @@ ion-menu-button {
 }
 
 @media (max-width: 768px) {
-  ion-menu-button {
+  #arrow_drop {
     display: none;
   }
 
@@ -89,8 +90,3 @@ ion-menu-button {
   }
 }
 
-@media (min-width: 769px) {
-  .responsive-fab {
-    display: none;
-  }
-}

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {IonicModule, LoadingController} from "@ionic/angular";
 import {MatMenuModule} from "@angular/material/menu";
-import {NavigationEnd, Router, RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {menu} from "ionicons/icons";
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
@@ -19,8 +19,7 @@ import {MatIconButton} from "@angular/material/button";
   ],
   standalone: true
 })
-export class HeaderComponent implements OnInit{
-  public titleHeader: string = '';
+export class HeaderComponent{
 
   constructor(private router: Router, private loadingController: LoadingController) { }
 
@@ -39,27 +38,6 @@ export class HeaderComponent implements OnInit{
     }, 2000);
   }
 
-  setTitleBasedOnUrl() {
-    const currentUrl = this.router.url;
-
-    if (currentUrl.includes('/home')) {
-      this.titleHeader = 'ATLETAS';
-    } else if (currentUrl.includes('/cadastro-atleta')) {
-      this.titleHeader = 'Cadastro Atleta';
-    } else {
-      this.titleHeader = 'Hand Max';
-    }
-  }
-
-  ngOnInit(): void {
-    this.setTitleBasedOnUrl();
-
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.setTitleBasedOnUrl();
-      }
-    });
-  }
-
   protected readonly menu = menu;
+
 }
