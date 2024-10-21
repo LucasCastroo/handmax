@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { CadastroTreinoPageRoutingModule } from './cadastro-treino-routing.module';
 
 import { CadastroTreinoPage } from './cadastro-treino.page';
-import { HeaderComponent } from '../components/header/header.component';
+import { HeaderComponent } from '../../components/header/header.component';
+
 
 @NgModule({
   imports: [
