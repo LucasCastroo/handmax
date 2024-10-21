@@ -7,20 +7,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-news.page.scss'],
 })
 export class ViewNewsPage implements OnInit {
-  newsList: any[] = []; // Array para armazenar a lista de notícias
+  newsList: any[] = []; 
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // Captura a lista de notícias passada na navegação
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state && navigation.extras.state['newsList']) {
-      this.newsList = navigation.extras.state['newsList']; // Atribui a lista de notícias
+      this.newsList = navigation.extras.state['newsList'];
     }
   }
 
+  createNews() {
+    
+    this.router.navigate(['/noticias']);
+  }
+
+
+  viewNews() {
+    this.router.navigate(['/view-news']);
+  }
+  
+
   editNews(newsItem: any) {
-    // Navegar para a página de edição de notícias com a notícia selecionada
     this.router.navigate(['/edit-news'], { state: { newsItem } });
+  }
+
+  deleteNews(newsItem: any) {
+    this.newsList = this.newsList.filter(item => item !== newsItem);
   }
 }

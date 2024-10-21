@@ -1,20 +1,31 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <!-- Sidebar para ações -->
+      <!-- Sidebar com dois botões -->
       <ion-col size="3" class="sidebar">
-        <ion-title>Notícias Salvas</ion-title>
+        <ion-button expand="block" fill="outline" (click)="createNews()">
+          Criar Notícia
+        </ion-button>
+        <ion-button expand="block" fill="outline" (click)="viewNews()">
+          Visualizar Página
+        </ion-button>
       </ion-col>
 
-      <!-- Lista de notícias -->
+      <!-- Lista de notícias salvas -->
       <ion-col size="9" class="main-content">
         <ion-list>
-          <!-- Percorre a lista de notícias e exibe o título e o primeiro parágrafo -->
-          <ion-item *ngFor="let news of newsList" (click)="editNews(news)">
+          <!-- Exibindo o título e o primeiro parágrafo das notícias salvas -->
+          <ion-item *ngFor="let news of newsList">
             <ion-label>
               <h2>{{ news.title }}</h2>
-              <p>{{ news.paragraphs[0] || 'Sem descrição disponível' }}</p> <!-- Exibindo o primeiro parágrafo -->
+              <p>{{ news.paragraphs[0] || 'Sem descrição disponível' }}</p>
             </ion-label>
+            <ion-button (click)="editNews(news)" fill="clear">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="deleteNews(news)" fill="clear">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
           </ion-item>
         </ion-list>
       </ion-col>

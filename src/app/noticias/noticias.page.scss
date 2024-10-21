@@ -110,11 +110,12 @@ ion-row {
       margin-top: 20px;
     }
   }
-
   .save-container {
-    margin-top: auto; /* Empurra o botão para o fundo do contêiner */
-    padding: 10px; /* Espaçamento em torno do botão */
+    margin-top: auto;
+    margin-bottom: 28px;
+    padding: 10px;
     display: flex;
-    justify-content: flex-end; /* Alinha o botão à direita */
+    justify-content: flex-end;
   }
+  
 }
