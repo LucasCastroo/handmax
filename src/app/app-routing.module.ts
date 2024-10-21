@@ -20,9 +20,6 @@ const routes: Routes = [
         (m) => m.ForgotPasswordModule
       ),
   },
-
-  
-  
   {
     path: '',
     component: LayoutComponent,
@@ -46,7 +43,7 @@ const routes: Routes = [
               (m) => m.ViewNewsPageRoutingModule
             ),
           },
-          
+
         {
           path: 'cadastro-atleta',
           loadChildren: () =>
@@ -57,7 +54,7 @@ const routes: Routes = [
       {
         path: 'cadastro-treino',
         loadChildren: () =>
-          import('./cadastro-treino/cadastro-treino.module').then(
+          import('./treino/cadastro-treino/cadastro-treino.module').then(
             (m) => m.CadastroTreinoPageModule
           ),
       },
@@ -94,6 +91,18 @@ const routes: Routes = [
     ],
   },
 
+  {
+    path: 'treinos',
+    loadChildren: () =>
+      import('./treino/treino-list/treino-list.module').then(
+        (m) => m.TreinoListModule
+      ),
+  },
+  {path: 'excluir-treinos',
+    loadChildren: () =>
+      import('./treino/excluir-treino/excluir-treino.module').then(
+        (m) => m.ExcluirTreinoModule
+      ),}
 ];
 
 

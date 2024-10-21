@@ -1,4 +1,3 @@
-<app-header></app-header>
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="background">
     <div class="container">
@@ -35,7 +34,18 @@
         ></ion-input>
       </ion-item>
 
-      <ion-button
+      <div class="footer">
+        <ion-button
+          expand="full"
+          shape="round"
+          type="submit"
+          class="button-cancel"
+          (click)="cancel()"
+        >
+          Cancelar
+        </ion-button>
+
+        <ion-button
         expand="full"
         shape="round"
         type="submit"
@@ -43,6 +53,8 @@
       >
         Cadastrar
       </ion-button>
+      </div>
+
     </div>
   </div>
 </ion-content>

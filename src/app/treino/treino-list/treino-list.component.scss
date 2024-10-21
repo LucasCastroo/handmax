@@ -1,0 +1,80 @@
+ion-content {
+  --background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+ion-button {
+  --color: #000000;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 16px;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card-item {
+  width: 93%;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+ion-card-title,
+ion-card-content {
+  color: #000000;
+  text-align: center;
+}
+
+ion-card ion-button {
+  --color: #000000;
+  margin-top: 10px;
+  align-self: center;
+}
+
+.header{
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
