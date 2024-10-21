@@ -21,14 +21,8 @@ const routes: Routes = [
       ),
   },
 
-  {
-    path: 'noticias',
-    loadChildren: () =>
-      import('./noticias/noticias-routing.module').then(
-        (m) => m.noticiasPageRoutingModule
-      ),
-  },
-
+  
+  
   {
     path: '',
     component: LayoutComponent,
@@ -39,10 +33,25 @@ const routes: Routes = [
           import('./home/home.module').then((m) => m.HomePageModule),
       },
       {
-        path: 'cadastro-atleta',
+        path: 'noticias',
         loadChildren: () =>
-          import('./cadastro-atleta/cadastro-atleta.module').then(
-            (m) => m.CadastroAtletaPageModule
+          import('./noticias/noticias-routing.module').then(
+            (m) => m.noticiasPageRoutingModule
+          ),
+        },
+        {
+          path: 'ver-noticias',
+          loadChildren: () =>
+            import('./view-news/view-news-routing.module').then(
+              (m) => m.ViewNewsPageRoutingModule
+            ),
+          },
+          
+        {
+          path: 'cadastro-atleta',
+          loadChildren: () =>
+            import('./cadastro-atleta/cadastro-atleta.module').then(
+              (m) => m.CadastroAtletaPageModule
           ),
       },
       {
@@ -70,7 +79,11 @@ const routes: Routes = [
           import('./edit-atleta/edit-atleta.module').then(
             (m) => m.EditarAtletaPageModule
           ),
-      },
+        },
+        {
+          path: 'view-news',
+          loadChildren: () => import('./view-news/view-news.module').then( m => m.ViewNewsPageModule)
+        },
       {
         path: 'excluir-atleta',
         loadChildren: () =>
@@ -80,6 +93,7 @@ const routes: Routes = [
       },
     ],
   },
+
 ];
 
 

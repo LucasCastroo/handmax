@@ -66,8 +66,8 @@ ion-row {
 
 .main-content {
   display: flex;
-  justify-content: center; /* Centraliza o conteúdo horizontalmente */
-  align-items: flex-start; /* Alinha os itens ao topo */
+  flex-direction: column;
+  justify-content: space-between; /* Distribui o espaço entre os elementos */
   background-color: #ffffff;
   padding: 20px;
   height: 100%; 
@@ -109,5 +109,12 @@ ion-row {
       color: #666;
       margin-top: 20px;
     }
+  }
+
+  .save-container {
+    margin-top: auto; /* Empurra o botão para o fundo do contêiner */
+    padding: 10px; /* Espaçamento em torno do botão */
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
   }
 }
