@@ -50,8 +50,17 @@ ion-content {
   }
   
   .view-news-btn {
-    background-color: #ffd700;
+    background-color: #000000;
     color: black;
     text-align: left;
   }
   
+  .custom-button {
+    background-color: #ffffff; /* Fundo branco */
+    color: #000000; /* Letra preta */
+    border: 1px solid #000000; /* Borda preta para manter um contraste claro */
+  }
+  
+  .custom-button:hover {
+    background-color: #f1f1f1; /* Mudança leve no hover para um efeito visual */
+  }
