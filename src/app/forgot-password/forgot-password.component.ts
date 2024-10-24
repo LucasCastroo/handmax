@@ -15,7 +15,6 @@ export class ForgotPasswordComponent {
     });
   }
 
-  // Método para verificar se o campo é inválido e já foi tocado
   isInvalid(controlName: string): boolean {
     const control = this.forgotPasswordForm.get(controlName)!;
     return control.invalid && control.touched;
@@ -24,10 +23,8 @@ export class ForgotPasswordComponent {
   onSubmit() {
     if (this.forgotPasswordForm.valid) {
       const email = this.forgotPasswordForm.get('email')!.value;
-      //lógica para enviar o e-mail
       console.log("Email enviado para: ", email);
     } else {
-      // Marca todos os campos como 'touched' para exibir os erros
       this.forgotPasswordForm.markAllAsTouched();
     }
   }

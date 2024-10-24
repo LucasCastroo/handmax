@@ -21,6 +21,16 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'new-password',
+    loadChildren: () =>
+      import('./new-password/new-password.module').then(
+        (m) => m.NewPasswordPageModule
+      ),
+  },
+
+
+
+  {
     path: '',
     component: LayoutComponent,
     children: [
@@ -102,7 +112,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./treino/excluir-treino/excluir-treino.module').then(
         (m) => m.ExcluirTreinoModule
-      ),}
+      ),},
+  {
+    path: 'new-password',
+    loadChildren: () => import('./new-password/new-password.module').then( m => m.NewPasswordPageModule)
+  }
+
 ];
 
 
