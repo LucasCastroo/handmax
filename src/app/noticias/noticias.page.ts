@@ -65,7 +65,7 @@ export class NoticiasPage implements OnInit {
   }
 
   previewNews() {
-    // Navega para a página de visualização passando a lista de notícias salvas
+  
     this.router.navigate(['/view-news'], { state: { newsList: this.savedNewsList } });
   }
 }

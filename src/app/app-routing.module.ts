@@ -36,14 +36,8 @@ const routes: Routes = [
             (m) => m.noticiasPageRoutingModule
           ),
         },
-        {
-          path: 'ver-noticias',
-          loadChildren: () =>
-            import('./view-news/view-news-routing.module').then(
-              (m) => m.ViewNewsPageRoutingModule
-            ),
-          },
-
+       
+        
         {
           path: 'cadastro-atleta',
           loadChildren: () =>
@@ -54,7 +48,12 @@ const routes: Routes = [
       {
         path: 'cadastro-treino',
         loadChildren: () =>
-          import('./treino/cadastro-treino/cadastro-treino.module').then(
+          import('./treino/cadastro-treino/cadastro-treino.module')
+        
+        
+        
+        
+        .then(
             (m) => m.CadastroTreinoPageModule
           ),
       },
@@ -80,6 +79,10 @@ const routes: Routes = [
         {
           path: 'view-news',
           loadChildren: () => import('./view-news/view-news.module').then( m => m.ViewNewsPageModule)
+        },
+        {
+          path: 'edit-news',
+          loadChildren: () => import('./edit-news/edit-news.module').then( m => m.EditNewsPageModule)
         },
       {
         path: 'excluir-atleta',

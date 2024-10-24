@@ -1,0 +1,76 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Fundo claro para a página */
+}
+
+/* Estilizando a Sidebar */
+.sidebar {
+    background-color: #343a40; /* Cor de fundo da sidebar */
+    color: white; /* Cor do texto na sidebar */
+    padding: 20px;
+    height: 100vh; /* Altura total da página */
+}
+
+.sidebar-content {
+    margin-bottom: 20px;
+}
+
+.menu-option {
+    margin: 10px 0; /* Margem entre os botões */
+}
+
+/* Estilizando os Botões da Sidebar */
+.sidebar ion-button {
+    margin-bottom: 10px; /* Espaçamento entre os botões */
+}
+
+/* Estilizando a Área Principal */
+.main-content {
+    padding: 20px;
+}
+
+/* Título da Notícia */
+.news-title {
+    font-size: 24px;
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+/* Estilizando Inputs e Textareas */
+input, textarea {
+    width: 100%; /* Largura total */
+    padding: 10px;
+    border: 1px solid #ced4da; /* Borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    margin-bottom: 10px; /* Espaço abaixo dos inputs */
+    box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+}
+
+/* Estilizando a Pré-visualização da Notícia */
+.news-preview {
+    margin-bottom: 20px; /* Espaço abaixo da pré-visualização */
+}
+
+
+.news-image img {
+    max-width: 100%; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+}
+
+/* Estilizando os Botões de Ação */
+.save-news-btn {
+    background-color: #28a745; 
+    color: white; 
+}
+
+.view-news-btn {
+    background-color: #007bff; /* Cor azul para o botão de visualizar */
+    color: white; /* Cor do texto no botão */
+}
+
+.save-container {
+    margin-top: 20px; /* Espaço acima do botão de salvar */
+}

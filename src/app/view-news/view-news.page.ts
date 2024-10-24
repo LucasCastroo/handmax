@@ -17,7 +17,7 @@ export class ViewNewsPage implements OnInit {
       this.newsList = navigation.extras.state['newsList'];
     }
 
-    // Verifica se há uma notícia atualizada (caso venha da página de edição)
+  
     if (navigation?.extras.state && navigation.extras.state['updatedNews']) {
       const updatedNews = navigation.extras.state['updatedNews'];
       const index = this.newsList.findIndex(news => news.title === updatedNews.title);
