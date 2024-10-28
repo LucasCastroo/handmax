@@ -46,8 +46,8 @@ const routes: Routes = [
             (m) => m.noticiasPageRoutingModule
           ),
         },
-       
-        
+
+
         {
           path: 'cadastro-atleta',
           loadChildren: () =>
@@ -59,10 +59,10 @@ const routes: Routes = [
         path: 'cadastro-treino',
         loadChildren: () =>
           import('./treino/cadastro-treino/cadastro-treino.module')
-        
-        
-        
-        
+
+
+
+
         .then(
             (m) => m.CadastroTreinoPageModule
           ),
@@ -101,21 +101,21 @@ const routes: Routes = [
             (m) => m.ExcluiratletaPageModule
           ),
       },
+      {
+        path: 'treinos',
+        loadChildren: () =>
+          import('./treino/treino-list/treino-list.module').then(
+            (m) => m.TreinoListModule
+          ),
+      },
+      {path: 'excluir-treinos',
+        loadChildren: () =>
+          import('./treino/excluir-treino/excluir-treino.module').then(
+            (m) => m.ExcluirTreinoModule
+          ),
+      }
     ],
   },
-
-  {
-    path: 'treinos',
-    loadChildren: () =>
-      import('./treino/treino-list/treino-list.module').then(
-        (m) => m.TreinoListModule
-      ),
-  },
-  {path: 'excluir-treinos',
-    loadChildren: () =>
-      import('./treino/excluir-treino/excluir-treino.module').then(
-        (m) => m.ExcluirTreinoModule
-      ),},
   {
     path: 'new-password',
     loadChildren: () => import('./new-password/new-password.module').then( m => m.NewPasswordPageModule)
