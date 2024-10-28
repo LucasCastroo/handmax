@@ -1,35 +1,46 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <!-- Sidebar com dois botões (sem modificações) -->
+      <!-- Sidebar com dois botões -->
       <ion-col size="3" class="sidebar">
         <ion-button expand="block" fill="solid" class="custom-button" (click)="createNews()">
           Criar Notícia
         </ion-button>
-        <ion-button expand="block" fill="solid" class="custom-button" (click)="viewNews()">
+        <ion-button expand="block" fill="solid" class="custom-button" (click)="viewNewsList()">
           Visualizar Página
         </ion-button>
       </ion-col>
 
       <!-- Lista de notícias salvas -->
       <ion-col size="9" class="main-content">
-        <ion-list>
-          <!-- Exibindo o título e o primeiro parágrafo das notícias salvas -->
-          <ion-item *ngFor="let news of newsList">
-            <ion-label>
-              <h2>{{ news.title }}</h2>
-              <p>{{ news.paragraphs[0] || 'Sem descrição disponível' }}</p>
-            </ion-label>
-            <!-- Botão de Editar -->
-            <ion-button (click)="editNews(news)" fill="clear">
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-button>
-            <!-- Botão de Excluir -->
-            <ion-button (click)="deleteNews(news)" fill="clear">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
-          </ion-item>
-        </ion-list>
+        <ng-container *ngIf="!selectedNews">
+          <ion-list>
+            <ion-item *ngFor="let news of newsList" (click)="selectNews(news)">
+              <ion-label>
+                <h2>{{ news.title }}</h2>
+                <p>{{ news.paragraphs[0] || 'Sem descrição disponível' }}</p>
+              </ion-label>
+              <ion-button (click)="editNews(news)" fill="clear">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button (click)="confirmDelete(news)" fill="clear">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-list>
+        </ng-container>
+
+        <!-- Exibir notícia selecionada -->
+        <ng-container *ngIf="selectedNews">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{ selectedNews.title }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p *ngFor="let paragraph of selectedNews.paragraphs">{{ paragraph }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ng-container>
       </ion-col>
     </ion-row>
   </ion-grid>
