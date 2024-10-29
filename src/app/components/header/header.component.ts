@@ -5,6 +5,8 @@ import {Router, RouterLink} from "@angular/router";
 import {menu} from "ionicons/icons";
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
+import {NgIf} from "@angular/common";
+import {TransitionScreenComponent} from "../transition-screen/transition-screen.component";
 
 @Component({
   selector: 'app-header',
@@ -15,26 +17,34 @@ import {MatIconButton} from "@angular/material/button";
     MatMenuModule,
     RouterLink,
     MatIcon,
-    MatIconButton
+    MatIconButton,
+    NgIf,
+    TransitionScreenComponent
   ],
   standalone: true
 })
 export class HeaderComponent{
+  showTransitionScreen = false;
 
   constructor(private router: Router, private loadingController: LoadingController) { }
 
   async logout() {
-    const loading = await this.loadingController.create({
+    const load = await this.loadingController.create({
       message: 'Saindo...',
       spinner: 'circular',
       duration: 2000
     });
 
-    await loading.present();
+    await load.present();
 
     setTimeout(() => {
-      loading.dismiss();
-      this.router.navigateByUrl('/login');
+      load.dismiss();
+      this.showTransitionScreen = true;
+
+      setTimeout(() => {
+        this.showTransitionScreen = false;
+        this.router.navigateByUrl('/login');
+      }, 1500);
     }, 2000);
   }
 

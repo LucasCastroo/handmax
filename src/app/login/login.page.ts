@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
-import { addIcons } from 'ionicons';
-import { eye, mail, key } from 'ionicons/icons';
-import {Router} from "@angular/router";
-import {FormGroup} from "@angular/forms";
+import { Component } from '@angular/core';
+import {IonicModule, LoadingController} from '@ionic/angular';
+import {Router, RouterModule} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {TransitionScreenComponent} from "../components/transition-screen/transition-screen.component";
+import {NgIf} from "@angular/common";
+
 
 @Component({
   selector: 'app-login',
+  imports: [
+    IonicModule,
+    FormsModule,
+    TransitionScreenComponent,
+    NgIf,
+    RouterModule,
+
+  ],
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  standalone: true
 })
-export class LoginPage implements OnInit {
-  loginForm: FormGroup | undefined;
+export class LoginPage  {
+  showTransitionScreen = false;
 
-  constructor(private router:Router,  private loadingController: LoadingController) { }
-
-  ngOnInit() {
-    addIcons({eye, mail, key});
-  }
+  constructor(private router: Router, private loadingController: LoadingController) { }
 
   async login() {
     const loading = await this.loadingController.create({
@@ -30,7 +36,12 @@ export class LoginPage implements OnInit {
 
     setTimeout(() => {
       loading.dismiss();
-      this.router.navigateByUrl('/home');
+      this.showTransitionScreen = true;
+
+      setTimeout(() => {
+        this.showTransitionScreen = false;
+        this.router.navigateByUrl('/home');
+      }, 1500);
     }, 2000);
   }
 
