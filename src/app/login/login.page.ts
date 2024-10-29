@@ -41,7 +41,7 @@ export class LoginPage  {
       setTimeout(() => {
         this.showTransitionScreen = false;
         this.router.navigateByUrl('/home');
-      }, 1500);
+      }, 2000);
     }, 2000);
   }
 

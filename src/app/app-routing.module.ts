@@ -58,12 +58,7 @@ const routes: Routes = [
       {
         path: 'cadastro-treino',
         loadChildren: () =>
-          import('./treino/cadastro-treino/cadastro-treino.module')
-
-
-
-
-        .then(
+          import('./treino/cadastro-treino/cadastro-treino.module').then(
             (m) => m.CadastroTreinoPageModule
           ),
       },

@@ -44,7 +44,7 @@ export class HeaderComponent{
       setTimeout(() => {
         this.showTransitionScreen = false;
         this.router.navigateByUrl('/login');
-      }, 1500);
+      }, 2000);
     }, 2000);
   }
 
