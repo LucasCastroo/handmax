@@ -1,0 +1,33 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="background">
+    <div class="container">
+      <h2 class="titulo">Lista de Atletas</h2>
+
+      <ion-list>
+        <ion-item *ngFor="let atleta of atletas" class="atleta-item">
+          <ion-label (click)="editarAtleta(atleta)">
+            <div class="info-box">
+              <h2 class="atleta-nome">Nome: {{ atleta.nome }}</h2>
+              <p class="atleta-info">CPF: {{ atleta.cpf }}</p>
+            </div>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button (click)="excluirAtleta(atleta)" class="excluir-btn">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+
+      <ion-button
+        expand="full"
+        shape="round"
+        (click)="abrirModalCadastro()"
+        class="adicionar-btn"
+      >
+        Adicionar Novo Atleta
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

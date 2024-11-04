@@ -1,0 +1,27 @@
+<app-transition-screen *ngIf="showTransitionScreen"></app-transition-screen>
+<ion-header [translucent]="true">
+  <ion-toolbar class="toolbar-layout">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-img src="assets/HandMaxLogo.png" alt="HandMax Logo" class="logo-img"></ion-img>
+    </ion-buttons>
+
+    <ion-title class="header-title">HAND MAX</ion-title>
+
+    <ion-buttons slot="end" class="user-info">
+      <div class="user-details" [matMenuTriggerFor]="menu" matMenuTriggerPosition="below" (click)="menuTrigger.openMenu()">
+        <span class="user-name">Nome</span>
+        <span class="user-role">Administrador</span>
+      </div>
+      <ion-icon name="person-circle-outline" class="user-icon" [matMenuTriggerFor]="menu" matMenuTriggerPosition="below"></ion-icon>
+      <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" id="arrow_drop">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<mat-menu #menu="matMenu" xPosition="after">
+  <button mat-menu-item routerLink="/perfil"><ion-icon name="person-circle-outline" class="icon-mat"></ion-icon>Meu Perfil</button>
+  <button mat-menu-item (click)="logout()"><ion-icon name="log-out-outline" class="icon-mat"></ion-icon>Sair</button>
+</mat-menu>

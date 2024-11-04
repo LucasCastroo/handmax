@@ -1,0 +1,40 @@
+<ion-content>
+  <app-transition-screen *ngIf="showTransitionScreen"></app-transition-screen>
+  <div class="login-container">
+    <div class="left-section">
+      <div class="overlay"></div>
+      <img src="assets/Foto-Login.jpg" alt="Login Image">
+    </div>
+    <div class="right-section">
+      <div class="login-card">
+        <img src="assets/HandMaxLogo.png" alt="Logo" class="logo" />
+        <h2>Bem-Vindo<br>Ao Sistema de Gerenciamento de Atletas</h2>
+        <form (ngSubmit)="login()">
+          <div class="input-container">
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-input
+              type="text"
+              placeholder="E-mail"
+              >
+            </ion-input>
+          </div>
+
+          <div class="input-container">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <ion-input
+              type="password"
+              placeholder="Senha"
+              >
+            </ion-input>
+          </div>
+
+          <div class="forgot-password">
+            <a routerLink="/forgot-password">Esqueceu a senha?</a>
+          </div>
+
+          <ion-button expand="block" type="submit">ENTRAR</ion-button>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

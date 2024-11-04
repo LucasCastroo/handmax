@@ -1,0 +1,22 @@
+<ion-content class="ion-padding">
+  <div class="modal-container">
+    <h2 class="modal-titulo">Excluir Atleta</h2>
+    <p>Tem certeza de que deseja excluir este atleta?</p>
+    <ion-button
+      expand="full"
+      color="danger"
+      class="confirmar-btn"
+      (click)="confirmarExclusao()"
+    >
+      Sim, Excluir
+    </ion-button>
+    <ion-button
+      expand="full"
+      color="medium"
+      class="cancelar-btn"
+      (click)="fecharModal()"
+    >
+      Cancelar
+    </ion-button>
+  </div>
+</ion-content>

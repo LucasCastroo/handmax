@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="background">
+    <div class="container">
+      <ion-item class="custom-input">
+        <ion-input
+          labelPlacement="stacked"
+          label="Nome"
+          required
+          [(ngModel)]="atleta.nome"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="custom-input">
+        <ion-input
+          labelPlacement="stacked"
+          label="CPF"
+          required
+          [(ngModel)]="atleta.cpf"
+          pattern="\d{11}"
+          title="Digite 11 dígitos."
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="custom-input">
+        <ion-input
+          labelPlacement="stacked"
+          label="Data de Nascimento"
+          required
+          [(ngModel)]="atleta.dataNascimento"
+          placeholder="dd/mm/aaaa"
+        ></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" shape="round" (click)="onSubmit()">
+        Salvar
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

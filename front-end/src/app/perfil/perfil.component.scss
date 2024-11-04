@@ -1,0 +1,83 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.photo-icon {
+  margin-bottom: 15px;
+}
+
+.profile-icon {
+  font-size: 100px;
+  color: #888;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #0a0a0a;
+}
+
+.container {
+  max-width: 400px;
+  height: 50%;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  padding: 200px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: padding 0.3s ease;
+}
+
+.custom-input {
+  margin-top: 15px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  gap: 15px;
+  margin-top: 2px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.custom-input {
+  --background: #f9f9f9;
+  --ion-color-primary: #000000;
+  --ion-text-color: #333;
+  --placeholder-color: #888;
+  --ion-color: #000000;
+  --highlight-color-focused: #333;
+  margin-bottom: 15px;
+  display: flex;
+  width: 100%;
+  --border-radius: 18px;
+}
+
+.save-button {
+  background-color: #FFD700; /* Amarelo */
+  color: white;
+  height: 40px; /* Altura personalizada */
+  font-size: 16px;
+  border-radius: 25px;
+}
+
+.add-user-button {
+  background-color: #000000; /* Preto */
+  color: white;
+  font-size: 16px;
+  height: 40px;
+  border-radius: 25px;
+}

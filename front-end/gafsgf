@@ -1,0 +1,214 @@
+[33mcommit 7ae8a3ca902e13049a6d183b9f30abb691eb560c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Tue Oct 29 17:56:30 2024 -0300
+
+    Ajuste no tempo de exibição da tela de Transição
+
+[33mcommit c1c9d052a01e827cf4fa12af6177da2084537404[m
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Tue Oct 29 16:00:12 2024 -0300
+
+    Tela de Transição
+
+[33mcommit 987260ed8417cf9dc492eac68ac1122c10609e21[m
+Merge: 1a247c5 b64f387
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Mon Oct 28 12:30:13 2024 -0300
+
+    Merge branch 'master' of https://github.com/LucasCastroo/front-handmax
+
+[33mcommit 1a247c5c6a0f1e837bf5f5e044acc2dd37b7130a[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Mon Oct 28 12:29:54 2024 -0300
+
+    lapidando noticia, tentando conectar com o backend
+
+[33mcommit b64f3878fb9a6177ef6073ac84fff315a766fb74[m
+Merge: 06cbdf9 9a62655
+Author: kauegm <104864791+kauegm@users.noreply.github.com>
+Date:   Mon Oct 28 01:32:19 2024 -0300
+
+    Merge pull request #2 from LucasCastroo/ajusta-treino
+    
+    commit
+
+[33mcommit 9a62655713cd339b54799108e3790dda7e772586[m[33m ([m[1;31morigin/ajusta-treino[m[33m)[m
+Author: kauegm <kauemilhomem@gmail.com>
+Date:   Mon Oct 28 01:31:45 2024 -0300
+
+    commit
+
+[33mcommit 06cbdf9636933996718f63b40965d36b29eed5a4[m
+Merge: ccf6efb f1f8acd
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Thu Oct 24 16:08:01 2024 -0300
+
+    Merge branch 'master' of https://github.com/LucasCastroo/front-handmax
+
+[33mcommit ccf6efb24654bd441a1243ddf232613b2a9b9e14[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Thu Oct 24 16:07:57 2024 -0300
+
+    tela de edit funcionalndo parcialmente
+
+[33mcommit f1f8acd84eb1f8faba81271c7f4b19bc3b7e8db4[m
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Thu Oct 24 15:20:10 2024 -0300
+
+    Tela de Alteração de Senha
+
+[33mcommit 7b520cae928aef1fc245138decd14439795cb41d[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Wed Oct 23 17:07:01 2024 -0300
+
+    arrumando tela vizualizar noticia e editar, quase finalizado
+
+[33mcommit 9adb3bb20a0a8369baed8d6c3dee8d843defbd8b[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Mon Oct 21 17:13:54 2024 -0300
+
+    arrumando tela noticias
+
+[33mcommit f59ecdc1988c39b539c88c93346ea99f676d42d1[m
+Merge: bdc46e1 66f7139
+Author: kauegm <104864791+kauegm@users.noreply.github.com>
+Date:   Mon Oct 21 02:09:18 2024 -0300
+
+    Merge pull request #1 from LucasCastroo/kaue.milhomem/inplementa-treino
+    
+    implementa treino
+
+[33mcommit 66f71391469e2ef8d9f89795689e6b6859b31920[m[33m ([m[1;31morigin/kaue.milhomem/inplementa-treino[m[33m)[m
+Author: kauegm <kauemilhomem@gmail.com>
+Date:   Mon Oct 21 02:08:02 2024 -0300
+
+    commit
+
+[33mcommit bdc46e167fea9fa841ac0722886a3212cf9eef5e[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sun Oct 20 22:20:34 2024 -0300
+
+    adicionando noticias no menu lateral
+
+[33mcommit fcbbd411f7a1314b8e70348fe6f030d46d8599f7[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sun Oct 20 22:17:10 2024 -0300
+
+    tela de CRUD de noticias feita
+
+[33mcommit 588ba81650d9ba0399cc8fb9b826dff8066d1f94[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sun Oct 20 19:51:48 2024 -0300
+
+    tela de CRUD de noticias arrumando bugs
+
+[33mcommit 170698ad7032401b9ddf107e6da1fcfe9830e37b[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sun Oct 20 18:30:56 2024 -0300
+
+    tela de CRUD de noticias quase funcional
+
+[33mcommit 24c393c742410c6f173484a7ea18a285d57cca05[m
+Merge: 93ad979 346fe58
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sun Oct 20 17:50:04 2024 -0300
+
+    Resolve merge conflicts in app-routing.module.ts and app.module.ts
+
+[33mcommit 93ad979fb7680b751c7921d50f0b0b6ea291b964[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sun Oct 20 17:46:29 2024 -0300
+
+    tela de CRUD de noticias quase funcional
+
+[33mcommit 346fe5872ae22a4a276976de6e2ccc121fb879ca[m
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Sun Oct 20 17:09:42 2024 -0300
+
+    Adicionando Footer, fazendo um Layout padrão, melhorando componentes e Login.
+
+[33mcommit aeb4c54bbab26c4c3cb6c4a460dd68dae8018f3d[m
+Author: Filipe Dias <filipedias25.fd@gmail.com>
+Date:   Fri Oct 18 01:37:06 2024 -0300
+
+    CRUD atleta
+
+[33mcommit 8e0a91ea5aac28f25d8b191223e64c13e065bb31[m
+Merge: 68cf116 929256e
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Wed Oct 16 15:24:40 2024 -0300
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 68cf116d59a22ebcdef13b4145fd6f46911859cb[m
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Wed Oct 16 15:24:24 2024 -0300
+
+    Refactor Login Screen and Forgot Password Screen
+
+[33mcommit 929256e9c9ad51ba87f14119210509016273a4a5[m
+Author: kauegm <kauemilhomem@gmail.com>
+Date:   Sun Oct 6 23:43:32 2024 -0300
+
+    alterações
+
+[33mcommit f9ecb968f264dbee3b42c4bb3a333aa97d70182e[m
+Author: Filipe Dias <filipedias25.fd@gmail.com>
+Date:   Sun Oct 6 19:36:47 2024 -0300
+
+    tela cadastro-treino
+
+[33mcommit 9852955165ba230c5ce0d7874efdd43e52aa079c[m
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Sat Oct 5 17:19:10 2024 -0300
+
+    Code refactoring, adjusting in the header and adding buttons in the menu
+
+[33mcommit be3978e166261efa65b3d3ed935629303b1f84f7[m
+Merge: 0f9a988 f696668
+Author: Filipe Dias <filipedias25.fd@gmail.com>
+Date:   Mon Sep 30 13:41:43 2024 -0300
+
+    Merge branch 'master' of https://github.com/LucasCastroo/front-handmax
+
+[33mcommit 0f9a988fde14bbb3e8f111df5f1be82aae1d6959[m
+Author: Filipe Dias <filipedias25.fd@gmail.com>
+Date:   Mon Sep 30 13:41:32 2024 -0300
+
+    cadastro atletas
+
+[33mcommit f696668174089e17ebe211480cd7b39e0bff045e[m
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Mon Sep 23 10:19:51 2024 -0300
+
+    Creation of the Header component, adding responsiveness and adding action to the navigation buttons.
+
+[33mcommit 87242b8b582a98275b0ac4ef8cac5c4a717639f0[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sat Sep 21 17:11:44 2024 -0300
+
+    forgot-password input validation email
+
+[33mcommit fe473b452e2ec123626833624d3e83b3ac84bd78[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sat Sep 21 16:52:34 2024 -0300
+
+    forgot-password edit
+
+[33mcommit b6c472394b9569c2e4241bc2598145553fad5def[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sat Sep 21 16:47:04 2024 -0300
+
+    forgot-password edit
+
+[33mcommit 05909d936d9f86d7ca590ec985d504e32f1b26b6[m
+Author: JpBllack <joaogomes@unitins.br>
+Date:   Sat Sep 21 16:26:32 2024 -0300
+
+    forgot-password page added
+
+[33mcommit 27d71af0b5db189d1d03eab9aed96f82624c1548[m
+Author: LucasCastroo <lucascastropmw@gmail.com>
+Date:   Sat Sep 21 15:28:16 2024 -0300
+
+    first commit

@@ -1,0 +1,43 @@
+<ion-app>
+  <ion-menu contentId="main-content" class="menu">
+    <ion-header>
+      <ion-toolbar id="menu-bar">
+        <ion-title>Hand Max</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="menu-content ion-padding">
+      <div class="menu-container">
+        <button class="btns-menu" routerLink="/home">
+          <ion-icon name="home-outline" class="user-icon"></ion-icon>
+          <span>Home</span>
+        </button>
+        <button class="btns-menu" routerLink="list-atleta">
+          <ion-icon name="people-outline" class="user-icon"></ion-icon>
+          <span>Atletas</span>
+        </button>
+        <button class="btns-menu" routerLink="/treinos">
+          <ion-icon name="calendar-number-outline" class="user-icon"></ion-icon>
+          <span>Treinos</span>
+        </button>
+        <button class="btns-menu">
+          <ion-icon name="checkmark-circle-outline" class="user-icon"></ion-icon>
+          <span>Chamada</span>
+        </button>
+        <button class="btns-menu">
+          <ion-icon name="document-text-outline" class="user-icon"></ion-icon>
+          <span>Gerar Relatório</span>
+        </button>
+         <button class="btns-menu" routerLink="/noticias">
+          <ion-icon name="newspaper-outline" class="user-icon"></ion-icon>
+          <span>Notícias</span>
+        </button>
+      </div>
+    </ion-content>
+  </ion-menu>
+
+  <app-header></app-header>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+
+  <app-footer></app-footer>
+</ion-app>
