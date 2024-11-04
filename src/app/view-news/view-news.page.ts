@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { NewsService } from '../services/news.service'; // Ajuste o caminho conforme necessário
+import { PublicacaoDTO } from '../models/news'; // Ajuste o caminho conforme necessário
 
 @Component({
   selector: 'app-view-news',
@@ -8,23 +10,23 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./view-news.page.scss'],
 })
 export class ViewNewsPage implements OnInit {
-  newsList: any[] = []; // Lista de notícias
-  selectedNews: any = null; // Notícia selecionada para visualização
+  newsList: PublicacaoDTO[] = []; // Lista de notícias
+  selectedNews: PublicacaoDTO | null = null; // Notícia selecionada para visualização
 
-  constructor(private router: Router, private alertController: AlertController) {}
+  constructor(
+    private router: Router,
+    private alertController: AlertController,
+    private newsService: NewsService // Injetando o serviço de notícias
+  ) {}
 
   ngOnInit() {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras.state && navigation.extras.state['newsList']) {
-      this.newsList = navigation.extras.state['newsList'];
-    }
-    if (navigation?.extras.state && navigation.extras.state['updatedNews']) {
-      const updatedNews = navigation.extras.state['updatedNews'];
-      const index = this.newsList.findIndex(news => news.title === updatedNews.title);
-      if (index !== -1) {
-        this.newsList[index] = updatedNews;
-      }
-    }
+    this.loadNews(); // Carregar as notícias ao inicializar
+  }
+
+  loadNews() {
+    this.newsService.getNews().subscribe((data) => {
+      this.newsList = data; // Atribuindo as notícias recebidas à lista
+    });
   }
 
   createNews() {
@@ -35,11 +37,11 @@ export class ViewNewsPage implements OnInit {
     this.selectedNews = null; // Retorna para a lista de notícias
   }
 
-  selectNews(news: any) {
+  selectNews(news: PublicacaoDTO) {
     this.selectedNews = news; // Exibe a notícia selecionada
   }
 
-  editNews(newsItem: any) {
+  editNews(newsItem: PublicacaoDTO) {
     this.router.navigate(['/edit-news'], { state: { newsItem } });
   }
 
@@ -49,13 +51,15 @@ export class ViewNewsPage implements OnInit {
       message: 'Tem certeza de que deseja excluir esta notícia?',
       buttons: [
         { text: 'Cancelar', role: 'cancel' },
-        { text: 'Excluir', role: 'confirm', handler: () => this.deleteNews(newsItem) }
+        { text: 'Excluir', role: 'confirm', handler: () => this.deleteNews(newsItem.id) } // Aqui
       ]
     });
     await alert.present();
   }
-
-  deleteNews(newsItem: any) {
-    this.newsList = this.newsList.filter(item => item !== newsItem);
+  
+  deleteNews(id: number) { // Mudança na assinatura
+    if (id) { // Verificando se o ID não é undefined
+      this.newsList = this.newsList.filter(item => item.id !== id); // Use item.id para comparação
+    }
   }
-}
+}   

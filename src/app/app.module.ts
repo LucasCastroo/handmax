@@ -9,11 +9,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {HeaderComponent} from "./components/header/header.component";
 import { FormsModule } from '@angular/forms';
 import { NoticiasPageModule } from './noticias/noticias.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HeaderComponent],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HeaderComponent,HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+

@@ -1,4 +1,3 @@
-/*
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NewsService {
-  private apiUrl = 'http://localhost:8080/publicacao'; 
+  private apiUrl = 'http://localhost:8080/homepage'; 
 
   constructor(private http: HttpClient) {}
 
@@ -31,4 +30,3 @@ export class NewsService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }
-*/ 
