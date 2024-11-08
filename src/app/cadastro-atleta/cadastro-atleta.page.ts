@@ -12,10 +12,12 @@ export class CadastroAtletaPage implements OnInit {
     nome: '',
     cpf: '',
     dataNascimento: '',
-    categoria: '',
-    quantFalta: null,
-    quantTreinos: null,
+    sexo: '',
+    telefone: '',
+    endereco: '',
   };
+
+  sexos = ['Masculino', 'Feminino', 'Outro'];
 
   constructor(private modalController: ModalController) {}
 

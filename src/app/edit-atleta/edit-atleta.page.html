@@ -1,33 +1,65 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="background">
     <div class="container">
+      <!-- Nome -->
       <ion-item class="custom-input">
-        <ion-input
-          labelPlacement="stacked"
-          label="Nome"
-          required
-          [(ngModel)]="atleta.nome"
-        ></ion-input>
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input required [(ngModel)]="atleta.nome" name="nome"></ion-input>
       </ion-item>
 
+      <!-- CPF -->
       <ion-item class="custom-input">
+        <ion-label position="stacked">CPF</ion-label>
         <ion-input
-          labelPlacement="stacked"
-          label="CPF"
           required
           [(ngModel)]="atleta.cpf"
-          pattern="\d{11}"
+          name="cpf"
+          pattern="\\d{11}"
           title="Digite 11 dígitos."
         ></ion-input>
       </ion-item>
 
+      <!-- Data de Nascimento -->
       <ion-item class="custom-input">
+        <ion-label position="stacked">Data de Nascimento</ion-label>
         <ion-input
-          labelPlacement="stacked"
-          label="Data de Nascimento"
           required
           [(ngModel)]="atleta.dataNascimento"
-          placeholder="dd/mm/aaaa"
+          name="dataNascimento"
+          placeholder="DD/MM/YYYY"
+          pattern="\\d{2}/\\d{2}/\\d{4}"
+          title="Digite no formato DD/MM/YYYY"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Sexo -->
+      <ion-item class="custom-input">
+        <ion-label position="stacked">Sexo</ion-label>
+        <ion-select [(ngModel)]="atleta.sexo" name="sexo">
+          <ion-select-option *ngFor="let sexo of sexos" [value]="sexo">
+            {{ sexo }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Telefone -->
+      <ion-item class="custom-input">
+        <ion-label position="stacked">Telefone</ion-label>
+        <ion-input
+          required
+          [(ngModel)]="atleta.telefone"
+          name="telefone"
+          placeholder="(DDD) 9XXXX-XXXX"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Endereço -->
+      <ion-item class="custom-input">
+        <ion-label position="stacked">Endereço</ion-label>
+        <ion-input
+          required
+          [(ngModel)]="atleta.endereco"
+          name="endereco"
         ></ion-input>
       </ion-item>
 

@@ -9,9 +9,9 @@ interface Atleta {
   nome: string;
   cpf: string;
   dataNascimento: string;
-  categoria: string;
-  quantFalta: number | null;
-  quantTreinos: number | null;
+  sexo: string;
+  telefone: number;
+  endereco: string;
 }
 
 @Component({
