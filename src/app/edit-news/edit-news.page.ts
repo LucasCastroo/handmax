@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 })
 export class EditNewsPage implements OnInit {
   news: any = {
-    title: '',
-    images: [],
-    paragraphs: []
+    titulo: '',
+    nomeImagem: [],
+    conteudo: []
   }; 
   entryOrder: string[] = []; 
   isTitleVisible: boolean = false; 
@@ -35,12 +35,12 @@ export class EditNewsPage implements OnInit {
   }
 
   removeTitle() {
-    this.news.title = '';
+    this.news.titulo = '';
     this.isTitleVisible = false;
   }
 
   addImage() {
-    this.news.images.push('');
+    this.news.nomeImagem.push('');
     this.entryOrder.push('image');
   }
 
@@ -50,12 +50,12 @@ export class EditNewsPage implements OnInit {
   }
 
   addParagraph() {
-    this.news.paragraphs.push('');
-    this.entryOrder.push('paragraph');
+    this.news.conteudo.push('');
+    this.entryOrder.push('conteudo');
   }
 
   removeParagraph(index: number) {
-    this.news.paragraphs.splice(index, 1);
+    this.news.conteudo.splice(index, 1);
     this.entryOrder.splice(index, 1);
   }
 

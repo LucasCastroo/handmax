@@ -27,23 +27,23 @@
       <!-- Área de edição -->
       <ion-col size="9" class="main-content">
         <div class="news-preview">
-          <h1 class="news-title">{{ news.title }}</h1>
-          <input [(ngModel)]="news.title" placeholder="Digite o título" *ngIf="!isTitleVisible" style="display: block; margin: 0 auto;" />
+          <h1 class="news-title">{{ news.titulo }}</h1>
+          <input [(ngModel)]="news.titulo" placeholder="Digite o título" *ngIf="isTitleVisible" style="display: block; margin: 0 auto;" />
           <button (click)="removeTitle()" *ngIf="isTitleVisible">Remover Título</button>
 
           <div *ngFor="let entry of entryOrder; let i = index">
             <ng-container *ngIf="entry === 'image'">
               <div class="news-image">
-                <img [src]="news.images[i]" alt="Imagem da notícia" *ngIf="news.images[i]" />
-                <input [(ngModel)]="news.images[i]" placeholder="URL da imagem" style="display: block; margin: 0 auto;" />
+                <img [src]="news.nomeImagem" alt="Imagem da notícia" *ngIf="news.nomeImagem" />
+                <input [(ngModel)]="news.nomeImagem" placeholder="URL da imagem" style="display: block; margin: 0 auto;" />
                 <button (click)="removeImage(i)">Remover Imagem</button>
               </div>
             </ng-container>
 
             <ng-container *ngIf="entry === 'paragraph'">
               <div>
-                <p class="news-paragraph">{{ news.paragraphs[i] }}</p>
-                <textarea [(ngModel)]="news.paragraphs[i]" placeholder="Digite o parágrafo" style="display: block; margin: 0 auto;"></textarea>
+                <p class="news-paragraph">{{ news.conteudo }}</p>
+                <textarea [(ngModel)]="news.conteudo" placeholder="Digite o parágrafo" style="display: block; margin: 0 auto;"></textarea>
                 <button (click)="removeParagraph(i)">Remover Parágrafo</button>
               </div>
             </ng-container>
