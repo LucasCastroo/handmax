@@ -1,76 +1,134 @@
-/* Estilos Gerais */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa; /* Fundo claro para a página */
-}
-
-/* Estilizando a Sidebar */
-.sidebar {
-    background-color: #343a40; /* Cor de fundo da sidebar */
-    color: white; /* Cor do texto na sidebar */
+ion-content {
+    --background: #f7f7f7;
+    height: 100vh;
+  }
+  
+  ion-grid {
+    height: 100%;
+  }
+  
+  ion-row {
+    height: 100%;
+  }
+  
+  .sidebar {
+    background-color: #e3e3e3;
     padding: 20px;
-    height: 100vh; /* Altura total da página */
-}
-
-.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar ion-title {
+    font-size: 20px;
     margin-bottom: 20px;
-}
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap; /* Garante que o título não quebre em uma nova linha */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-.menu-option {
-    margin: 10px 0; /* Margem entre os botões */
-}
-
-/* Estilizando os Botões da Sidebar */
-.sidebar ion-button {
-    margin-bottom: 10px; /* Espaçamento entre os botões */
-}
-
-/* Estilizando a Área Principal */
-.main-content {
-    padding: 20px;
-}
-
-/* Título da Notícia */
-.news-title {
-    font-size: 24px;
-    margin-bottom: 20px; /* Espaço abaixo do título */
-}
-
-/* Estilizando Inputs e Textareas */
-input, textarea {
-    width: 100%; /* Largura total */
+  .sidebar-content{margin-top: 25px;}
+  
+  .menu-option {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
+  
+  .menu-option ion-button {
+    --background: #ffffff;
+    --border-color: #ccc;
+    color: black;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-option ion-button:hover {
+    --background: #f1f1f1;
+  }
+  
+  .view-news-btn {
+    background-color: #ffd700;
+    color: black;
     padding: 10px;
-    border: 1px solid #ced4da; /* Borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    margin-bottom: 10px; /* Espaço abaixo dos inputs */
-    box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
-}
-
-/* Estilizando a Pré-visualização da Notícia */
-.news-preview {
-    margin-bottom: 20px; /* Espaço abaixo da pré-visualização */
-}
-
-
-.news-image img {
-    max-width: 100%; 
-    border-radius: 5px; 
-    margin-bottom: 10px; 
-}
-
-/* Estilizando os Botões de Ação */
-.save-news-btn {
-    background-color: #28a745; 
-    color: white; 
-}
-
-.view-news-btn {
-    background-color: #007bff; /* Cor azul para o botão de visualizar */
-    color: white; /* Cor do texto no botão */
-}
-
-.save-container {
-    margin-top: 20px; /* Espaço acima do botão de salvar */
-}
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .view-news-btn:hover {
+    background-color: #e6c200;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 20px;
+    height: 100%;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .news-preview {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .news-preview .news-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .news-preview .news-image {
+    width: 150px;
+    height: 150px;
+    background-color: #e0e0e0;
+    margin: 20px auto;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .news-preview .news-image img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+  }
+  
+  .news-preview .news-paragraph {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  .save-container {
+    padding: 10px;
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+  }
+  
+  .save-container ion-button {
+    background-color: #ffd700;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  

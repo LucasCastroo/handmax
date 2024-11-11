@@ -11,21 +11,20 @@ export class EditNewsPage implements OnInit {
     titulo: '',
     nomeImagem: [],
     conteudo: []
-  }; 
-  entryOrder: string[] = []; 
-  isTitleVisible: boolean = false; 
+  };
+  entryOrder: string[] = [];
+  isTitleVisible: boolean = false;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state && navigation.extras.state['newsItem']) {
-      this.news = { ...navigation.extras.state['newsItem'] }; 
-      this.entryOrder = this.news.entryOrder || []; 
+      this.news = { ...navigation.extras.state['newsItem'] };
+      this.entryOrder = this.news.entryOrder || [];
     }
   }
 
- 
   updateNews() {
     this.router.navigate(['/view-news'], { state: { updatedNews: this.news } });
   }
@@ -45,7 +44,7 @@ export class EditNewsPage implements OnInit {
   }
 
   removeImage(index: number) {
-    this.news.images.splice(index, 1);
+    this.news.nomeImagem.splice(index, 1);
     this.entryOrder.splice(index, 1);
   }
 
