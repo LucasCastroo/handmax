@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AtletaCadastroInicial } from '../models/AtletaCadastroInicial';
-import { Atleta } from '../models/atleta';
+import { Atleta } from '../models/Atleta';
 
 @Injectable({
   providedIn: 'root',
