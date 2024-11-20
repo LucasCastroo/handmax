@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { AtletaTreinoDTO } from 'src/app/models/AtletaTreinoDTO.model';
+import { AtletaTreinoDTO } from 'src/app/models/atleta-treino-dtomodel';
 import { AtletaService } from 'src/app/services/atleta.service';
 import { TreinoService } from 'src/app/services/treino.service';
 

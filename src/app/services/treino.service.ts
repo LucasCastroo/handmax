@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Treino} from "../models/treino.model";
 import {TreinoResponse} from "../models/treino-response.model";
-import { TreinoFullResponse } from '../models/treino-full-response';
+import { TreinoFullResponse } from '../models/treino-full-response.model';
 
 @Injectable({
   providedIn: 'root'

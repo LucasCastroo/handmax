@@ -1,4 +1,4 @@
-import { AtletaTreinoDTO } from "./AtletaTreinoDTO.model";
+import { AtletaTreinoDTO } from "./atleta-treino-dtomodel";
 
 export class TreinoFullResponse {
     id!: number;

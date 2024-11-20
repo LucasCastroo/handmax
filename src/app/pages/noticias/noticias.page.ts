@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PublicacaoDTO } from '../../models/news';
+import { PublicacaoDTO } from '../../models/publicacao-dto.model';
 import { NewsService } from '../../services/news.service';
 
 @Component({

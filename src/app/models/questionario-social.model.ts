@@ -1,4 +1,4 @@
-import { CondicoesMoradia } from './CondicoesMoradia';
+import { CondicoesMoradia } from './condicoes-moradia.model';
 
 export interface QuestionarioSocial {
   rendaFamiliar: number;

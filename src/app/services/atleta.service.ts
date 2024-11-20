@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AtletaCadastroInicial } from '../models/AtletaCadastroInicial';
-import { Atleta } from '../models/Atleta';
-import { AtletaTreinoDTO } from '../models/AtletaTreinoDTO.model';
+import { AtletaCadastroInicial } from '../models/atleta-cadastro-inicial.model';
+import { Atleta } from '../models/atleta.model';
+import { AtletaTreinoDTO } from '../models/atleta-treino-dtomodel';
 
 @Injectable({
   providedIn: 'root',
