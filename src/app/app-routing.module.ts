@@ -16,14 +16,14 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () =>
-      import('./forgot-password/forgot-password.module').then(
+      import('./login/forgot-password/forgot-password.module').then(
         (m) => m.ForgotPasswordModule
       ),
   },
   {
     path: 'new-password',
     loadChildren: () =>
-      import('./new-password/new-password.module').then(
+      import('./login/new-password/new-password.module').then(
         (m) => m.NewPasswordPageModule
       ),
   },
@@ -34,6 +34,15 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      {
+        path: 'treino',
+        loadChildren: () => import('./treino/treino.module').then( m => m.TreinoPageModule)
+      },
+      {
+        path: 'marcar-frequencia',
+        loadChildren: () => 
+          import('./treino/marcar-frequencia/marcar-frequencia.module').then( m => m.MarcarFrequenciaPageModule)
+      },
       {
         path: 'home',
         loadChildren: () =>
@@ -51,15 +60,8 @@ const routes: Routes = [
         {
           path: 'cadastro-atleta',
           loadChildren: () =>
-            import('./cadastro-atleta/cadastro-atleta.module').then(
+            import('./atleta/cadastro-atleta/cadastro-atleta.module').then(
               (m) => m.CadastroAtletaPageModule
-          ),
-      },
-      {
-        path: 'cadastro-treino',
-        loadChildren: () =>
-          import('./treino/cadastro-treino/cadastro-treino.module').then(
-            (m) => m.CadastroTreinoPageModule
           ),
       },
       {
@@ -70,37 +72,30 @@ const routes: Routes = [
       {
         path: 'list-atleta',
         loadChildren: () =>
-          import('./list-atleta/list-atleta.module').then(
+          import('./atleta/list-atleta/list-atleta.module').then(
             (m) => m.ListatletaPageModule
           ),
       },
       {
         path: 'edit-atleta',
         loadChildren: () =>
-          import('./edit-atleta/edit-atleta.module').then(
+          import('./atleta/edit-atleta/edit-atleta.module').then(
             (m) => m.EditarAtletaPageModule
           ),
         },
         {
           path: 'view-news',
-          loadChildren: () => import('./view-news/view-news.module').then( m => m.ViewNewsPageModule)
+          loadChildren: () => import('./noticias/view-news/view-news.module').then( m => m.ViewNewsPageModule)
         },
         {
           path: 'edit-news',
-          loadChildren: () => import('./edit-news/edit-news.module').then( m => m.EditNewsPageModule)
+          loadChildren: () => import('./noticias/edit-news/edit-news.module').then( m => m.EditNewsPageModule)
         },
       {
         path: 'excluir-atleta',
         loadChildren: () =>
-          import('./excluir-atleta/excluir-atleta.module').then(
+          import('./atleta/excluir-atleta/excluir-atleta.module').then(
             (m) => m.ExcluiratletaPageModule
-          ),
-      },
-      {
-        path: 'treinos',
-        loadChildren: () =>
-          import('./treino/treino-list/treino-list.module').then(
-            (m) => m.TreinoListModule
           ),
       },
       {path: 'excluir-treinos',
@@ -113,7 +108,7 @@ const routes: Routes = [
   },
   {
     path: 'new-password',
-    loadChildren: () => import('./new-password/new-password.module').then( m => m.NewPasswordPageModule)
+    loadChildren: () => import('./login/new-password/new-password.module').then( m => m.NewPasswordPageModule)
   }
 
 ];
