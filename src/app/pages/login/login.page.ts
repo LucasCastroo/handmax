@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {IonicModule, LoadingController} from '@ionic/angular';
 import {Router, RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {TransitionScreenComponent} from "../components/transition-screen/transition-screen.component";
+import {TransitionScreenComponent} from "../../components/transition-screen/transition-screen.component";
 import {NgIf} from "@angular/common";
 
 

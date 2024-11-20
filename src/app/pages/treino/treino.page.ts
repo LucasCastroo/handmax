@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TreinoService } from '../services/treino.service';
-import { TreinoResponse } from '../models/treino-response.model';
+import { TreinoService } from '../../services/treino.service';
+import { TreinoResponse } from '../../models/treino-response.model';
 import { NewTreinoPage } from './new-treino/new-treino.page';
 import { ModalController } from '@ionic/angular';
-import { Treino } from '../models/treino.model';
+import { Treino } from '../../models/treino.model';
 import { EditTreinoPage } from './edit-treino/edit-treino.page';
 
 @Component({

@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ExcluiratletaPageRoutingModule } from './excluir-atleta-routing.module';
 
 import { ExcluiratletaPage } from './excluir-atleta.page';
-import { HeaderComponent } from '../../components/header/header.component';
+import { HeaderComponent } from '../../../components/header/header.component';
 
 @NgModule({
   imports: [

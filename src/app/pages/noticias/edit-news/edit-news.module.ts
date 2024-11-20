@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { EditNewsPageRoutingModule } from './edit-news-routing.module'; 
 import { EditNewsPage } from './edit-news.page';
-import { HeaderComponent } from '../../components/header/header.component';
+import { HeaderComponent } from '../../../components/header/header.component';
 
 @NgModule({
   imports: [

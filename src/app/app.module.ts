@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {HeaderComponent} from "./components/header/header.component";
 import { FormsModule } from '@angular/forms';
-import { NoticiasPageModule } from './noticias/noticias.module';
+import { NoticiasPageModule } from './pages/noticias/noticias.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { NewsService } from '../../services/news.service';
-import { PublicacaoDTO } from '../../models/news';
+import { NewsService } from '../../../services/news.service';
+import { PublicacaoDTO } from '../../../models/news';
 
 @Component({
   selector: 'app-view-news',

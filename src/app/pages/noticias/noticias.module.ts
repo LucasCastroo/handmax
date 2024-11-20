@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule }   from '@angular/forms';
-import { noticiasPageRoutingModule } from './noticias-routing.module';
+import { NoticiasPageRoutingModule } from './noticias-routing.module';
 import { NoticiasPage } from './noticias.page';
-import { HeaderComponent } from '../components/header/header.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { HeaderComponent } from '../components/header/header.component';
     CommonModule,
     IonicModule,
     FormsModule,
-    noticiasPageRoutingModule,
+    NoticiasPageRoutingModule,
     ReactiveFormsModule,
     HeaderComponent,
   ],

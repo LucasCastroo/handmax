@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PerfilRoutingModule } from './perfil-routing.module';
 
 import { PerfilComponent } from './perfil.component';
-import { HeaderComponent } from '../components/header/header.component';
+import { HeaderComponent } from '../../components/header/header.component';
 import { MatCardModule } from "@angular/material/card";
 
 

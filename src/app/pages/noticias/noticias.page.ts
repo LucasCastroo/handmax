@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PublicacaoDTO } from '../models/news';
-import { NewsService } from '../services/news.service';
+import { PublicacaoDTO } from '../../models/news';
+import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'app-noticias',
   templateUrl: './noticias.page.html',
-  styleUrls: ['./noticias.page.scss'],
+  styleUrls: ['./noticias.page.scss']
 })
 export class NoticiasPage implements OnInit {
   news: PublicacaoDTO = {

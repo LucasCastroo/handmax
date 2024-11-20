@@ -7,9 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { TreinoPageRoutingModule } from './treino-routing.module';
 
 import { TreinoPage } from './treino.page';
-import { LayoutComponent } from '../components/layout/layout.component';
-import { HeaderComponent } from '../components/header/header.component';
-import { FooterComponent } from '../components/footer/footer.component';
+import { LayoutComponent } from '../../components/layout/layout.component';
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @NgModule({
   imports: [
