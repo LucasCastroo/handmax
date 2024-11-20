@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { AtletaCadastroInicial } from '../models/AtletaCadastroInicial';
 import { Atleta } from '../models/Atleta';
+import { AtletaTreinoDTO } from '../models/AtletaTreinoDTO.model';
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +40,9 @@ export class AtletaService {
 
   findAll(): Observable<Atleta[]> {
     return this.httpClient.get<Atleta[]>(`${this.baseUrl}/all`);
+  }
+
+  findAllForTreinos(): Observable<AtletaTreinoDTO[]> {
+    return this.httpClient.get<AtletaTreinoDTO[]>(`${this.baseUrl}/all/treinos`);
   }
 }

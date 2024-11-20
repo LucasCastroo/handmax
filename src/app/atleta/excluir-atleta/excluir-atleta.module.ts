@@ -4,20 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CadastroTreinoPageRoutingModule } from './cadastro-treino-routing.module';
+import { ExcluiratletaPageRoutingModule } from './excluir-atleta-routing.module';
 
-import { CadastroTreinoPage } from './cadastro-treino.page';
+import { ExcluiratletaPage } from './excluir-atleta.page';
 import { HeaderComponent } from '../../components/header/header.component';
-
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CadastroTreinoPageRoutingModule,
+    ExcluiratletaPageRoutingModule,
     HeaderComponent,
   ],
-  declarations: [CadastroTreinoPage],
+  declarations: [ExcluiratletaPage],
 })
-export class CadastroTreinoPageModule {}
+export class ExcluiratletaPageModule {}

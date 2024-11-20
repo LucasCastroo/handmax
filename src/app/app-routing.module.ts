@@ -35,6 +35,15 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: 'treino',
+        loadChildren: () => import('./treino/treino.module').then( m => m.TreinoPageModule)
+      },
+      {
+        path: 'marcar-frequencia',
+        loadChildren: () => 
+          import('./treino/marcar-frequencia/marcar-frequencia.module').then( m => m.MarcarFrequenciaPageModule)
+      },
+      {
         path: 'home',
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomePageModule),
@@ -51,15 +60,8 @@ const routes: Routes = [
         {
           path: 'cadastro-atleta',
           loadChildren: () =>
-            import('./cadastro-atleta/cadastro-atleta.module').then(
+            import('./atleta/cadastro-atleta/cadastro-atleta.module').then(
               (m) => m.CadastroAtletaPageModule
-          ),
-      },
-      {
-        path: 'cadastro-treino',
-        loadChildren: () =>
-          import('./treino/cadastro-treino/cadastro-treino.module').then(
-            (m) => m.CadastroTreinoPageModule
           ),
       },
       {
@@ -70,14 +72,14 @@ const routes: Routes = [
       {
         path: 'list-atleta',
         loadChildren: () =>
-          import('./list-atleta/list-atleta.module').then(
+          import('./atleta/list-atleta/list-atleta.module').then(
             (m) => m.ListatletaPageModule
           ),
       },
       {
         path: 'edit-atleta',
         loadChildren: () =>
-          import('./edit-atleta/edit-atleta.module').then(
+          import('./atleta/edit-atleta/edit-atleta.module').then(
             (m) => m.EditarAtletaPageModule
           ),
         },
@@ -92,15 +94,8 @@ const routes: Routes = [
       {
         path: 'excluir-atleta',
         loadChildren: () =>
-          import('./excluir-atleta/excluir-atleta.module').then(
+          import('./atleta/excluir-atleta/excluir-atleta.module').then(
             (m) => m.ExcluiratletaPageModule
-          ),
-      },
-      {
-        path: 'treinos',
-        loadChildren: () =>
-          import('./treino/treino-list/treino-list.module').then(
-            (m) => m.TreinoListModule
           ),
       },
       {path: 'excluir-treinos',

@@ -1,7 +1,7 @@
 import { Categoria } from './Categoria';
-import { Endereco } from './endereco';
+import { Endereco } from './Endereco';
 import { QuestionarioSocial } from './QuestionarioSocial';
-import { Sexo } from './sexo';
+import { Sexo } from './Sexo';
 
 export interface Atleta {
   id?: number;
