@@ -14,6 +14,14 @@ const routes: Routes = [
   },  {
     path: 'edit-treino',
     loadChildren: () => import('./edit-treino/edit-treino.module').then( m => m.EditTreinoPageModule)
+  },
+  {
+    path: 'view-treino',
+    loadChildren: () => import('./view-treino/view-treino.module').then( m => m.ViewTreinoPageModule)
+  },
+  {
+    path: 'frequencia-treino',
+    loadChildren: () => import('./frequencia-treino/frequencia-treino.module').then( m => m.FrequenciaTreinoPageModule)
   }
 
 
