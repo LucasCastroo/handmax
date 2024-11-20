@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ViewNewsPageRoutingModule } from './view-news-routing.module';
 
 import { ViewNewsPage } from './view-news.page';
-import { HeaderComponent } from '../components/header/header.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @NgModule({
   imports: [

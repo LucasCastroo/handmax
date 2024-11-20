@@ -16,14 +16,14 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () =>
-      import('./forgot-password/forgot-password.module').then(
+      import('./login/forgot-password/forgot-password.module').then(
         (m) => m.ForgotPasswordModule
       ),
   },
   {
     path: 'new-password',
     loadChildren: () =>
-      import('./new-password/new-password.module').then(
+      import('./login/new-password/new-password.module').then(
         (m) => m.NewPasswordPageModule
       ),
   },
@@ -85,11 +85,11 @@ const routes: Routes = [
         },
         {
           path: 'view-news',
-          loadChildren: () => import('./view-news/view-news.module').then( m => m.ViewNewsPageModule)
+          loadChildren: () => import('./noticias/view-news/view-news.module').then( m => m.ViewNewsPageModule)
         },
         {
           path: 'edit-news',
-          loadChildren: () => import('./edit-news/edit-news.module').then( m => m.EditNewsPageModule)
+          loadChildren: () => import('./noticias/edit-news/edit-news.module').then( m => m.EditNewsPageModule)
         },
       {
         path: 'excluir-atleta',
@@ -108,7 +108,7 @@ const routes: Routes = [
   },
   {
     path: 'new-password',
-    loadChildren: () => import('./new-password/new-password.module').then( m => m.NewPasswordPageModule)
+    loadChildren: () => import('./login/new-password/new-password.module').then( m => m.NewPasswordPageModule)
   }
 
 ];
