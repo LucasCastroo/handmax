@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { EditTreinoPage } from '../treino/edit-treino/edit-treino.page';
 import { EditAtletaPage } from './edit-atleta/edit-atleta.page';
 import { DeleteAtletaPage } from './delete-atleta/delete-atleta.page';
+import { ViewAtletaPage } from './view-atleta/view-atleta.page';
 
 @Component({
   selector: 'app-atletas',
@@ -43,8 +44,8 @@ export class AtletasPage implements OnInit {
   }
 
   
-  async editarTreino(atleta: any, id: number) {
-    console.log('Editar treino com id:', id);
+  async editarAtleta(atleta: any, id: number) {
+    console.log('Editar atleta com id:', id);
 
     const modal = await this.modalController.create({      
       component: EditAtletaPage,
@@ -53,9 +54,22 @@ export class AtletasPage implements OnInit {
     return await modal.present();
   }
 
-  async deletarTreino(atletaId: number) {
+  async deletarAtleta(atletaId: number) {
     const modal = await this.modalController.create({
       component: DeleteAtletaPage,
+      componentProps: { atletaId },
+    });
+
+    modal.onDidDismiss().then(() => {
+      this.carregarAtletas(); // Recarrega a lista após fechar o modal
+    });
+
+    return await modal.present();
+  }
+
+  async verAtleta(atletaId: number) {
+    const modal = await this.modalController.create({
+      component: ViewAtletaPage,
       componentProps: { atletaId },
     });
 

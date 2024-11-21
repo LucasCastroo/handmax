@@ -93,6 +93,8 @@ export class EditTreinoPage implements OnInit {
         listarAtletas: formData.criarTreinoTodosAtletas ? [] : this.atletasSelecionados,
       };
 
+      console.log(treinoData);
+      
       this.treinoService.update(treinoData, this.treinoId).subscribe({
         next: () => alert('Treino atualizado com sucesso!'),
         error: (err) => console.error('Erro ao atualizar treino:', err),

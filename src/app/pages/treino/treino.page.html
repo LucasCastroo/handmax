@@ -1,9 +1,8 @@
 <app-header></app-header>
 <ion-content class="ion-padding">
-  <div class="container">
     <h1>Ver todos os treinos</h1>
     <ion-button (click)="abrirModalCadastro()">Agendar Treino</ion-button>
-    <ion-list>
+    <ion-list [inset]="true" lines="full">
       <ion-item *ngFor="let treino of treinos">
         <ion-label>
           <h2>Treino #{{ treino.id }}</h2>
@@ -41,6 +40,5 @@
         </div>
       </ion-card>
     </div>   -->
-  </div>
 </ion-content>
 <app-footer></app-footer>
