@@ -2,11 +2,12 @@
   <ion-toolbar>
     <ion-title>Novo treino</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="fecharModal()">Cancelar</ion-button>
+      <ion-button (click)="cancel()">Cancelar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
+  <ion-toast [isOpen]="activateToast" message={{toastMessage}} expand="block" [duration]="5000" (didDismiss)="desativarToast()"></ion-toast>
     <!-- Reactive Form -->
     <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
       <ion-list [inset]="true">
@@ -19,12 +20,13 @@
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input
+            <ion-input
             label="Horário" labelPlacement="floating"
             formControlName="horario"
             placeholder="hh:mm"
             required
-          ></ion-input>
+          >
+        </ion-input>
         </ion-item>
         <!-- Campo Data -->
         <ion-item>

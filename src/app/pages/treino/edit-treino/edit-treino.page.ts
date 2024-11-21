@@ -16,6 +16,9 @@ export class EditTreinoPage implements OnInit {
   atletasSelecionados: AtletaTreinoDTO[] = [];
   treinoId!: number;
 
+  toastMessage: string = '';
+  activateToast: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private treinoService: TreinoService,
@@ -97,19 +100,33 @@ export class EditTreinoPage implements OnInit {
       
       this.treinoService.update(treinoData, this.treinoId).subscribe({
         next: () => alert('Treino atualizado com sucesso!'),
-        error: (err) => console.error('Erro ao atualizar treino:', err),
+        error: (err) => {
+          this.ativarToast('Erro ao atualizar treino: ' + err.error?.message),
+          console.error('Erro ao atualizar treino:', err)
+        }
       });
     } else {
+      this.ativarToast('Formulário inváido.')
       console.error('Formulário inválido.');
     }
   }
 
   cancel() {
+    this.ativarToast('Edição cancelada.');
     console.log('Edição cancelada.');
     this.fecharModal();
   }
 
   fecharModal() {
     this.modalController.dismiss();
+  }
+
+  ativarToast(message: string): void{
+    this.toastMessage = message;
+    this.activateToast = true;
+  }
+
+  desativarToast(){
+    this.activateToast = false;
   }
 }

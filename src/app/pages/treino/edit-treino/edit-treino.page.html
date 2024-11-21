@@ -2,11 +2,12 @@
   <ion-toolbar>
     <ion-title>Editar treino</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="fecharModal()">Cancelar</ion-button>
+      <ion-button (click)="cancel()">Cancelar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
+  <ion-toast [isOpen]="activateToast" message={{toastMessage}} expand="block" [duration]="5000" (didDismiss)="desativarToast()"></ion-toast>
     <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
       <ion-list>
         <ion-item>

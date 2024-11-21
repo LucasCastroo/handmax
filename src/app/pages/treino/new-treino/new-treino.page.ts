@@ -16,6 +16,9 @@ export class NewTreinoPage implements OnInit {
   atletasSelecionados: AtletaTreinoDTO[] = []; // Lista de atletas selecionados
   criarTreinoTodos: boolean = false;
 
+  toastMessage: string = '';
+  activateToast: boolean = false;
+  
   constructor(
     private fb: FormBuilder,
     private treinoService: TreinoService,
@@ -51,7 +54,7 @@ export class NewTreinoPage implements OnInit {
       const formData = this.treinoForm.value;
   
       if (!formData.criarTreinoTodosAtletas && this.atletasSelecionados.length === 0) {
-        console.error('Nenhum atleta selecionado.');
+        this.ativarToast('Erro: Nenhum atleta selecionado.');
         return;
       }
   
@@ -63,11 +66,12 @@ export class NewTreinoPage implements OnInit {
       console.log('Treino cadastrado:', treinoData);
       this.salvarTreino()
     } else {
-      console.error('Formulário inválido.');
+      this.ativarToast('Erro: Formulário inválido.');
     }
   }
   
   cancel() {
+    this.ativarToast('Cadastro cancelado.');
     console.log('Cadastro cancelado.');
     this.fecharModal();
   }
@@ -95,8 +99,19 @@ export class NewTreinoPage implements OnInit {
       listarAtletas: this.atletasSelecionados,
     };
     this.treinoService.create(treinoDTO).subscribe({
-      next: () => alert('Treino criado com sucesso!'),
-      error: (err) => console.error('Erro ao salvar treino:', err),
+      next: () => this.ativarToast('Treino criado com sucesso!'),
+      error: (err) => {
+        console.error('Erro ao salvar treino: ', err)
+        this.ativarToast('Erro ao salvar treino: '+  err.error?.details)}
     });
+  }
+
+  ativarToast(message: string): void{
+    this.toastMessage = message;
+    this.activateToast = true;
+  }
+
+  desativarToast(){
+    this.activateToast = false;
   }
 }
