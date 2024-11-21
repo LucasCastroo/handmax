@@ -39,10 +39,8 @@ export class TreinoPage implements OnInit {
       component: NewTreinoPage
     });
 
-    modal.onDidDismiss().then((result) => {
-      if (result.data) {
-        this.treinos.push(result.data as Treino);
-      }
+    modal.onDidDismiss().then(() => {
+      this.carregarTreinos();
     });
 
     return await modal.present();
@@ -55,6 +53,8 @@ export class TreinoPage implements OnInit {
       component: EditTreinoPage,
       componentProps: { treinoId: treino.id },
     });
+
+
     return await modal.present();
   }
 

@@ -27,13 +27,18 @@ const routes: Routes = [
         (m) => m.NewPasswordPageModule
       ),
   },
-
-
-
   {
     path: '',
     component: LayoutComponent,
     children: [
+      {
+        path: 'atletas',
+        loadChildren: () => import('./pages/atletas/atletas.module').then( m => m.AtletasPageModule)
+      },
+      {
+        path: 'frequencia',
+        loadChildren: () => import('./pages/frequencia/frequencia.module').then( m => m.FrequenciaPageModule)
+      },    
       {
         path: 'treino',
         loadChildren: () => import('./pages/treino/treino.module').then( m => m.TreinoPageModule)
@@ -52,32 +57,12 @@ const routes: Routes = [
         },
 
 
-        {
-          path: 'cadastro-atleta',
-          loadChildren: () =>
-            import('./pages/atleta/cadastro-atleta/cadastro-atleta.module').then(
-              (m) => m.CadastroAtletaPageModule
-          ),
-      },
+    
       {
         path: 'perfil',
         loadChildren: () =>
           import('./pages/perfil/perfil.module').then((m) => m.PerfilModule),
       },
-      {
-        path: 'list-atleta',
-        loadChildren: () =>
-          import('./pages/atleta/list-atleta/list-atleta.module').then(
-            (m) => m.ListatletaPageModule
-          ),
-      },
-      {
-        path: 'edit-atleta',
-        loadChildren: () =>
-          import('./pages/atleta/edit-atleta/edit-atleta.module').then(
-            (m) => m.EditarAtletaPageModule
-          ),
-        },
         {
           path: 'view-news',
           loadChildren: () => import('./pages/noticias/view-news/view-news.module').then( m => m.ViewNewsPageModule)
@@ -86,13 +71,6 @@ const routes: Routes = [
           path: 'edit-news',
           loadChildren: () => import('./pages/noticias/edit-news/edit-news.module').then( m => m.EditNewsPageModule)
         },
-      {
-        path: 'excluir-atleta',
-        loadChildren: () =>
-          import('./pages/atleta/excluir-atleta/excluir-atleta.module').then(
-            (m) => m.ExcluiratletaPageModule
-          ),
-      },
       {path: 'excluir-treinos',
         loadChildren: () =>
           import('./pages/treino/excluir-treino/excluir-treino.module').then(
@@ -104,8 +82,7 @@ const routes: Routes = [
   {
     path: 'new-password',
     loadChildren: () => import('./pages/login/new-password/new-password.module').then( m => m.NewPasswordPageModule)
-  }
-
+  },
 ];
 
 

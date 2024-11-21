@@ -1,46 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar treino</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fecharModal()">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div class="container">
-    <h2 class="titulo" style="margin-bottom: 20px">Editar Treino</h2>
     <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
-
-      <ion-item class="custom-input">
-        <ion-label position="stacked">Local</ion-label>
-        <ion-input formControlName="local" placeholder="Informe o local" required></ion-input>
-      </ion-item>
-
-      <ion-item class="custom-input">
-        <ion-label position="stacked">Horário</ion-label>
-        <ion-input formControlName="horario" placeholder="hh:mm" required></ion-input>
-      </ion-item>
-
-      <ion-item class="custom-input">
-        <ion-label position="stacked">Data</ion-label>
-        <ion-input formControlName="data" presentation="date"></ion-input>
-      </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-input label="Local" labelPlacement="floating" formControlName="local" placeholder="Informe o local" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Horário" labelPlacement="floating" formControlName="horario" placeholder="hh:mm" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Data" labelPlacement="floating" formControlName="data" presentation="date"></ion-input>
+        </ion-item>  
+      </ion-list>
       
-      <div *ngIf="!treinoForm.get('criarTreinoTodosAtletas')?.value">
         <h3 class="subtitulo">Selecionar Atletas</h3>
         <ion-list>
           <ion-item *ngFor="let atleta of atletas">
-            <ion-label>{{ atleta.nome }}</ion-label>
             <ion-checkbox
-              slot="start"
               [checked]="isAtletaSelecionado(atleta)"
               (ionChange)="toggleAtleta(atleta)"
-            ></ion-checkbox>
+            >{{ atleta.nome }}</ion-checkbox>
           </ion-item>
         </ion-list>
-      </div>
-
-      <div class="footer">
-        <ion-button expand="full" shape="round" type="button" class="button-cancel" (click)="cancel()">
-          Cancelar
-        </ion-button>
-
         <ion-button expand="full" shape="round" type="submit">
           Atualizar
         </ion-button>
-      </div>
     </form>
-  </div>
 </ion-content>
