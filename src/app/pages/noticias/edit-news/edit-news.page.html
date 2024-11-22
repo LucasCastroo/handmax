@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content>
   <ion-grid>
     <ion-row>
       <!-- Sidebar para editar notícia -->
@@ -19,9 +19,7 @@
               Adicionar Parágrafo
             </ion-button>
           </div>
-          <ion-button (click)="previewNews()" expand="block" class="view-news-btn">
-            Visualizar Notícia
-          </ion-button>
+          <ion-button (click)="previewNews()" expand="block" class="view-news-btn">Visualizar Notícia</ion-button>
         </div>
       </ion-col>
 
@@ -32,25 +30,25 @@
           <input [(ngModel)]="news.titulo" placeholder="Digite o título" *ngIf="isTitleVisible" />
           <button (click)="removeTitle()" *ngIf="isTitleVisible">Remover Título</button>
 
-          <div *ngFor="let entry of entryOrder; let i = index">
-            <ng-container *ngIf="entry === 'image'">
+          <div>
+            <ng-container *ngIf="news.nomeImagem">
               <div class="news-image">
-                <img [src]="news.nomeImagem[i]" alt="Imagem da notícia" *ngIf="news.nomeImagem[i]" />
-                <input [(ngModel)]="news.nomeImagem[i]" placeholder="URL da imagem" />
-                <button (click)="removeImage(i)">Remover Imagem</button>
+                <img [src]="news.nomeImagem" alt="Imagem da notícia" />
+                <input [(ngModel)]="news.nomeImagem" placeholder="URL da imagem" />
+                <button (click)="removeImage()">Remover Imagem</button>
               </div>
             </ng-container>
 
-            <ng-container *ngIf="entry === 'conteudo'">
+            <ng-container *ngIf="news.conteudo">
               <div>
-                <textarea [(ngModel)]="news.conteudo[i]" placeholder="Digite o parágrafo"></textarea>
-                <button (click)="removeParagraph(i)">Remover Parágrafo</button>
+                <textarea [(ngModel)]="news.conteudo" placeholder="Digite o parágrafo"></textarea>
+                <button (click)="removeParagraph()">Remover Parágrafo</button>
               </div>
             </ng-container>
           </div>
         </div>
         <div class="save-container">
-          <ion-button (click)="updateNews()" expand="block" class="save-news-btn">Salvar Notícia</ion-button>
+          <ion-button (click)="saveNews()" expand="block" class="save-news-btn">Salvar Notícia</ion-button>
         </div>
       </ion-col>
     </ion-row>
