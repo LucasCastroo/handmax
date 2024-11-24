@@ -23,45 +23,73 @@ export class ViewNewsPage implements OnInit {
     this.loadNews();
   }
 
+  // Método para carregar todas as notícias
   loadNews() {
-    this.newsService.getNews().subscribe((data) => {
-      this.newsList = data;
-    });
+    this.newsService.getNews().subscribe(
+      (data) => {
+        console.log('Notícias carregadas:', data); // Verifique se os IDs estão presentes aqui
+        this.newsList = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar notícias:', error);
+      }
+    );
   }
 
+  // Método para criar uma nova notícia
   createNews() {
     this.router.navigate(['/noticias']);
   }
 
+  // Método para visualizar a lista de notícias
   viewNewsList() {
     this.selectedNews = null;
   }
 
+  // Método para selecionar uma notícia
   selectNews(news: PublicacaoDTO) {
     this.selectedNews = news;
   }
 
+  // Método para editar uma notícia
   editNews(newsItem: PublicacaoDTO) {
-    this.router.navigate(['/edit-news'], { state: { newsItem } });
+    console.log("Notícia enviada para edição:", newsItem);
+    if (newsItem.id) {
+      this.router.navigate(['/edit-news'], { state: { newsItem } });
+    } else {
+      console.error("ID da notícia está ausente:", newsItem);
+      alert("Erro: Não foi possível editar a notícia. O ID está ausente.");
+    }
   }
 
+  // Método para confirmar a exclusão de uma notícia
   async confirmDelete(newsItem: PublicacaoDTO) {
     const alert = await this.alertController.create({
       header: 'Confirmação',
       message: 'Tem certeza de que deseja excluir esta notícia?',
       buttons: [
         { text: 'Cancelar', role: 'cancel' },
-        { text: 'Excluir', role: 'confirm', handler: () => this.deleteNews(newsItem.id) }
-      ]
+        {
+          text: 'Excluir',
+          role: 'confirm',
+          handler: () => this.deleteNews(newsItem.id),
+        },
+      ],
     });
     await alert.present();
   }
 
+  // Método para excluir uma notícia
   deleteNews(id: number | undefined) {
-    if (id) {
-      this.newsService.deleteNews(id.toString()).subscribe(() => {
-        this.newsList = this.newsList.filter(item => item.id !== id);
-      });
+    if (id !== undefined) {
+      this.newsService.deleteNews(id).subscribe(
+        () => {
+          this.newsList = this.newsList.filter((item) => item.id !== id);
+        },
+        (error) => {
+          console.error('Erro ao excluir a notícia:', error);
+        }
+      );
     }
   }
 }

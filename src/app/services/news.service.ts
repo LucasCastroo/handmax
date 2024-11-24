@@ -12,7 +12,7 @@ export class NewsService {
 
   constructor(private http: HttpClient) {}
 
-  // Método para obter todas as notícias com paginação
+  
   getNews(page: number = 0, pageSize: number = 100): Observable<PublicacaoDTO[]> {
     const params = { page: page.toString(), pageSize: pageSize.toString() };
     return this.http.get<PublicacaoDTO[]>(this.apiUrl, { params });

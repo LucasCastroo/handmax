@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { PublicacaoDTO } from 'src/app/models/publicacao-dto.model';
 import { NewsService } from 'src/app/services/news.service';
 
-
 @Component({
   selector: 'app-edit-news',
   templateUrl: './edit-news.page.html',
@@ -54,14 +53,32 @@ export class EditNewsPage implements OnInit {
   }
 
   saveNews() {
-    if (this.news.titulo || this.news.nomeImagem || this.news.conteudo) {
-      this.newsService.createNews(this.news).subscribe(() => {
-        this.router.navigate(['/view-news']);
-      });
+    console.log("Requisição de salvar notícia no Edit News");
+  
+    if (this.news.id) { // Verifica se o ID está definido
+      console.log("ID encontrado:", this.news.id);
+  
+      if (this.news.titulo || this.news.nomeImagem || this.news.conteudo) {
+        // Atualiza a notícia se os dados mínimos forem fornecidos
+        this.newsService.updateNews(this.news.id, this.news).subscribe({
+          next: () => {
+            console.log("Notícia atualizada com sucesso.");
+            this.router.navigate(['/view-news']);
+          },
+          error: (error) => {
+            console.error("Erro ao atualizar notícia:", error);
+            alert("Houve um erro ao atualizar a notícia.");
+          }
+        });
+      } else {
+        alert("Por favor, adicione um título, imagem ou conteúdo antes de salvar.");
+      }
     } else {
-      alert("Por favor, adicione um título, imagem ou parágrafo antes de salvar.");
+      alert("ID da notícia não encontrado. Não é possível salvar.");
     }
   }
+  
+
 
   previewNews() {
     this.router.navigate(['/view-news'], { state: { newsItem: this.news } });
