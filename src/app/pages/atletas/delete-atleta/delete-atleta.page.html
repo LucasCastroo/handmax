@@ -1,0 +1,19 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Confirmar Exclusão</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">Fechar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-text>
+      <h2>Tem certeza de que deseja excluir este atleta?</h2>
+      <p>Essa ação não pode ser desfeita.</p>
+    </ion-text>
+    <ion-button expand="full" color="danger" (click)="confirmDelete()">Confirmar</ion-button>
+    <ion-button expand="full" color="medium" (click)="dismiss()">Cancelar</ion-button>
+  </ion-content>  
+</ion-app>

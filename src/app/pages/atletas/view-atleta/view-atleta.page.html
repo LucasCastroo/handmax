@@ -1,0 +1,38 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Detalhes do Atleta</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="fecharModal()">Voltar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-list [inset]="true" lines="full">
+      <ion-list-header><h1>{{ atleta?.nome }}</h1></ion-list-header>
+      <ion-item>ID: {{atleta?.id }}</ion-item>
+      <ion-item>CPF: {{ atleta?.cpf }}</ion-item>
+      <ion-item>Data de Nascimento: {{ atleta?.dataNascimento | date }}</ion-item>
+      <ion-item>Sexo: {{ atleta?.sexo }}</ion-item>
+      <ion-item>Telefone: {{atleta?.telefone}} </ion-item>
+      <ion-item>Categoria: {{atleta?.categoria}}</ion-item>
+    </ion-list>
+    <ion-list [inset]="true" lines="full">
+      <ion-list-header><h1>Endereço</h1></ion-list-header>
+      <ion-item>CEP: {{ atleta?.endereco?.CEP }}</ion-item>
+      <ion-item>Logradouro: {{ atleta?.endereco?.logradouro }}</ion-item>
+      <ion-item>Número/Lote: {{ atleta?.endereco?.numeroLote }}</ion-item>
+      <ion-item>Complemento: {{ atleta?.endereco?.complemento }}</ion-item>
+      <ion-item>Localidade: {{ atleta?.endereco?.localidade }}</ion-item>
+      <ion-item>UF: {{ atleta?.endereco?.UF }}</ion-item>
+    </ion-list>
+    <ion-list [inset]="true" lines="full">
+      <ion-list-header><h1>Questionário Social</h1></ion-list-header>
+      <ion-item>Renda Familiar: {{ atleta?.dadosSociais?.rendaFamiliar | currency:'BRL':'symbol' }}</ion-item>
+      <ion-item>Pessoas em casa: {{ atleta?.dadosSociais?.pessoasEmCasa }}</ion-item>
+      <ion-item>Condições de Moradia: {{ atleta?.dadosSociais?.condicoesMoradia }}</ion-item>
+      <ion-item>Cadastro NIS: {{ atleta?.dadosSociais?.cadastroNIS ? 'Sim' : 'Não' }}</ion-item>
+    </ion-list>
+  </ion-content>  
+</ion-app>

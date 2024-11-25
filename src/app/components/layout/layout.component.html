@@ -11,7 +11,7 @@
           <ion-icon name="home-outline" class="user-icon"></ion-icon>
           <span>Home</span>
         </button>
-        <button class="btns-menu" routerLink="list-atleta">
+        <button class="btns-menu" routerLink="/atletas">
           <ion-icon name="people-outline" class="user-icon"></ion-icon>
           <span>Atletas</span>
         </button>
@@ -19,7 +19,7 @@
           <ion-icon name="calendar-number-outline" class="user-icon"></ion-icon>
           <span>Treinos</span>
         </button>
-        <button class="btns-menu">
+        <button class="btns-menu" routerLink="/frequencia">
           <ion-icon name="checkmark-circle-outline" class="user-icon"></ion-icon>
           <span>Chamada</span>
         </button>
@@ -37,7 +37,8 @@
 
   <app-header></app-header>
 
-  <ion-router-outlet id="main-content"></ion-router-outlet>
+  <ion-router-outlet id="main-content">
+  </ion-router-outlet>
 
   <app-footer></app-footer>
 </ion-app>

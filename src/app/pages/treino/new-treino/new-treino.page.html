@@ -1,78 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Novo treino</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div class="container">
-    <div id="logo"></div>
-    <h2 class="titulo" style="margin-bottom: 20px">Cadastro Treino</h2>
+  <ion-toast [isOpen]="activateToast" message={{toastMessage}} expand="block" [duration]="5000" (didDismiss)="desativarToast()"></ion-toast>
     <!-- Reactive Form -->
     <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
-  
+      <ion-list [inset]="true">
+        <ion-item>
+          <ion-input
+            label="Local" labelPlacement="floating"
+            formControlName="local"
+            placeholder="Informe o local"
+            required
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input
+            label="Horário" labelPlacement="floating"
+            formControlName="horario"
+            placeholder="hh:mm"
+            required
+          >
+        </ion-input>
+        </ion-item>
+        <!-- Campo Data -->
+        <ion-item>
+          <ion-input
+            label="Data" labelPlacement="floating"
+            formControlName="data"
+            placeholder="DD/MM/AAAA"
+            presentation="date"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-toggle formControlName="criarTreinoTodosAtletas">Criar treino com todos os atletas</ion-toggle>
+        </ion-item>  
+      </ion-list>
       <!-- Campo Local -->
-      <ion-item class="custom-input">
-        <ion-label position="stacked">Local</ion-label>
-        <ion-input
-          formControlName="local"
-          placeholder="Informe o local"
-          required
-        ></ion-input>
-      </ion-item>
-      <ion-item class="custom-input">
-        <ion-label position="stacked">Horário</ion-label>
-        <ion-input
-          formControlName="horario"
-          placeholder="hh:mm"
-          required
-        ></ion-input>
-      </ion-item>
-      <!-- Campo Data -->
-      <ion-item class="custom-input">
-        <ion-label position="stacked">Data</ion-label>
-        <ion-input
-          formControlName="data"
-          presentation="date"
-        ></ion-input>
-      </ion-item>
-  
-      <!-- Criar Treino com Todos os Atletas -->
-      <ion-item lines="none">
-        <ion-label>Criar treino com todos os atletas</ion-label>
-        <ion-toggle formControlName="criarTreinoTodosAtletas"></ion-toggle>
-      </ion-item>
   
       <!-- Listar Atletas (Exibe somente se criarTreinoTodosAtletas for false) -->
       <div *ngIf="!treinoForm.get('criarTreinoTodosAtletas')?.value">
-        <h3 class="subtitulo">Selecionar Atletas</h3>
-        <ion-list>
+        <ion-list [inset]="true">
+          <ion-list-header>
+            <h3>Selecionar Atletas</h3>
+          </ion-list-header>
           <ion-item *ngFor="let atleta of atletas">
-            <ion-label>{{ atleta.nome }}</ion-label>
             <ion-checkbox
-              slot="start"
+              labelPlacement="start"
               [checked]="isAtletaSelecionado(atleta)"
               (ionChange)="toggleAtleta(atleta)"
-            ></ion-checkbox>
+            >{{ atleta.nome }}</ion-checkbox>
           </ion-item>
         </ion-list>
       </div>
-  
-      <!-- Botões de Ação -->
-      <div class="footer">
-        <ion-button
-          expand="full"
-          shape="round"
-          type="button"
-          class="button-cancel"
-          (click)="cancel()"
-        >
-          Cancelar
-        </ion-button>
-  
-        <ion-button
-          expand="full"
-          shape="round"
-          type="submit"
-          >
-          <!-- [disabled]="treinoForm.invalid"  -->
-          Cadastrar
-        </ion-button>
-      </div>
+      <ion-button
+      expand="block"
+      type="submit"
+      >
+      <!-- [disabled]="treinoForm.invalid"  -->
+        Cadastrar
+      </ion-button>
     </form>
-  </div>
   </ion-content>

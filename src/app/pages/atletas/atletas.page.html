@@ -1,0 +1,20 @@
+<ion-app>
+<app-header></app-header>
+<ion-content class="ion-padding">
+    <h1>Ver todos os atletas</h1>
+    <ion-button class="ion-margin-end" (click)="abrirModalCadastro()">Cadastrar atleta</ion-button>
+    <ion-list [inset]="true" lines="full">
+      <ion-item *ngFor="let atleta of atletas">
+        <ion-label>
+          <h2>{{ atleta.nome }}</h2>
+          <p>CPF: {{ atleta.cpf }}</p>
+          <p>Nascimento: {{ atleta.dataNascimento | date }}</p>
+        </ion-label>
+        <ion-icon name="information-circle" slot="end" (click)="verAtleta(atleta.id)"></ion-icon>
+        <ion-icon name="pencil-outline" slot="end" (click)="editarAtleta(atleta, atleta.id)"></ion-icon>
+        <ion-icon name="trash-outline" slot="end" (click)="deletarAtleta(atleta.id)"></ion-icon>
+      </ion-item>
+    </ion-list>  
+</ion-content>
+<app-footer></app-footer>
+</ion-app>

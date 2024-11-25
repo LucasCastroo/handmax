@@ -9,12 +9,13 @@
       <div class="login-card">
         <img src="assets/HandMaxLogo.png" alt="Logo" class="logo" />
         <h2>Bem-Vindo<br>Ao Sistema de Gerenciamento de Atletas</h2>
-        <form (ngSubmit)="login()">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="input-container">
-            <ion-icon name="mail-outline"></ion-icon>
-            <ion-input
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-input 
+              formControlName="login"
               type="text"
-              placeholder="E-mail"
+              placeholder="Usuário"
               >
             </ion-input>
           </div>
@@ -22,6 +23,7 @@
           <div class="input-container">
             <ion-icon name="lock-closed-outline"></ion-icon>
             <ion-input
+              formControlName="senha"
               type="password"
               placeholder="Senha"
               >
