@@ -11,11 +11,12 @@ export class ErrorHandlingService {
    * @returns Mensagem de erro legível.
    */
     handleError(error: HttpErrorResponse): string {
+      console.log(error);
       // Verifica se há um corpo de erro detalhado (JSON)
       if (error.error) {
         if (typeof error.error === 'object') {
           // Caso seja um JSON, prioriza o campo `details`
-          return error.error.details || 'Erro desconhecido no servidor.';
+          return error.error.message || 'Erro desconhecido no servidor.';
         } else {
           // Caso o erro seja uma string, retorna diretamente
           return error.error;

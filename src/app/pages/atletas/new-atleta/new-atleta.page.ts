@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { AtletaService } from 'src/app/services/atleta.service';
+import { ErrorHandlingService } from 'src/app/services/error-handling.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-new-atleta',
@@ -14,7 +16,9 @@ export class NewAtletaPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private athleteService: AtletaService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private errorHandlingService: ErrorHandlingService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -47,10 +51,13 @@ export class NewAtletaPage implements OnInit {
     if (this.atletaForm.valid) {
       this.athleteService.create(this.atletaForm.value).subscribe({
         next: () => {
-          alert('Atleta cadastrado com sucesso!');
+          this.toastService.ativarToast('Atleta cadastrado com sucesso!');
           this.fecharModal();
         },
-        error: (err) => console.error('Erro ao cadastrar atleta:', err),
+        error: (err) => {
+          const errorMessage = this.errorHandlingService.handleError(err);
+          this.toastService.ativarToast(errorMessage);
+        }
       });
     } else {
       alert('Preencha todos os campos obrigatórios corretamente!');

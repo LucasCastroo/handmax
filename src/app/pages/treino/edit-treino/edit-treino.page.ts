@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { AtletaTreinoDTO } from 'src/app/models/atleta-treino-dtomodel';
 import { AtletaService } from 'src/app/services/atleta.service';
+import { ErrorHandlingService } from 'src/app/services/error-handling.service';
+import { ToastService } from 'src/app/services/toast.service';
 import { TreinoService } from 'src/app/services/treino.service';
 
 @Component({
@@ -23,7 +25,9 @@ export class EditTreinoPage implements OnInit {
     private fb: FormBuilder,
     private treinoService: TreinoService,
     private atletaService: AtletaService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private errorHandlingService: ErrorHandlingService,
+    private toastService: ToastService
   ) {
     this.treinoForm = this.fb.group({
       local: ['', Validators.required],
@@ -50,8 +54,10 @@ export class EditTreinoPage implements OnInit {
         // Sincronizar os atletas disponíveis com os selecionados
         this.sincronizarAtletasSelecionados();
       },
-      error: (err) => console.error('Erro ao carregar treino:', err),
-    });
+      error: (err) => {
+        const errorMessage = this.errorHandlingService.handleError(err);
+        this.toastService.ativarToast(errorMessage);
+    }});
   }
   
   carregarAtletas() {
@@ -62,8 +68,10 @@ export class EditTreinoPage implements OnInit {
         // Sincronizar atletas disponíveis com selecionados após o carregamento
         this.sincronizarAtletasSelecionados();
       },
-      error: (err) => console.error('Erro ao carregar atletas:', err),
-    });
+      error: (err) => {
+        const errorMessage = this.errorHandlingService.handleError(err);
+        this.toastService.ativarToast(errorMessage);
+    }});
   }
   
   sincronizarAtletasSelecionados() {
@@ -101,32 +109,22 @@ export class EditTreinoPage implements OnInit {
       this.treinoService.update(treinoData, this.treinoId).subscribe({
         next: () => alert('Treino atualizado com sucesso!'),
         error: (err) => {
-          this.ativarToast('Erro ao atualizar treino: ' + err.error?.message),
-          console.error('Erro ao atualizar treino:', err)
-        }
-      });
+          const errorMessage = this.errorHandlingService.handleError(err);
+          this.toastService.ativarToast(errorMessage);
+      }});
     } else {
-      this.ativarToast('Formulário inváido.')
+      this.toastService.ativarToast('Errro: Formulário inváido.')
       console.error('Formulário inválido.');
     }
   }
 
   cancel() {
-    this.ativarToast('Edição cancelada.');
+    this.toastService.ativarToast('Edição cancelada.');
     console.log('Edição cancelada.');
     this.fecharModal();
   }
 
   fecharModal() {
     this.modalController.dismiss();
-  }
-
-  ativarToast(message: string): void{
-    this.toastMessage = message;
-    this.activateToast = true;
-  }
-
-  desativarToast(){
-    this.activateToast = false;
   }
 }
