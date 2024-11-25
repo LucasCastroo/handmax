@@ -1,147 +1,149 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Novo Atleta</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="fecharModal()">Cancelar</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
-  <form [formGroup]="atletaForm" (ngSubmit)="cadastrarAtleta()">
-    <ion-list [inset]="true" lines="full">
-      <ion-item>
-        <ion-input
-          label="Nome"
-          label-placement="floating"
-          placeholder="Digite o nome"
-          formControlName="nome"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          label="CPF"
-          label-placement="floating"
-          placeholder="Digite o CPF"
-          formControlName="cpf"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          label="Data de Nascimento"
-          label-placement="floating"
-          placeholder="Digite a data de nascimento (DD/MM/YYYY)"
-          formControlName="dataNascimento"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-select label="Sexo" label-placement="floating" formControlName="sexo">
-          <ion-select-option value="MASCULINO">Masculino</ion-select-option>
-          <ion-select-option value="FEMININO">Feminino</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          label="Telefone"
-          label-placement="floating"
-          formControlName="telefone"
-        ></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-list [inset]="true" lines="full">
-      <ion-list-header>
-        <h2>Endereço</h2>
-      </ion-list-header>
-      <div formGroupName="endereco">
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Novo Atleta</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="fecharModal()">Cancelar</ion-button>
+      </ion-buttons>
+    </ion-toolbar> 
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <form [formGroup]="atletaForm" (ngSubmit)="cadastrarAtleta()">
+      <ion-list [inset]="true" lines="full">
         <ion-item>
           <ion-input
-            label="CEP"
+            label="Nome"
             label-placement="floating"
-            formControlName="CEP"
+            placeholder="Digite o nome"
+            formControlName="nome"
           ></ion-input>
         </ion-item>
         <ion-item>
           <ion-input
-            label="Logradouro"
+            label="CPF"
             label-placement="floating"
-            formControlName="logradouro"
+            placeholder="Digite o CPF"
+            formControlName="cpf"
           ></ion-input>
         </ion-item>
         <ion-item>
           <ion-input
-            label="Número/Lote"
+            label="Data de Nascimento"
             label-placement="floating"
-            formControlName="numeroLote"
+            placeholder="Digite a data de nascimento (DD/MM/YYYY)"
+            formControlName="dataNascimento"
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input
-            label="Complemento"
-            label-placement="floating"
-            formControlName="complemento"
-          ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input
-            label="Localidade"
-            label-placement="floating"
-            formControlName="localidade"
-          ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input
-            label="UF"
-            label-placement="floating"
-            formControlName="UF"
-          ></ion-input>
-        </ion-item>
-      </div>
-    </ion-list>
-
-    <ion-list [inset]="true"lines="full">
-      <ion-list-header>
-        <h2>Questionário</h2>
-      </ion-list-header>
-      <div formGroupName="questionario">
-        <ion-item>
-          <ion-input
-            label="Renda Familiar"
-            label-placement="floating"
-            formControlName="rendaFamiliar"
-          ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input
-            label="Pessoas em Casa"
-            label-placement="floating"
-            type="number"
-            formControlName="pessoasEmCasa"
-          ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-select
-            label="Condições de Moradia"
-            label-placement="floating"
-            formControlName="condicoesMoradia"
-          >
-            <ion-select-option value="PESSIMA">Péssima</ion-select-option>
-            <ion-select-option value="RUIM">Ruim</ion-select-option>
-            <ion-select-option value="REGULAR">Regular</ion-select-option>
-            <ion-select-option value="BOA">Boa</ion-select-option>
-            <ion-select-option value="EXCELENTE">Excelente</ion-select-option>
+          <ion-select label="Sexo" label-placement="floating" formControlName="sexo">
+            <ion-select-option value="MASCULINO">Masculino</ion-select-option>
+            <ion-select-option value="FEMININO">Feminino</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-toggle
-            labelPlacement="start"
-            formControlName="cadastroNIS"
-          >
-            Cadastro NIS
-          </ion-toggle>
+          <ion-input
+            label="Telefone"
+            label-placement="floating"
+            formControlName="telefone"
+          ></ion-input>
         </ion-item>
-      </div>
-    </ion-list>
-    <ion-button expand="block" type="submit">Cadastrar</ion-button>
-  </form>
-</ion-content>
+      </ion-list>
+  
+      <ion-list [inset]="true" lines="full">
+        <ion-list-header>
+          <h2>Endereço</h2>
+        </ion-list-header>
+        <div formGroupName="endereco">
+          <ion-item>
+            <ion-input
+              label="CEP"
+              label-placement="floating"
+              formControlName="CEP"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Logradouro"
+              label-placement="floating"
+              formControlName="logradouro"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Número/Lote"
+              label-placement="floating"
+              formControlName="numeroLote"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Complemento"
+              label-placement="floating"
+              formControlName="complemento"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Localidade"
+              label-placement="floating"
+              formControlName="localidade"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="UF"
+              label-placement="floating"
+              formControlName="UF"
+            ></ion-input>
+          </ion-item>
+        </div>
+      </ion-list>
+  
+      <ion-list [inset]="true"lines="full">
+        <ion-list-header>
+          <h2>Questionário</h2>
+        </ion-list-header>
+        <div formGroupName="questionario">
+          <ion-item>
+            <ion-input
+              label="Renda Familiar"
+              label-placement="floating"
+              formControlName="rendaFamiliar"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              label="Pessoas em Casa"
+              label-placement="floating"
+              type="number"
+              formControlName="pessoasEmCasa"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-select
+              label="Condições de Moradia"
+              label-placement="floating"
+              formControlName="condicoesMoradia"
+            >
+              <ion-select-option value="PESSIMA">Péssima</ion-select-option>
+              <ion-select-option value="RUIM">Ruim</ion-select-option>
+              <ion-select-option value="REGULAR">Regular</ion-select-option>
+              <ion-select-option value="BOA">Boa</ion-select-option>
+              <ion-select-option value="EXCELENTE">Excelente</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-toggle
+              labelPlacement="start"
+              formControlName="cadastroNIS"
+            >
+              Cadastro NIS
+            </ion-toggle>
+          </ion-item>
+        </div>
+      </ion-list>
+      <ion-button expand="block" type="submit">Cadastrar</ion-button>
+    </form>
+  </ion-content>   
+</ion-app>

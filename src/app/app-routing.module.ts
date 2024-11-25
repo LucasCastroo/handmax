@@ -71,18 +71,17 @@ const routes: Routes = [
           path: 'edit-news',
           loadChildren: () => import('./pages/noticias/edit-news/edit-news.module').then( m => m.EditNewsPageModule)
         },
-      {path: 'excluir-treinos',
-        loadChildren: () =>
-          import('./pages/treino/excluir-treino/excluir-treino.module').then(
-            (m) => m.ExcluirTreinoModule
-          ),
-      }
     ],
   },
   {
     path: 'new-password',
     loadChildren: () => import('./pages/login/new-password/new-password.module').then( m => m.NewPasswordPageModule)
   },
+  {
+    path: 'completar-cadastro/:token',
+    loadChildren: () => import('./pages/completar-cadastro/completar-cadastro.module').then( m => m.CompletarCadastroPageModule)
+  },
+
 ];
 
 

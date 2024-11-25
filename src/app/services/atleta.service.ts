@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AtletaCadastroInicial } from '../models/atleta-cadastro-inicial.model';
 import { Atleta } from '../models/atleta.model';
 import { AtletaTreinoDTO } from '../models/atleta-treino-dtomodel';
+import { SessionTokenService } from './session-token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,37 +13,92 @@ import { AtletaTreinoDTO } from '../models/atleta-treino-dtomodel';
 export class AtletaService {
   private baseUrl = 'http://localhost:8080/atleta';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+              private sessionTokenService: SessionTokenService
+  ) {}
 
   createInitial(dto: AtletaCadastroInicial): Observable<Atleta> {
-    return this.httpClient.patch<Atleta>(this.baseUrl, dto);
+    const headers = this.sessionTokenService.getSessionHeader();
+    if(headers){
+      return this.httpClient.patch<Atleta>(this.baseUrl, dto, { headers });
+    }else{
+      return this.httpClient.patch<Atleta>(this.baseUrl, dto);
+    }
   }
 
   create(dto: Atleta): Observable<Atleta> {
-    return this.httpClient.post<Atleta>(this.baseUrl, dto);
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.post<Atleta>(this.baseUrl, dto, { headers });
+    }else{
+      return this.httpClient.post<Atleta>(this.baseUrl, dto);
+    }
   }
 
   update(dto: Atleta, id: number): Observable<void> {
-    return this.httpClient.put<void>(`${this.baseUrl}/update/${id}`, dto);
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.put<void>(`${this.baseUrl}/update/${id}`, dto, { headers });
+    }else{
+      return this.httpClient.put<void>(`${this.baseUrl}/update/${id}`, dto);
+    }
   }
 
   delete(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.delete<void>(`${this.baseUrl}/${id}`, { headers });
+    }else{
+      return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
+    }
   }
 
   findById(id: number): Observable<Atleta> {
-    return this.httpClient.get<Atleta>(`${this.baseUrl}/${id}`);
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.get<Atleta>(`${this.baseUrl}/${id}`, { headers });
+    }else{
+      return this.httpClient.get<Atleta>(`${this.baseUrl}/${id}`);
+    }
   }
 
   findByNome(nome: string): Observable<Atleta[]> {
-    return this.httpClient.get<Atleta[]>(`${this.baseUrl}/nome/${nome}`);
+    const headers = this.sessionTokenService.getSessionHeader();
+    if(headers){
+      return this.httpClient.get<Atleta[]>(`${this.baseUrl}/nome/${nome}`, { headers });
+    }else{
+      return this.httpClient.get<Atleta[]>(`${this.baseUrl}/nome/${nome}`);
+    }
   }
 
   findAll(): Observable<Atleta[]> {
-    return this.httpClient.get<Atleta[]>(`${this.baseUrl}/all`);
+    const headers = this.sessionTokenService.getSessionHeader();
+    if(headers){
+      return this.httpClient.get<Atleta[]>(`${this.baseUrl}/all`, { headers });
+    }else{
+      return this.httpClient.get<Atleta[]>(`${this.baseUrl}/all`);
+    }
   }
 
   findAllForTreinos(): Observable<AtletaTreinoDTO[]> {
-    return this.httpClient.get<AtletaTreinoDTO[]>(`${this.baseUrl}/all/treinos`);
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.get<AtletaTreinoDTO[]>(`${this.baseUrl}/all/treinos`, { headers });
+    }else{
+      return this.httpClient.get<AtletaTreinoDTO[]>(`${this.baseUrl}/all/treinos`);
+    }
+  }
+
+  validarToken(token: string): Observable<boolean>{
+    return this.httpClient.get<boolean>(`${this.baseUrl}/validar-token/${token}`);
+  }
+
+  updateCadastroInicial(token: string, dados: Atleta){
+    return this.httpClient.put<Atleta>(`${this.baseUrl}/token/${token}`, dados);
   }
 }

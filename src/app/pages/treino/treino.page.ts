@@ -5,6 +5,7 @@ import { NewTreinoPage } from './new-treino/new-treino.page';
 import { ModalController } from '@ionic/angular';
 import { Treino } from '../../models/treino.model';
 import { EditTreinoPage } from './edit-treino/edit-treino.page';
+import { DeleteTreinoPage } from './delete-treino/delete-treino.page';
 
 @Component({
   selector: 'app-treinos',
@@ -58,8 +59,17 @@ export class TreinoPage implements OnInit {
     return await modal.present();
   }
 
-  excluirTreino(id: number) {
-    console.log('Excluir treino com o id:', id);
-    // Implementar lógica para exclusão
+
+  async excluirTreino(treinoId: number) {
+    const modal = await this.modalController.create({
+      component: DeleteTreinoPage,
+      componentProps: { treinoId },
+    });
+
+    modal.onDidDismiss().then(() => {
+      this.carregarTreinos(); // Recarrega a lista após fechar o modal
+    });
+
+    return await modal.present();
   }
 }

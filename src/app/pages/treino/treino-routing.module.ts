@@ -19,7 +19,11 @@ const routes: Routes = [
   {
     path: 'view-treino',
     loadChildren: () => import('./view-treino/view-treino.module').then( m => m.ViewTreinoPageModule)
+  },  {
+    path: 'delete-treino',
+    loadChildren: () => import('./delete-treino/delete-treino.module').then( m => m.DeleteTreinoPageModule)
   }
+
 ];
 
 @NgModule({

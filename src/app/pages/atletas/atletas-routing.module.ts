@@ -22,6 +22,10 @@ const routes: Routes = [
   },  {
     path: 'view-atleta',
     loadChildren: () => import('./view-atleta/view-atleta.module').then( m => m.ViewAtletaPageModule)
+  },
+  {
+    path: 'pre-cadastro',
+    loadChildren: () => import('./pre-cadastro/pre-cadastro.module').then( m => m.PreCadastroPageModule)
   }
 
 
