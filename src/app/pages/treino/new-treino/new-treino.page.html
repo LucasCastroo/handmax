@@ -7,7 +7,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-toast [isOpen]="activateToast" message={{toastMessage}} expand="block" [duration]="5000" (didDismiss)="desativarToast()"></ion-toast>
     <!-- Reactive Form -->
     <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
       <ion-list [inset]="true">

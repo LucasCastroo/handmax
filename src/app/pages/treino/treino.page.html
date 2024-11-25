@@ -10,7 +10,7 @@
           <p><strong>Horário:</strong> {{treino.horario}}</p>
           <p><strong>Local:</strong> {{treino.local}}</p>
         </ion-label>
-        <ion-icon name="information-circle" slot="end"></ion-icon>
+        <ion-icon name="information-circle" slot="end" (click)="verTreino(treino, treino.id)"></ion-icon>
         <ion-icon name="pencil-outline" slot="end" (click)="editarTreino(treino, treino.id)"></ion-icon>
         <ion-icon name="trash-outline" slot="end" (click)="excluirTreino(treino.id)"></ion-icon>
       </ion-item>
