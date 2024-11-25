@@ -86,11 +86,10 @@ export class SessionTokenService {
     const params = { login: username, senha: password };
   
     return this.httpClient.post(loginUrl, params, { observe: 'response' }).pipe(
-      tap((res: HttpResponse<any>) => {
+      tap((res: any) => {
         console.log(res);
-        const authToken = res.headers.get('Authorization') ?? ''; 
+        const authToken = res.headers.get('authorization') ?? ''; 
         if (authToken) {
-          console.log(authToken);
           this.saveSessionToken(authToken);
           const usuarioLogado = res.body;
           if (usuarioLogado) {
