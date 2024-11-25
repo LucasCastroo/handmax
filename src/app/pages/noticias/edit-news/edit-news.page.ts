@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PublicacaoDTO } from 'src/app/models/publicacao-dto.model';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-edit-news',
@@ -7,26 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-news.page.scss'],
 })
 export class EditNewsPage implements OnInit {
-  news: any = {
+  news: PublicacaoDTO = {
     titulo: '',
-    nomeImagem: [],
-    conteudo: []
+    conteudo: '',
+    nomeImagem: '',
+    dataPublicacao: new Date(),
   };
-  entryOrder: string[] = [];
+  
   isTitleVisible: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private newsService: NewsService) {}
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state && navigation.extras.state['newsItem']) {
       this.news = { ...navigation.extras.state['newsItem'] };
-      this.entryOrder = this.news.entryOrder || [];
     }
-  }
-
-  updateNews() {
-    this.router.navigate(['/view-news'], { state: { updatedNews: this.news } });
   }
 
   addTitle() {
@@ -39,26 +37,50 @@ export class EditNewsPage implements OnInit {
   }
 
   addImage() {
-    this.news.nomeImagem.push('');
-    this.entryOrder.push('image');
+    this.news.nomeImagem = '';
   }
 
-  removeImage(index: number) {
-    this.news.nomeImagem.splice(index, 1);
-    this.entryOrder.splice(index, 1);
+  removeImage() {
+    this.news.nomeImagem = '';
   }
 
   addParagraph() {
-    this.news.conteudo.push('');
-    this.entryOrder.push('conteudo');
+    this.news.conteudo = '';
   }
 
-  removeParagraph(index: number) {
-    this.news.conteudo.splice(index, 1);
-    this.entryOrder.splice(index, 1);
+  removeParagraph() {
+    this.news.conteudo = '';
   }
+
+  saveNews() {
+    console.log("Requisição de salvar notícia no Edit News");
+  
+    if (this.news.id) { // Verifica se o ID está definido
+      console.log("ID encontrado:", this.news.id);
+  
+      if (this.news.titulo || this.news.nomeImagem || this.news.conteudo) {
+        // Atualiza a notícia se os dados mínimos forem fornecidos
+        this.newsService.updateNews(this.news.id, this.news).subscribe({
+          next: () => {
+            console.log("Notícia atualizada com sucesso.");
+            this.router.navigate(['/view-news']);
+          },
+          error: (error) => {
+            console.error("Erro ao atualizar notícia:", error);
+            alert("Houve um erro ao atualizar a notícia.");
+          }
+        });
+      } else {
+        alert("Por favor, adicione um título, imagem ou conteúdo antes de salvar.");
+      }
+    } else {
+      alert("ID da notícia não encontrado. Não é possível salvar.");
+    }
+  }
+  
+
 
   previewNews() {
-    this.router.navigate(['/view-news']);
+    this.router.navigate(['/view-news'], { state: { newsItem: this.news } });
   }
 }

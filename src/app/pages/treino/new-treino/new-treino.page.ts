@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { AtletaTreinoDTO } from 'src/app/models/atleta-treino-dtomodel';
 import { AtletaService } from 'src/app/services/atleta.service';
+import { ToastService } from 'src/app/services/toast.service';
 import { TreinoService } from 'src/app/services/treino.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class NewTreinoPage implements OnInit {
     private fb: FormBuilder,
     private treinoService: TreinoService,
     private atletaService: AtletaService,
-    private modalController: ModalController
+    private modalController: ModalController, 
+    private toastService: ToastService
   ) {
     this.treinoForm = this.fb.group({
       local: ['', Validators.required],
@@ -54,7 +56,7 @@ export class NewTreinoPage implements OnInit {
       const formData = this.treinoForm.value;
   
       if (!formData.criarTreinoTodosAtletas && this.atletasSelecionados.length === 0) {
-        this.ativarToast('Erro: Nenhum atleta selecionado.');
+        this.toastService.ativarToast('Erro: Nenhum atleta selecionado.');
         return;
       }
   
@@ -66,12 +68,12 @@ export class NewTreinoPage implements OnInit {
       console.log('Treino cadastrado:', treinoData);
       this.salvarTreino()
     } else {
-      this.ativarToast('Erro: Formulário inválido.');
+      this.toastService.ativarToast('Erro: Formulário inválido.');
     }
   }
   
   cancel() {
-    this.ativarToast('Cadastro cancelado.');
+    this.toastService.ativarToast('Cadastro cancelado.');
     console.log('Cadastro cancelado.');
     this.fecharModal();
   }
@@ -99,10 +101,15 @@ export class NewTreinoPage implements OnInit {
       listarAtletas: this.atletasSelecionados,
     };
     this.treinoService.create(treinoDTO).subscribe({
-      next: () => this.ativarToast('Treino criado com sucesso!'),
+      next: () => this.toastService.ativarToast('Treino criado com sucesso!'),
       error: (err) => {
         console.error('Erro ao salvar treino: ', err)
-        this.ativarToast('Erro ao salvar treino: '+  err.error?.details)}
+        if(err.error?.message === undefined){
+          this.toastService.ativarToast('Erro ao salvar treino. Verifique os campos e contate o administrador, caso preciso.')
+        }else{
+          this.toastService.ativarToast('Erro ao salvar treino: '+  err.error?.details)}
+
+        }
     });
   }
 
