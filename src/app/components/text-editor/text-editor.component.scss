@@ -1,0 +1,62 @@
+// <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=format_h1" />
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%; /* Garante que o componente ocupe toda a largura */
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  background-color: var(--ion-color-light);
+  padding: 10px;
+  border-radius: 5px;
+
+  ion-button {
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+
+    .material-icons {
+      font-size: 24px;
+      color: var(--ion-color-text);
+    }
+  }
+}
+
+.editor-container {
+  flex-grow: 1;
+  width: 100%; /* Garante que o contêiner ocupe toda a largura */
+  display: flex;
+}
+
+.editor {
+  flex-grow: 1; /* Faz o editor crescer para ocupar o espaço disponível */
+  border: 1px solid var(--ion-color-medium);
+  padding: 10px;
+  background-color: var(--ion-color-light);
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--ion-color-dark);
+  overflow: auto; /* Permite rolagem se o conteúdo exceder o tamanho da área */
+  width: 100%; /* Garante que o editor ocupe toda a largura */
+}
+
+@media (prefers-color-scheme: dark) {
+  .editor {
+    background-color: var(--ion-color-dark);
+    color: var(--ion-color-light);
+    border: 1px solid var(--ion-color-light);
+  }
+}
+
+.editor img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer; /* Para indicar que a imagem é selecionável */
+}

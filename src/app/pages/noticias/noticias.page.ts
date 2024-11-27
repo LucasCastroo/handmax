@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ErrorHandlingService } from 'src/app/services/error-handling.service';
+import { PublicacaoDTO } from 'src/app/models/publicacao-dto.model';
 import { NewsService } from 'src/app/services/news.service';
-import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-noticias',
@@ -10,26 +8,32 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./noticias.page.scss'],
 })
 export class NoticiasPage implements OnInit {
-  noticias: any[] = [];
+  noticias: PublicacaoDTO[] = [];
+  imagens: { [key: string]: string } = {};
 
-  constructor(
-    private noticiasService: NewsService,
-    private modalController: ModalController,
-    private errorHandlingService: ErrorHandlingService,
-    private toastService: ToastService
-  ) {}
+  constructor(private newsService: NewsService) {}
 
-  ngOnInit(): void {
-    this.carregarNoticias();
+  ngOnInit() {
+    this.loadNews();
   }
 
-  carregarNoticias(): void {
-    this.noticiasService.getNews(0, 100).subscribe({
-      next: (data) => (this.noticias = data),
-      error: (err) => {
-        console.error('Erro ao carregar notícias:', err);
-        const errorMessage = this.errorHandlingService.handleError(err);
-        this.toastService.ativarToast(errorMessage);
+  loadNews() {
+    this.newsService.getNews().subscribe((data: PublicacaoDTO[]) => {
+      this.noticias = data;
+      this.loadImages();
+    });
+  }
+
+  loadImages() {
+    this.noticias.forEach((noticia) => {
+      if (noticia.nomeImagem) {
+        this.newsService.downloadImage(noticia.nomeImagem).subscribe((blob) => {
+          const reader = new FileReader();
+          reader.onload = (event: any) => {
+            this.imagens[noticia.nomeImagem!] = event.target.result;
+          };
+          reader.readAsDataURL(blob);
+        });
       }
     });
   }

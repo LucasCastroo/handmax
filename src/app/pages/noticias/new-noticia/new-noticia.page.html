@@ -1,0 +1,21 @@
+
+<ion-app>
+  <app-header></app-header>
+  <ion-content class="ion-padding">
+    <h1>Criar nova notícia</h1>
+    <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-input label="Título" labelPlacement="floating" formControlName="titulo"></ion-input>
+      </ion-item>
+      <ion-item> 
+        <app-text-editor></app-text-editor>     
+      </ion-item>
+      <ion-item>
+        <ion-label>Imagem da Notícia</ion-label>
+        <input type="file" (change)="onFileSelected($event)" />
+      </ion-item>
+      <ion-button expand="full" type="submit">Enviar Notícia</ion-button>
+    </form>
+  </ion-content>
+  <app-footer></app-footer>
+</ion-app>

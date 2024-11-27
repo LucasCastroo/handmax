@@ -40,11 +40,11 @@ export class NewsService {
 
   // Método para fazer upload de imagem
   uploadImage(id: number, formData: FormData): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/upload/imagem/${id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    return this.http.patch<void>(`${this.apiUrl}/upload/imagem/${id}`, formData);
+  }
+
+  uploadImages(formData: FormData): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/upload/imagem`, formData);
   }
 
   // Método para fazer download de imagem

@@ -1,12 +1,16 @@
+<link href="/node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet">
 <ion-app>
   <app-header></app-header>
   <ion-content class="ion-padding">
-    <h1>Selecionar treino</h1>
+    <h1>Ver notícias</h1>
     <ion-list [inset]="true">
       <ion-item *ngFor="let noticia of noticias">
+        <ion-thumbnail slot="start" *ngIf="noticia.nomeImagem && imagens[noticia.nomeImagem]"> 
+          <img [src]="imagens[noticia.nomeImagem]" />
+        </ion-thumbnail>
         <ion-label>
-          <h2>noticia.titulo </h2>
-          <p>noticia.conteudo</p>
+          <h2>{{noticia.titulo}} </h2>
+          <p>{{noticia.conteudo}}</p>
         </ion-label>
       </ion-item>
     </ion-list>  

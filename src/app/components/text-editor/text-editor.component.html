@@ -1,0 +1,62 @@
+<div class="toolbar">
+  <ion-button (click)="execCmd('formatBlock', 'H1')" color="primary">
+    <span class="material-symbols-outlined">format_h1</span>
+  </ion-button>
+  <ion-button (click)="execCmd('formatBlock', 'H2')" color="primary">
+    <span class="material-symbols-outlined">format_h2</span>
+  </ion-button>
+  <ion-button (click)="execCmd('formatBlock', 'p')" color="primary">
+    <span class="material-icons">title</span>
+  </ion-button>
+  <ion-button (click)="execCmd('formatBlock', 'blockquote')" color="primary">
+    <span class="material-icons">format_quote</span>
+  </ion-button>
+  <ion-button (click)="execCmd('bold')" color="primary">
+    <span class="material-icons">format_bold</span>
+  </ion-button>
+  <ion-button (click)="execCmd('italic')" color="primary">
+    <span class="material-icons">format_italic</span>
+  </ion-button>
+  <ion-button (click)="execCmd('underline')" color="primary">
+    <span class="material-icons">format_underlined</span>
+  </ion-button>
+  <ion-button (click)="execCmd('insertUnorderedList')" color="primary">
+    <span class="material-icons">format_list_bulleted</span>
+  </ion-button>
+  <ion-button (click)="execCmd('insertOrderedList')" color="primary">
+    <span class="material-icons">format_list_numbered</span>
+  </ion-button>
+  <ion-button (click)="execCmd('justifyLeft')" color="primary">
+    <span class="material-icons">format_align_left</span>
+  </ion-button>
+  <ion-button (click)="execCmd('justifyCenter')" color="primary">
+    <span class="material-icons">format_align_center</span>
+  </ion-button>
+  <ion-button (click)="execCmd('justifyRight')" color="primary">
+    <span class="material-icons">format_align_right</span>
+  </ion-button>
+  <ion-button (click)="execCmd('justifyFull')" color="primary"> 
+    <span class="material-icons">format_align_justify</span>
+  </ion-button>
+  <ion-button (click)="createLink()" color="primary"> 
+    <span class="material-icons">link</span>
+  </ion-button>
+  <ion-button (click)="execCmd('removeFormat')" color="primary">
+    <span class="material-icons">format_clear</span>
+  </ion-button>
+  <ion-button (click)="triggerImageUpload()" color="primary">
+    <span class="material-icons">image</span>
+  </ion-button>
+  <input type="file" id="imageUpload" (change)="uploadImage($event)" hidden>
+  <ion-button (click)="resizeImage(-20)" color="primary">
+    <span class="material-icons">zoom_out</span>
+  </ion-button>
+  <ion-button (click)="resizeImage(20)" color="primary">
+    <span class="material-icons">zoom_in</span>
+  </ion-button>  
+</div>
+
+<div class="editor-container">
+  <div class="editor" contenteditable="true" (input)="updateContent($event)">
+  </div>
+</div>
