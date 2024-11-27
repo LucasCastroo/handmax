@@ -11,11 +11,15 @@ import { NewsService } from 'src/app/services/news.service';
 export class EditNewsPage implements OnInit {
   news: PublicacaoDTO = {
     titulo: '',
-    conteudo: '',
-    nomeImagem: '',
+    conteudo: '', // String única contendo todos os parágrafos separados por "|"
+    nomeImagem: '', // String única contendo URLs de imagens separadas por "|"
     dataPublicacao: new Date(),
   };
-  
+
+  // Arrays locais para manipular múltiplos conteúdos e imagens
+  paragraphs: string[] = [];
+  images: string[] = [];
+
   isTitleVisible: boolean = false;
 
   constructor(private router: Router, private newsService: NewsService) {}
@@ -24,6 +28,10 @@ export class EditNewsPage implements OnInit {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state && navigation.extras.state['newsItem']) {
       this.news = { ...navigation.extras.state['newsItem'] };
+
+      // Converte as strings em arrays para manipulação
+      this.paragraphs = this.news.conteudo ? this.news.conteudo.split('|') : [];
+      this.images = this.news.nomeImagem ? this.news.nomeImagem.split('|') : [];
     }
   }
 
@@ -37,29 +45,32 @@ export class EditNewsPage implements OnInit {
   }
 
   addImage() {
-    this.news.nomeImagem = '';
+    this.images.push(''); // Adiciona uma nova entrada para URL de imagem
   }
 
-  removeImage() {
-    this.news.nomeImagem = '';
+  removeImage(index: number) {
+    this.images.splice(index, 1); // Remove a imagem pelo índice
   }
 
   addParagraph() {
-    this.news.conteudo = '';
+    this.paragraphs.push(''); // Adiciona uma nova entrada para parágrafo
   }
 
-  removeParagraph() {
-    this.news.conteudo = '';
+  removeParagraph(index: number) {
+    this.paragraphs.splice(index, 1); // Remove o parágrafo pelo índice
   }
 
   saveNews() {
     console.log("Requisição de salvar notícia no Edit News");
-  
-    if (this.news.id) { // Verifica se o ID está definido
+
+    if (this.news.id) {
       console.log("ID encontrado:", this.news.id);
-  
+
+      // Converte os arrays para strings concatenadas
+      this.news.conteudo = this.paragraphs.join('|');
+      this.news.nomeImagem = this.images.join('|');
+
       if (this.news.titulo || this.news.nomeImagem || this.news.conteudo) {
-        // Atualiza a notícia se os dados mínimos forem fornecidos
         this.newsService.updateNews(this.news.id, this.news).subscribe({
           next: () => {
             console.log("Notícia atualizada com sucesso.");
@@ -68,7 +79,7 @@ export class EditNewsPage implements OnInit {
           error: (error) => {
             console.error("Erro ao atualizar notícia:", error);
             alert("Houve um erro ao atualizar a notícia.");
-          }
+          },
         });
       } else {
         alert("Por favor, adicione um título, imagem ou conteúdo antes de salvar.");
@@ -77,8 +88,6 @@ export class EditNewsPage implements OnInit {
       alert("ID da notícia não encontrado. Não é possível salvar.");
     }
   }
-  
-
 
   previewNews() {
     this.router.navigate(['/view-news'], { state: { newsItem: this.news } });

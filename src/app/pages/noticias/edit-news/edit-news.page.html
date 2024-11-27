@@ -26,29 +26,40 @@
       <!-- Área de edição -->
       <ion-col size="9" class="main-content">
         <div class="news-preview">
-          <h1 class="news-title">{{ news.titulo }}</h1>
-          <input [(ngModel)]="news.titulo" placeholder="Digite o título" *ngIf="isTitleVisible" />
-          <button (click)="removeTitle()" *ngIf="isTitleVisible">Remover Título</button>
-
-          <div>
-            <ng-container *ngIf="news.nomeImagem">
-              <div class="news-image">
-                <img [src]="news.nomeImagem" alt="Imagem da notícia" />
-                <input [(ngModel)]="news.nomeImagem" placeholder="URL da imagem" />
-                <button (click)="removeImage()">Remover Imagem</button>
-              </div>
-            </ng-container>
-
-            <ng-container *ngIf="news.conteudo">
-              <div>
-                <textarea [(ngModel)]="news.conteudo" placeholder="Digite o parágrafo"></textarea>
-                <button (click)="removeParagraph()">Remover Parágrafo</button>
-              </div>
-            </ng-container>
+          <!-- Título da notícia -->
+          <div class="news-title-section">
+            <h1 class="news-title" *ngIf="!isTitleVisible">{{ news.titulo || 'Título da Notícia' }}</h1>
+            <div *ngIf="isTitleVisible">
+              <input
+                [(ngModel)]="news.titulo"
+                placeholder="Digite o título"
+                class="title-input"
+              />
+              <button (click)="removeTitle()" class="remove-btn">Remover Título</button>
+            </div>
           </div>
+
+          <!-- Imagem da notícia -->
+         <!-- Para remover imagem -->
+<div class="news-image-section" *ngFor="let image of images; let i = index">
+  <img [src]="image" alt="Imagem da notícia" class="news-image" />
+  <input [(ngModel)]="images[i]" placeholder="Digite a URL da imagem" class="image-input" />
+  <button (click)="removeImage(i)" class="remove-btn">Remover Imagem</button>
+</div>
+
+<!-- Para remover parágrafo -->
+<div class="news-content-section" *ngFor="let paragraph of paragraphs; let i = index">
+  <textarea [(ngModel)]="paragraphs[i]" placeholder="Digite o conteúdo do parágrafo" class="content-textarea"></textarea>
+  <button (click)="removeParagraph(i)" class="remove-btn">Remover Parágrafo</button>
+</div>
+
         </div>
+
+        <!-- Botão para salvar -->
         <div class="save-container">
-          <ion-button (click)="saveNews()" expand="block" class="save-news-btn">Salvar Notícia</ion-button>
+          <ion-button (click)="saveNews()" expand="block" class="save-news-btn">
+            Salvar Notícia
+          </ion-button>
         </div>
       </ion-col>
     </ion-row>

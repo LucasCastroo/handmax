@@ -1,14 +1,16 @@
 ion-content {
   --background: #f7f7f7;
-  height: 100vh; 
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 ion-grid {
-  height: 100%; 
+  height: 100%;
 }
 
 ion-row {
-  height: 100%; 
+  height: 100%;
 }
 
 .sidebar {
@@ -16,106 +18,126 @@ ion-row {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ocupará toda a altura do ion-row */
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra na sidebar */
+  height: 100%;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  ion-title {
-    font-size: 20px; /* Aumentando o tamanho da fonte do título */
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #333; /* Cor do título */
-  }
+.sidebar ion-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #333;
+}
 
-  .menu-option {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Faz a seção de opções ocupar o espaço restante */
-    margin-bottom: 20px; /* Espaço abaixo das opções */
+.sidebar-content {
+  margin-top: 25px;
+}
 
-    ion-button {
-      --background: #ffffff;
-      --border-color: #ccc;
-      color: black;
-      text-align: left;
-      margin-bottom: 10px;
-      font-size: 14px;
-      border-radius: 5px; /* Bordas arredondadas nos botões */
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra nos botões */
+.menu-option {
+  flex-grow: 1;
+}
 
-      &:hover {
-        --background: #f1f1f1; /* Cor ao passar o mouse */
-      }
-    }
-  }
+.menu-option ion-button {
+  margin-bottom: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --background: #ffffff; /* Fundo branco para contraste */
+  --border-color: #ccc; /* Cor da borda */
+  --color: #333; /* Texto escuro */
+  text-align: left;
+}
 
-  .view-news-btn {
-    background-color: #ffd700;
-    color: black;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    text-align: left;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra no botão "Visualizar notícias" */
+.menu-option ion-button:hover {
+  --background: #f1f1f1; /* Fundo mais claro ao passar o mouse */
+  --color: #000; /* Texto mais escuro */
+}
 
-    &:hover {
-      background-color: #e6c200; /* Cor ao passar o mouse */
-    }
-  }
+.view-news-btn {
+  background-color: #ffd700; /* Mantém a cor dourada */
+  color: #333; /* Texto escuro para contraste */
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.view-news-btn:hover {
+  background-color: #e6c200; /* Fundo dourado mais escuro ao passar o mouse */
+  color: #000; /* Texto ainda mais visível */
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribui o espaço entre os elementos */
   background-color: #ffffff;
   padding: 20px;
-  height: 100%; 
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra na área de conteúdo principal */
-
-  .news-preview {
-    width: 100%;
-    max-width: 800px; /* Largura máxima do contêiner de pré-visualização */
-    text-align: center; /* Centraliza o texto dentro do contêiner */
-    margin: 0 auto; /* Garante que o contêiner em si esteja centralizado */
-
-    .news-title {
-      font-size: 32px; /* Aumentando o tamanho do título da notícia */
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    .news-image {
-      width: 150px; /* Largura da imagem */
-      height: 150px; /* Altura da imagem */
-      background-color: #e0e0e0; /* Cor de fundo */
-      margin: 20px auto; /* Centraliza horizontalmente */
-      border-radius: 8px; /* Bordas arredondadas na imagem */
-      display: flex; /* Para centralizar o conteúdo interno */
-      justify-content: center; /* Centraliza o conteúdo horizontalmente */
-      align-items: center; /* Centraliza o conteúdo verticalmente */
-
-      img {
-        max-width: 100%; /* Ajusta a imagem para caber no contêiner */
-        max-height: 100%; /* Ajusta a altura da imagem */
-        border-radius: 8px; /* Borda arredondada na imagem */
-      }
-    }
-
-    .news-paragraph {
-      font-size: 16px;
-      line-height: 1.5;
-      color: #666;
-      margin-top: 20px;
-    }
-  }
-  .save-container {
-    margin-top: auto;
-    margin-bottom: 28px;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
+  height: 100%;
 }
+
+.news-preview {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.news-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.news-image {
+  width: 150px;
+  height: 150px;
+  background-color: #e0e0e0;
+  margin: 20px auto;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.news-image img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+}
+
+.news-paragraph {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin-top: 20px;
+}
+
+.save-container {
+  margin-top: auto;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%; 
+  position: relative; 
+  bottom: 0; 
+  box-sizing: border-box; 
+}
+
+.save-container ion-button {
+  --background: #4caf50; 
+  --color: #fff; 
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px; 
+}
+
+.save-container ion-button:hover {
+  --background: #45a049; 
+}
+

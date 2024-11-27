@@ -26,7 +26,7 @@ ion-content {
     text-transform: uppercase;
     font-weight: bold;
     color: #333;
-    white-space: nowrap; /* Garante que o título não quebre em uma nova linha */
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
