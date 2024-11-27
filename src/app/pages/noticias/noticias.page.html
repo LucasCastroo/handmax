@@ -1,58 +1,15 @@
-<app-header></app-header>
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <!-- Sidebar para criar notícia -->
-      <ion-col size="3" class="sidebar">
-        <div class="sidebar-content">
-          <ion-title>Criar notícia</ion-title>
-          <div class="menu-option">
-            <ion-button (click)="addTitle()" expand="block" fill="outline">
-              <ion-icon name="text-outline" slot="start"></ion-icon>
-              Adicionar Título
-            </ion-button>
-            <ion-button (click)="addImage()" expand="block" fill="outline">
-              <ion-icon name="image-outline" slot="start"></ion-icon>
-              Adicionar Imagem
-            </ion-button>
-            <ion-button (click)="addParagraph()" expand="block" fill="outline">
-              <ion-icon name="document-text-outline" slot="start"></ion-icon>
-              Adicionar Parágrafo
-            </ion-button>
-          </div>
-          <ion-button (click)="previewNews()" expand="block" class="view-news-btn">Visualizar notícias</ion-button>
-        </div>
-      </ion-col>
-
-      <!-- Área de edição -->
-      <ion-col size="9" class="main-content">
-        <div class="news-preview">
-          <h1 class="news-title">{{ news.titulo }}</h1>
-          <input [(ngModel)]="news.titulo" placeholder="Digite o título" *ngIf="isTitleVisible" style="display: block; margin: 0 auto;" />
-          <button (click)="removeTitle()" *ngIf="isTitleVisible">Remover Título</button>
-
-          <div *ngFor="let entry of entryOrder; let i = index">
-            <ng-container *ngIf="entry === 'image'">
-              <div class="news-image">
-                <img [src]="news.nomeImagem" alt="Imagem da notícia" *ngIf="news.nomeImagem" />
-                <input [(ngModel)]="news.nomeImagem" placeholder="URL da imagem" style="display: block; margin: 0 auto;" />
-                <button (click)="removeImage(i)">Remover Imagem</button>
-              </div>
-            </ng-container>
-
-            <ng-container *ngIf="entry === 'paragraph'">
-              <div>
-                <p class="news-paragraph">{{ news.conteudo }}</p>
-                <textarea [(ngModel)]="news.conteudo" placeholder="Digite o parágrafo" style="display: block; margin: 0 auto;"></textarea>
-                <button (click)="removeParagraph(i)">Remover Parágrafo</button>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-        <div class="save-container">
-          <ion-button (click)="saveNews()" expand="block" class="save-news-btn">Salvar Notícia</ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+<ion-app>
+  <app-header></app-header>
+  <ion-content class="ion-padding">
+    <h1>Selecionar treino</h1>
+    <ion-list [inset]="true">
+      <ion-item *ngFor="let noticia of noticias">
+        <ion-label>
+          <h2>noticia.titulo </h2>
+          <p>noticia.conteudo</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>  
+  </ion-content>
+  <app-footer></app-footer>
+</ion-app>

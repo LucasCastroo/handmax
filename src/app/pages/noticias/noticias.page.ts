@@ -1,74 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PublicacaoDTO } from '../../models/publicacao-dto.model';
-import { NewsService } from '../../services/news.service';
+import { ModalController } from '@ionic/angular';
+import { ErrorHandlingService } from 'src/app/services/error-handling.service';
+import { NewsService } from 'src/app/services/news.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-noticias',
   templateUrl: './noticias.page.html',
-  styleUrls: ['./noticias.page.scss']
+  styleUrls: ['./noticias.page.scss'],
 })
 export class NoticiasPage implements OnInit {
-  news: PublicacaoDTO = {
-    titulo: '',
-    conteudo: '',
-    nomeImagem: '',
-    dataPublicacao: new Date(),
-  };
+  noticias: any[] = [];
 
-  savedNewsList: PublicacaoDTO[] = [];
-  entryOrder: string[] = [];
-  isTitleVisible: boolean = false;
+  constructor(
+    private noticiasService: NewsService,
+    private modalController: ModalController,
+    private errorHandlingService: ErrorHandlingService,
+    private toastService: ToastService
+  ) {}
 
-  constructor(private router: Router, private newsService: NewsService) {}
-
-  ngOnInit() {}
-
-  addTitle() {
-    this.isTitleVisible = true;
-    this.entryOrder.push('title');
+  ngOnInit(): void {
+    this.carregarNoticias();
   }
 
-  addImage() {
-    this.news.nomeImagem = '';
-    this.entryOrder.push('image');
-  }
-
-  addParagraph() {
-    this.news.conteudo = '';
-    this.entryOrder.push('paragraph');
-  }
-
-  removeTitle() {
-    this.isTitleVisible = false;
-    this.news.titulo = '';
-    this.entryOrder = this.entryOrder.filter(entry => entry !== 'title');
-  }
-
-  removeImage(index: number) {
-    this.news.nomeImagem = '';
-    this.entryOrder.splice(this.entryOrder.indexOf('image'), 1);
-  }
-
-  removeParagraph(index: number) {
-    this.news.conteudo = '';
-    this.entryOrder.splice(this.entryOrder.indexOf('paragraph'), 1);
-  }
-
-  saveNews() {
-    if (this.news.titulo || this.news.nomeImagem || this.news.conteudo) {
-      this.newsService.createNews(this.news).subscribe(() => {
-        this.savedNewsList.push({ ...this.news });
-        this.news = { titulo: '', conteudo: '', nomeImagem: '', dataPublicacao: new Date() };
-        this.entryOrder = [];
-        this.isTitleVisible = false;
-      });
-    } else {
-      alert("Por favor, adicione um título, imagem ou parágrafo antes de salvar.");
-    }
-  }
-
-  previewNews() {
-    this.router.navigate(['/view-news'], { state: { newsList: this.savedNewsList } });
+  carregarNoticias(): void {
+    this.noticiasService.getNews(0, 100).subscribe({
+      next: (data) => (this.noticias = data),
+      error: (err) => {
+        console.error('Erro ao carregar notícias:', err);
+        const errorMessage = this.errorHandlingService.handleError(err);
+        this.toastService.ativarToast(errorMessage);
+      }
+    });
   }
 }

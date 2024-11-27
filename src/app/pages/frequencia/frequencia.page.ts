@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TreinoService } from 'src/app/services/treino.service';
 import { ModalController } from '@ionic/angular';
 import { FrequenciaTreinoPage } from './frequencia-treino/frequencia-treino.page';
+import { ErrorHandlingService } from 'src/app/services/error-handling.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-frequencia',
@@ -13,7 +15,9 @@ export class FrequenciaPage implements OnInit {
 
   constructor(
     private treinoService: TreinoService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private errorHandlingService: ErrorHandlingService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -23,7 +27,11 @@ export class FrequenciaPage implements OnInit {
   carregarTreinos(): void {
     this.treinoService.findAll().subscribe({
       next: (data) => (this.treinos = data),
-      error: (err) => console.error('Erro ao carregar treinos:', err),
+      error: (err) => {
+        console.error('Erro ao carregar treinos:', err);
+        const errorMessage = this.errorHandlingService.handleError(err);
+        this.toastService.ativarToast(errorMessage);
+      }
     });
   }
 
