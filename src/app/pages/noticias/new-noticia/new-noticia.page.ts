@@ -42,6 +42,8 @@ export class NewNoticiaPage implements OnInit {
         conteudo: this.newsForm.get('conteudo')!.value,
       };
 
+      console.log(this.newsForm.value);
+
       // Primeiro, criar a notícia
       this.newsService.createNews(news).subscribe({
         next: (createdNews) => {
@@ -53,7 +55,7 @@ export class NewNoticiaPage implements OnInit {
             formData.append('nomeImagem', this.selectedFile.name);
             formData.append('imagem', this.selectedFile);
 
-            this.newsService.uploadImage(createdNews.id!, formData).subscribe({
+            this.newsService.uploadImage(createdNews.id!.toString(), formData).subscribe({
               next: () => {
                 console.log('Imagem enviada com sucesso!');
                 // Redirecionar ou dar feedback ao usuário

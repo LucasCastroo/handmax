@@ -50,6 +50,11 @@ export class EditAtletaPage implements OnInit {
   }
 
   private loadAtleta(): void {
+    if(this.route.snapshot.paramMap.get('id') !== null){  
+      const id = this.route.snapshot.paramMap.get('id'); 
+      this.atletaId = id !== null ? parseInt(id, 10) : 0;
+    }
+    
     if (this.atletaId) {
       this.atletaService.findById(this.atletaId).subscribe({
         next: (atleta) => this.atletaForm.patchValue(atleta),

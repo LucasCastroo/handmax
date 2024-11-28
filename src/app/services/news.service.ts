@@ -10,7 +10,8 @@ import { PublicacaoDTO } from '../models/publicacao-dto.model';
 export class NewsService {
   private apiUrl = 'http://localhost:8080/homepage'; 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient
+  ) {}
 
   
   getNews(page: number = 0, pageSize: number = 100): Observable<PublicacaoDTO[]> {
@@ -19,7 +20,7 @@ export class NewsService {
   }
 
   // Método para obter uma única notícia por ID
-  getNewsById(id: number): Observable<PublicacaoDTO> {
+  getNewsById(id: string): Observable<PublicacaoDTO> {
     return this.http.get<PublicacaoDTO>(`${this.apiUrl}/${id}`);
   }
 
@@ -29,7 +30,7 @@ export class NewsService {
   }
 
   // Método para atualizar uma notícia existente
-  updateNews(id: number, news: PublicacaoDTO): Observable<PublicacaoDTO> {
+  updateNews(id: string, news: PublicacaoDTO): Observable<PublicacaoDTO> {
     return this.http.put<PublicacaoDTO>(`${this.apiUrl}/${id}`, news);
   }
 
@@ -39,7 +40,7 @@ export class NewsService {
   }
 
   // Método para fazer upload de imagem
-  uploadImage(id: number, formData: FormData): Observable<void> {
+  uploadImage(id: string, formData: FormData): Observable<void> {
     return this.http.patch<void>(`${this.apiUrl}/upload/imagem/${id}`, formData);
   }
 

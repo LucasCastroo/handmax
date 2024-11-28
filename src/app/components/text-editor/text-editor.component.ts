@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { NewsService } from 'src/app/services/news.service';
@@ -11,15 +11,29 @@ import { NewsService } from 'src/app/services/news.service';
   imports: [IonicModule, FormsModule],
   standalone: true
 })
-export class TextEditorComponent {
+export class TextEditorComponent implements OnChanges {
   htmlContent: string = '';
-  private apiUrl = 'http://localhost:8080/publicacao/upload/imagem';
-
+ 
+  @Input() initialContent: string = ''; // Permitir vinculação ao atributo
   @Output() contentChange = new EventEmitter<string>();
 
   constructor(private http: HttpClient,
     private newsService: NewsService
   ) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['initialContent'] && changes['initialContent'].currentValue !== undefined) {
+      this.htmlContent = changes['initialContent'].currentValue; // Atualiza o conteúdo do editor
+      const editor = document.querySelector('.editor') as HTMLElement;
+      if (editor) {
+        editor.innerHTML = this.htmlContent; // Insere no editor
+      }
+    }
+  }
+
+  onContentUpdate(newContent: string) {
+    this.contentChange.emit(newContent); // Emitir alterações
+  }
 
   handleKeyDown = (event: KeyboardEvent) => {
     if (event.ctrlKey && event.key === '+') {
@@ -68,31 +82,24 @@ export class TextEditorComponent {
       formData.append('imagem', file);
   
       this.newsService.uploadImages(formData).subscribe(response => {
-        const nomeImagem = response?.message;
+        const nomeImagem = response?.message; // Supondo que o backend retorna o nome do arquivo salvo no servidor
         console.log(`Nome da imagem: ${nomeImagem}`);
   
-        // Realizar o download da imagem para exibir no editor
-        this.newsService.downloadImage(nomeImagem).subscribe(blob => {
-          const reader = new FileReader();
-          reader.onload = (event: any) => {
-            const imageUrl = event.target.result;
+        // Gerar URL para a imagem com base no nome retornado pelo backend
+        const imageUrl = `http://localhost:8080/homepage/download/imagem/${nomeImagem}`; // Ajuste conforme necessário
   
-            // Garantir que a imagem é exibida corretamente no editor
-            const imgElement = `<img src="${imageUrl}" alt="${fileNameWithExtension}" style="max-width: 100%; height: auto;">`;
-            const editor = document.querySelector('.editor');
-            if (editor) {
-              editor.innerHTML += imgElement; // Adicionar imagem ao editor
-            }
-          };
-          reader.readAsDataURL(blob);
-        }, error => {
-          console.error('Erro ao fazer download da imagem:', error);
-        });
+        // Inserir a imagem no editor usando a URL ao invés do conteúdo base64
+        const imgElement = `<img src="${imageUrl}" alt="${nomeImagem}" style="max-width: 100%; height: auto;">`;
+        const editor = document.querySelector('.editor');
+        if (editor) {
+          editor.innerHTML += imgElement; // Adicionar imagem ao editor
+        }
       }, error => {
         console.error('Erro ao fazer upload da imagem:', error);
       });
     }
   }
+  
     
   createLink() {
     const selectedText = window.getSelection()?.toString();
