@@ -31,6 +31,10 @@ export class NewNoticiaPage implements OnInit {
     }
   }
 
+  onContentChange(htmlContent: string) { 
+    this.newsForm.patchValue({ conteudo: htmlContent }); 
+  }
+
   onSubmit() {
     if (this.newsForm.valid) {
       const news: PublicacaoDTO = {
