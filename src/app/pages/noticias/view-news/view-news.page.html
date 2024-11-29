@@ -18,7 +18,7 @@
             <ion-item *ngFor="let news of newsList" (click)="selectNews(news)">
               <ion-label>
                 <h2>{{ news.titulo }}</h2> <!-- Atualizado para usar a propriedade correta -->
-                <p>{{ news.conteudo || 'Sem descrição disponível' }}</p> <!-- Atualizado para usar a propriedade correta -->
+                <p>{{ news.conteudos || 'Sem descrição disponível' }}</p> <!-- Atualizado para usar a propriedade correta -->
               </ion-label>
               <ion-button (click)="editNews(news)" fill="clear">
                 <ion-icon name="create-outline"></ion-icon>
@@ -37,7 +37,7 @@
               <ion-card-title>{{ selectedNews.titulo }}</ion-card-title> <!-- Atualizado para usar a propriedade correta -->
             </ion-card-header>
             <ion-card-content>
-              <p>{{ selectedNews.conteudo }}</p> <!-- Atualizado para exibir o conteúdo da notícia -->
+              <p>{{ selectedNews.conteudos }}</p> <!-- Atualizado para exibir o conteúdo da notícia -->
             </ion-card-content>
           </ion-card>
         </ng-container>

@@ -11,8 +11,8 @@ import { NewsService } from '../../services/news.service';
 export class NoticiasPage implements OnInit {
   news: PublicacaoDTO = {
     titulo: '',
-    conteudo: '',
-    nomeImagem: '',
+    conteudos: [], 
+    nomeImagens: [], 
     dataPublicacao: new Date(),
   };
 
@@ -22,21 +22,24 @@ export class NoticiasPage implements OnInit {
 
   constructor(private router: Router, private newsService: NewsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
+  
   addTitle() {
     this.isTitleVisible = true;
     this.entryOrder.push('title');
   }
 
-  addImage() {
-    this.news.nomeImagem = '';
-    this.entryOrder.push('image');
+  addParagraph() {
+    this.news.conteudos.push(''); // Adicionar novo parágrafo vazio
+    this.entryOrder.push('paragraph');
   }
 
-  addParagraph() {
-    this.news.conteudo = '';
-    this.entryOrder.push('paragraph');
+  addImage() {
+    this.news.nomeImagens.push(''); // Adicionar novo slot de imagem
+    this.entryOrder.push('image');
   }
 
   removeTitle() {
@@ -45,28 +48,44 @@ export class NoticiasPage implements OnInit {
     this.entryOrder = this.entryOrder.filter(entry => entry !== 'title');
   }
 
-  removeImage(index: number) {
-    this.news.nomeImagem = '';
-    this.entryOrder.splice(this.entryOrder.indexOf('image'), 1);
+  removeParagraph(index: number) {
+    this.news.conteudos.splice(index, 1); // Remover parágrafo pelo índice
+    this.entryOrder.splice(this.entryOrder.findIndex((entry, i) => entry === 'paragraph' && i === index), 1);
   }
 
-  removeParagraph(index: number) {
-    this.news.conteudo = '';
-    this.entryOrder.splice(this.entryOrder.indexOf('paragraph'), 1);
+  removeImage(index: number) {
+    this.news.nomeImagens.splice(index, 1); // Remover imagem pelo índice
+    this.entryOrder.splice(this.entryOrder.findIndex((entry, i) => entry === 'image' && i === index), 1);
   }
 
   saveNews() {
-    if (this.news.titulo || this.news.nomeImagem || this.news.conteudo) {
-      this.newsService.createNews(this.news).subscribe(() => {
-        this.savedNewsList.push({ ...this.news });
-        this.news = { titulo: '', conteudo: '', nomeImagem: '', dataPublicacao: new Date() };
-        this.entryOrder = [];
-        this.isTitleVisible = false;
-      });
-    } else {
-      alert("Por favor, adicione um título, imagem ou parágrafo antes de salvar.");
-    }
+    // Garantir que conteudos não tenham valores vazios ou inválidos
+    const newsToSend = {
+      titulo: this.news.titulo || 'Título padrão',
+      conteudos: this.news.conteudos.filter(conteudo => conteudo.trim() !== ''),  // Filtra conteúdo vazio
+      nomeImagens: this.news.nomeImagens || [],
+      dataPublicacao: this.news.dataPublicacao || new Date(),
+    };
+  
+    console.log('Dados a serem enviados:', newsToSend);  // Adiciona log para verificar os dados enviados
+  
+    // Envia os dados ao backend
+    this.newsService.createNews(newsToSend).subscribe(
+      response => {
+        console.log('Notícia salva com sucesso:', response);
+        this.savedNewsList.push(response);
+        alert('Notícia salva com sucesso!');
+        this.news = { titulo: '', conteudos: [], nomeImagens: [], dataPublicacao: new Date() };
+      },
+      error => {
+        console.error('Erro ao salvar a notícia:', error);
+        alert('Erro ao salvar a notícia.');
+      }
+    );
   }
+  
+  
+  
 
   previewNews() {
     this.router.navigate(['/view-news'], { state: { newsList: this.savedNewsList } });

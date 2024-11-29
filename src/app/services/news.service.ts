@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 import { PublicacaoDTO } from '../models/publicacao-dto.model';
 
 
@@ -24,9 +26,17 @@ export class NewsService {
   }
 
   // Método para criar uma nova notícia
-  createNews(news: PublicacaoDTO): Observable<PublicacaoDTO> {
-    return this.http.post<PublicacaoDTO>(this.apiUrl, news);
-  }
+createNews(news: PublicacaoDTO): Observable<PublicacaoDTO> {
+  console.log('Enviando notícia para o backend:', news);  // Log da notícia antes de enviar
+  
+  return this.http.post<PublicacaoDTO>(this.apiUrl, news).pipe(
+    // Aqui podemos adicionar um log para a resposta que vem do backend
+    tap((response) => {
+      console.log('Resposta do backend após salvar notícia:', response);
+    })
+  );
+}
+
 
   // Método para atualizar uma notícia existente
   updateNews(id: number, news: PublicacaoDTO): Observable<PublicacaoDTO> {
