@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PublicacaoDTO } from 'src/app/models/publicacao-dto.model';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -11,7 +12,9 @@ export class NoticiasPage implements OnInit {
   noticias: PublicacaoDTO[] = [];
   imagens: { [key: string]: string } = {};
 
-  constructor(private newsService: NewsService) {}
+  constructor(private newsService: NewsService,
+              private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadNews();
@@ -37,4 +40,22 @@ export class NoticiasPage implements OnInit {
       }
     });
   }
+
+  editarNoticia(id: number): void {
+    if (!id) {
+      console.error('ID da notícia inválido.');
+      return;
+    }
+    
+    // Redireciona para a rota de edição da notícia
+    this.router.navigate([`noticias/edit-noticia/${id}`]).then(success => {
+      if (success) {
+        console.log(`Redirecionado para a edição da notícia com ID: ${id}`);
+      } else {
+        console.error('Falha ao redirecionar para a edição da notícia.');
+      }
+    });
+  }
+
+
 }

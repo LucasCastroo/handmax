@@ -15,6 +15,9 @@
   background-color: var(--ion-color-light);
   padding: 10px;
   border-radius: 5px;
+  overflow-x: auto; /* Ativa o scroll horizontal */
+  scrollbar-width: thin; /* Estiliza a barra de rolagem em navegadores modernos */
+  -webkit-overflow-scrolling: touch; /* Para uma rolagem mais suave no iOS */
 
   ion-button {
     margin-right: 5px;
@@ -29,28 +32,34 @@
 }
 
 .editor-container {
-  flex-grow: 1;
-  width: 100%; /* Garante que o contêiner ocupe toda a largura */
+  flex-grow: 1; /* Faz a div crescer conforme o restante da página */
+  width: 100%;
+  max-height: calc(100vh - 100px); /* Define um tamanho máximo, ajustando ao tamanho da toolbar */
+  overflow: hidden; /* Garante que o scroll só aconteça na área editável */
   display: flex;
 }
 
 .editor {
-  flex-grow: 1; /* Faz o editor crescer para ocupar o espaço disponível */
+  flex-grow: 1;
   border: 1px solid var(--ion-color-medium);
   padding: 10px;
   background-color: var(--ion-color-light);
   border-radius: 5px;
   font-family: 'Poppins', sans-serif;
   color: var(--ion-color-dark);
-  overflow: auto; /* Permite rolagem se o conteúdo exceder o tamanho da área */
-  width: 100%; /* Garante que o editor ocupe toda a largura */
+  overflow-y: auto; /* Scroll vertical apenas */
+  overflow-x: hidden; /* Evita scroll horizontal indesejado */
+  max-height: 100%; /* Respeita o tamanho máximo definido pela container */
 }
 
-@media (prefers-color-scheme: dark) {
+@media (max-width: 768px) {
+  .editor-container {
+    max-height: calc(100vh - 150px); /* Ajusta a altura para dispositivos menores */
+  }
+
   .editor {
-    background-color: var(--ion-color-dark);
-    color: var(--ion-color-light);
-    border: 1px solid var(--ion-color-light);
+    padding: 5px;
+    font-size: 14px; /* Ajusta o tamanho do texto para telas menores */
   }
 }
 

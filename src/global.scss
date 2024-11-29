@@ -79,7 +79,8 @@ $app-theme: mat.define-theme((
   --ion-color-secondary: #fdfdfd;  /* Cor secundária */
   --ion-color-tertiary: #060706;   /* Cor terciária */
   --ion-color-transparent: rgba(0, 0, 0, 0);
+  --ion-font-family: Poppins;
 }
 
 html, body { height: 100%; background-color: #ffffff}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Poppins, "Helvetica Neue", sans-serif; }

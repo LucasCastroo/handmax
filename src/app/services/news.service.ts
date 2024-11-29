@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PublicacaoDTO } from '../models/publicacao-dto.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { PublicacaoDTO } from '../models/publicacao-dto.model';
 export class NewsService {
   private apiUrl = 'http://localhost:8080/homepage'; 
 
-  constructor(private http: HttpClient
+  constructor(private http: HttpClient,
   ) {}
 
   
