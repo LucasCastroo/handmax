@@ -25,9 +25,9 @@ export class ViewNewsPage implements OnInit {
 
   // Método para carregar todas as notícias
   loadNews() {
-    this.newsService.getNews().subscribe(
+    this.newsService.findAll().subscribe(
       (data) => {
-        console.log('Notícias carregadas:', data); // Verifique se os IDs estão presentes aqui
+        console.log('Notícias carregadas:', data);
         this.newsList = data;
       },
       (error) => {
@@ -53,12 +53,12 @@ export class ViewNewsPage implements OnInit {
 
   // Método para editar uma notícia
   editNews(newsItem: PublicacaoDTO) {
-    console.log("Notícia enviada para edição:", newsItem);
+    console.log('Notícia enviada para edição:', newsItem);
     if (newsItem.id) {
       this.router.navigate(['/edit-news'], { state: { newsItem } });
     } else {
-      console.error("ID da notícia está ausente:", newsItem);
-      alert("Erro: Não foi possível editar a notícia. O ID está ausente.");
+      console.error('ID da notícia está ausente:', newsItem);
+      alert('Erro: Não foi possível editar a notícia. O ID está ausente.');
     }
   }
 
@@ -82,14 +82,18 @@ export class ViewNewsPage implements OnInit {
   // Método para excluir uma notícia
   deleteNews(id: number | undefined) {
     if (id !== undefined) {
-      this.newsService.deleteNews(id).subscribe(
+      this.newsService.delete(id).subscribe(
         () => {
           this.newsList = this.newsList.filter((item) => item.id !== id);
+          alert('Notícia excluída com sucesso!');
         },
         (error) => {
           console.error('Erro ao excluir a notícia:', error);
+          alert('Erro ao excluir a notícia.');
         }
       );
+    } else {
+      console.error('Erro: ID não definido para exclusão.');
     }
   }
 }

@@ -22,11 +22,8 @@ export class NoticiasPage implements OnInit {
 
   constructor(private router: Router, private newsService: NewsService) {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
-  
   addTitle() {
     this.isTitleVisible = true;
     this.entryOrder.push('title');
@@ -50,32 +47,38 @@ export class NoticiasPage implements OnInit {
 
   removeParagraph(index: number) {
     this.news.conteudos.splice(index, 1); // Remover parágrafo pelo índice
-    this.entryOrder.splice(this.entryOrder.findIndex((entry, i) => entry === 'paragraph' && i === index), 1);
+    const paragraphIndex = this.entryOrder.findIndex(
+      (entry, i) => entry === 'paragraph' && i === index
+    );
+    this.entryOrder.splice(paragraphIndex, 1);
   }
 
   removeImage(index: number) {
     this.news.nomeImagens.splice(index, 1); // Remover imagem pelo índice
-    this.entryOrder.splice(this.entryOrder.findIndex((entry, i) => entry === 'image' && i === index), 1);
+    const imageIndex = this.entryOrder.findIndex(
+      (entry, i) => entry === 'image' && i === index
+    );
+    this.entryOrder.splice(imageIndex, 1);
   }
 
   saveNews() {
-    // Garantir que conteudos não tenham valores vazios ou inválidos
-    const newsToSend = {
+    // Validação dos campos obrigatórios
+    const newsToSend: PublicacaoDTO = {
       titulo: this.news.titulo || 'Título padrão',
-      conteudos: this.news.conteudos.filter(conteudo => conteudo.trim() !== ''),  // Filtra conteúdo vazio
-      nomeImagens: this.news.nomeImagens || [],
+      conteudos: this.news.conteudos.filter(conteudo => conteudo.trim() !== ''), // Remove conteúdo vazio
+      nomeImagens: this.news.nomeImagens.filter(nome => nome.trim() !== ''), // Remove slots de imagem vazios
       dataPublicacao: this.news.dataPublicacao || new Date(),
     };
-  
-    console.log('Dados a serem enviados:', newsToSend);  // Adiciona log para verificar os dados enviados
-  
+
+    console.log('Dados a serem enviados:', newsToSend); // Log para debug
+
     // Envia os dados ao backend
-    this.newsService.createNews(newsToSend).subscribe(
+    this.newsService.create(newsToSend).subscribe(
       response => {
         console.log('Notícia salva com sucesso:', response);
         this.savedNewsList.push(response);
         alert('Notícia salva com sucesso!');
-        this.news = { titulo: '', conteudos: [], nomeImagens: [], dataPublicacao: new Date() };
+        this.news = { titulo: '', conteudos: [], nomeImagens: [], dataPublicacao: new Date() }; // Reseta o formulário
       },
       error => {
         console.error('Erro ao salvar a notícia:', error);
@@ -83,9 +86,6 @@ export class NoticiasPage implements OnInit {
       }
     );
   }
-  
-  
-  
 
   previewNews() {
     this.router.navigate(['/view-news'], { state: { newsList: this.savedNewsList } });
