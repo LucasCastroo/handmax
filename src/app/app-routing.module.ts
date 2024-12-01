@@ -67,10 +67,10 @@ const routes: Routes = [
           path: 'view-news',
           loadChildren: () => import('./pages/noticias/view-news/view-news.module').then( m => m.ViewNewsPageModule)
         },
-       /* {
+        {
           path: 'edit-news',
           loadChildren: () => import('./pages/noticias/edit-news/edit-news.module').then( m => m.EditNewsPageModule)
-        },*/
+        },
     ],
   },
   {
