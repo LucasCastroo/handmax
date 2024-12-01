@@ -10,15 +10,12 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class EditNewsPage implements OnInit {
   news: PublicacaoDTO = {
+    id: undefined,
     titulo: '',
-    conteudo: '', // String única contendo todos os parágrafos separados por "|"
-    nomeImagem: '', // String única contendo URLs de imagens separadas por "|"
+    conteudos: [], // Array para parágrafos
+    nomeImagens: [], // Array para URLs de imagens
     dataPublicacao: new Date(),
   };
-
-  // Arrays locais para manipular múltiplos conteúdos e imagens
-  paragraphs: string[] = [];
-  images: string[] = [];
 
   isTitleVisible: boolean = false;
 
@@ -29,9 +26,9 @@ export class EditNewsPage implements OnInit {
     if (navigation?.extras.state && navigation.extras.state['newsItem']) {
       this.news = { ...navigation.extras.state['newsItem'] };
 
-      // Converte as strings em arrays para manipulação
-      this.paragraphs = this.news.conteudo ? this.news.conteudo.split('|') : [];
-      this.images = this.news.nomeImagem ? this.news.nomeImagem.split('|') : [];
+      // Garantindo valores padrão para evitar erros ao manipular os arrays
+      this.news.conteudos = this.news.conteudos || [];
+      this.news.nomeImagens = this.news.nomeImagens || [];
     }
   }
 
@@ -45,47 +42,60 @@ export class EditNewsPage implements OnInit {
   }
 
   addImage() {
-    this.images.push(''); // Adiciona uma nova entrada para URL de imagem
+    // Cria um novo array com a imagem adicionada
+    this.news.nomeImagens = [...this.news.nomeImagens, ''];
   }
 
   removeImage(index: number) {
-    this.images.splice(index, 1); // Remove a imagem pelo índice
+    // Cria um novo array sem a imagem removida
+    this.news.nomeImagens = this.news.nomeImagens.filter((_, i) => i !== index);
   }
 
   addParagraph() {
-    this.paragraphs.push(''); // Adiciona uma nova entrada para parágrafo
+    // Cria um novo array com o parágrafo adicionado
+    this.news.conteudos = [...this.news.conteudos, ''];
   }
 
   removeParagraph(index: number) {
-    this.paragraphs.splice(index, 1); // Remove o parágrafo pelo índice
+    // Cria um novo array sem o parágrafo removido
+    this.news.conteudos = this.news.conteudos.filter((_, i) => i !== index);
   }
 
   saveNews() {
-    console.log("Requisição de salvar notícia no Edit News");
+    console.log('Requisição de salvar notícia no Edit News');
 
     if (this.news.id) {
-      console.log("ID encontrado:", this.news.id);
+      console.log('ID encontrado:', this.news.id);
 
-      // Converte os arrays para strings concatenadas
-      this.news.conteudo = this.paragraphs.join('|');
-      this.news.nomeImagem = this.images.join('|');
+      // Limpar os campos vazios dos arrays de conteúdo e imagens
+      const cleanedNews: PublicacaoDTO = {
+        ...this.news,
+        conteudos: this.news.conteudos.filter((conteudo) => conteudo.trim() !== ''),
+        nomeImagens: this.news.nomeImagens.filter((nomeImagem) => nomeImagem.trim() !== ''),
+      };
 
-      if (this.news.titulo || this.news.nomeImagem || this.news.conteudo) {
-        this.newsService.updateNews(this.news.id, this.news).subscribe({
+      // Validação para garantir que pelo menos um campo importante esteja preenchido
+      if (
+        cleanedNews.titulo.trim() ||
+        cleanedNews.nomeImagens.length > 0 ||
+        cleanedNews.conteudos.length > 0
+      ) {
+        // Atualizando a notícia no backend
+        this.newsService.update(cleanedNews, this.news.id).subscribe({
           next: () => {
-            console.log("Notícia atualizada com sucesso.");
+            console.log('Notícia atualizada com sucesso.');
             this.router.navigate(['/view-news']);
           },
           error: (error) => {
-            console.error("Erro ao atualizar notícia:", error);
-            alert("Houve um erro ao atualizar a notícia.");
+            console.error('Erro ao atualizar notícia:', error);
+            alert('Houve um erro ao atualizar a notícia.');
           },
         });
       } else {
-        alert("Por favor, adicione um título, imagem ou conteúdo antes de salvar.");
+        alert('Por favor, adicione um título, imagem ou conteúdo antes de salvar.');
       }
     } else {
-      alert("ID da notícia não encontrado. Não é possível salvar.");
+      alert('ID da notícia não encontrado. Não é possível salvar.');
     }
   }
 
