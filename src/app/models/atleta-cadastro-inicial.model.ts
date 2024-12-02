@@ -1,4 +1,6 @@
-export interface AtletaCadastroInicial {
-  nome: string;
-  telefone: string;
+export class AtletaCadastroInicial {
+  nome!: string;
+  dataNascimento!: string;
+  telefone!: number;
+  enviarCadastroTelefone!: boolean;
 }

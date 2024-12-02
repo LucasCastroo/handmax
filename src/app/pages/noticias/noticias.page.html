@@ -3,6 +3,7 @@
   <app-header></app-header>
   <ion-content class="ion-padding">
     <h1>Ver notícias</h1>
+    <ion-button class="ion-margin-end" routerLink="/noticias/new-noticia">Criar notícia</ion-button>
     <ion-list [inset]="true">
       <ion-item *ngFor="let noticia of noticias">
         <ion-thumbnail slot="start" *ngIf="noticia.nomeImagem && imagens[noticia.nomeImagem]"> 

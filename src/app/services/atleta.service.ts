@@ -20,9 +20,9 @@ export class AtletaService {
   createInitial(dto: AtletaCadastroInicial): Observable<Atleta> {
     const headers = this.sessionTokenService.getSessionHeader();
     if(headers){
-      return this.httpClient.patch<Atleta>(this.baseUrl, dto, { headers });
+      return this.httpClient.post<Atleta>(`${this.baseUrl}/initial`, dto, { headers });
     }else{
-      return this.httpClient.patch<Atleta>(this.baseUrl, dto);
+      return this.httpClient.post<Atleta>(`${this.baseUrl}/initial`, dto);
     }
   }
 

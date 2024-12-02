@@ -1,13 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>pre-cadastro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-app>
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">pre-cadastro</ion-title>
-    </ion-toolbar>
+      <ion-title>Novo Atleta</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="fecharModal()">Cancelar</ion-button>
+      </ion-buttons>
+    </ion-toolbar> 
   </ion-header>
-</ion-content>
+  
+  <ion-content class="ion-padding">
+    <form [formGroup]="atletaForm" (ngSubmit)="cadastrarAtleta()">
+      <ion-list [inset]="true" lines="full">
+        <ion-item>
+          <ion-input
+            label="Nome"
+            label-placement="floating"
+            placeholder="Digite o nome"
+            formControlName="nome"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            label="Data de Nascimento"
+            label-placement="floating"
+            placeholder="Digite a data de nascimento (DD/MM/YYYY)"
+            formControlName="dataNascimento"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            label="Telefone"
+            label-placement="floating"
+            formControlName="telefone"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-toggle
+            labelPlacement="start"
+            formControlName="enviarCadastroTelefone"
+          >
+            Enviar link de cadastro ao WhatsApp
+          </ion-toggle>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" type="submit">Cadastrar</ion-button>
+    </form>
+  </ion-content>   
+</ion-app>
