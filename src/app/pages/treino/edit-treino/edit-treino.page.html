@@ -13,13 +13,15 @@
           <ion-input label="Local" labelPlacement="floating" formControlName="local" placeholder="Informe o local" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input label="Horário" labelPlacement="floating" formControlName="horario" placeholder="hh:mm" required></ion-input>
+          <ion-label>Data/Horário</ion-label>
+          <ion-datetime-button datetime="datetime" formControlName="dataHorario" ngDefaultControl></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                  <ion-datetime id="datetime" formControlName="dataHorario" ngDefaultControl></ion-datetime>
+              </ng-template>
+          </ion-modal>
         </ion-item>
-        <ion-item>
-          <ion-input label="Data" labelPlacement="floating" formControlName="data" presentation="date"></ion-input>
-        </ion-item>  
-      </ion-list>
-      
+        </ion-list>
         <h3 class="subtitulo">Selecionar Atletas</h3>
         <ion-list>
           <ion-item *ngFor="let atleta of atletas">

@@ -31,8 +31,7 @@ export class EditTreinoPage implements OnInit {
   ) {
     this.treinoForm = this.fb.group({
       local: ['', Validators.required],
-      data: ['', Validators.required],
-      horario: ['', Validators.required],
+      dataHorario: ['', Validators.required],
       criarTreinoTodosAtletas: [false],});
    }
 
@@ -46,6 +45,7 @@ export class EditTreinoPage implements OnInit {
   
     this.treinoService.findById(treinoId).subscribe({
       next: (data) => {
+        console.log(data);
         this.treinoForm.patchValue(data);
   
         // Atualizar atletas selecionados com base no treino carregado

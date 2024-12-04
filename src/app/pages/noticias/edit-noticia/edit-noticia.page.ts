@@ -49,6 +49,8 @@ export class EditNoticiaPage implements OnInit {
       this.html = noticia.conteudo; // Atualiza o conteúdo do editor
       this.nomeImagemAtual = noticia.nomeImagem!;
 
+      console.log(noticia);
+
       // Constrói o URL completo da imagem, caso necessário
       if (this.nomeImagemAtual) {
         this.nomeImagemAtual = `http://localhost:8080/homepage/download/imagem/${this.nomeImagemAtual}`;

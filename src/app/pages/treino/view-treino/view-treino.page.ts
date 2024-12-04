@@ -33,7 +33,8 @@ export class ViewTreinoPage implements OnInit {
       },
       error: (err) => {
         const errorMessage = this.errorHandlingService.handleError(err);
-        this.toastService.ativarToast(errorMessage);      },
+        this.toastService.ativarToast(errorMessage);      
+      },
     });
   }
 
