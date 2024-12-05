@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { AtletaService } from 'src/app/services/atleta.service';
+import { CepService } from 'src/app/services/cep.service';
 import { ErrorHandlingService } from 'src/app/services/error-handling.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -19,7 +20,7 @@ export class PreCadastroPage implements OnInit {
     private athleteService: AtletaService,
     private modalController: ModalController,
     private errorHandlingService: ErrorHandlingService,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +47,7 @@ export class PreCadastroPage implements OnInit {
         }
       });
     } else {
-      alert('Preencha todos os campos obrigatórios corretamente!');
+      this.toastService.ativarToast('Preencha todos os campos obrigatórios corretamente!');
     }
   }
 

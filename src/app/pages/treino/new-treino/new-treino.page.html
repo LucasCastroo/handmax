@@ -7,7 +7,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-    <!-- Reactive Form -->
     <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
       <ion-list [inset]="true">
         <ion-item>
@@ -18,32 +17,34 @@
             required
           ></ion-input>
         </ion-item>
+        <!-- <ion-item>
+          <ion-label>Data/Horário</ion-label>
+          <ion-datetime-button datetime="datetime" formControlName="dataHorario"></ion-datetime-button>
+                  <ion-datetime id="datetime" formControlName="dataHorario"></ion-datetime>
+        </ion-item> -->
         <ion-item>
-            <ion-input
-            label="Horário" labelPlacement="floating"
-            formControlName="horario"
-            placeholder="hh:mm"
-            required
-          >
-        </ion-input>
-        </ion-item>
-        <!-- Campo Data -->
-        <ion-item>
-          <ion-input
-            label="Data" labelPlacement="floating"
-            formControlName="data"
-            placeholder="DD/MM/AAAA"
-            presentation="date"
-          ></ion-input>
+          <ion-input label="Data/Horário" labelPlacement="floating"
+           matInput type="datetime-local" placeholder="start date" formControlName="dataHorario"></ion-input>
         </ion-item>
         <ion-item>
           <ion-toggle formControlName="criarTreinoTodosAtletas">Criar treino com todos os atletas</ion-toggle>
         </ion-item>  
+        <ion-item>
+          <ion-select 
+          label="Selecione as categorias"
+          labelPlacement="floating"
+          [multiple]="true"
+          formControlName="listarCategorias">
+            <ion-select-option *ngFor="let categoria of categoriasAtletas" [value]="categoria">
+              {{ categoria.nome }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-list>
       <!-- Campo Local -->
   
       <!-- Listar Atletas (Exibe somente se criarTreinoTodosAtletas for false) -->
-      <div *ngIf="!treinoForm.get('criarTreinoTodosAtletas')?.value">
+      <div *ngIf="!treinoForm.get('criarTreinoTodosAtletas')?.value && (!treinoForm.get('listarCategorias')?.value || treinoForm.get('listarCategorias')?.value.length === 0)">
         <ion-list [inset]="true">
           <ion-list-header>
             <h3>Selecionar Atletas</h3>

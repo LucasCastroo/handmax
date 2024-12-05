@@ -101,4 +101,9 @@ export class AtletaService {
   updateCadastroInicial(token: string, dados: Atleta){
     return this.httpClient.put<Atleta>(`${this.baseUrl}/token/${token}`, dados);
   }
+
+  getCategorias(): Observable<any[]> {
+    const url = 'http://localhost:8080/enum/categorias';
+    return this.httpClient.get<any[]>(url);
+  }
 }

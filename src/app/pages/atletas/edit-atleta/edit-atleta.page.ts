@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { AtletaService } from 'src/app/services/atleta.service';
+import { CepService } from 'src/app/services/cep.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-edit-atleta',
@@ -17,7 +19,9 @@ export class EditAtletaPage implements OnInit {
     private fb: FormBuilder,
     private atletaService: AtletaService,
     private modalController: ModalController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cepService: CepService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +63,35 @@ export class EditAtletaPage implements OnInit {
       this.atletaService.findById(this.atletaId).subscribe({
         next: (atleta) => this.atletaForm.patchValue(atleta),
         error: (err) => console.error('Erro ao carregar atleta:', err),
+      });
+    }
+  }
+
+  buscarCep(): void {
+    const cep = this.atletaForm.get('endereco')?.get('CEP')?.value;
+    console.log("CEP digitado: ", cep);
+
+    if (cep) {
+      this.cepService.findByStringCep(cep).subscribe({
+        next: (data) => {
+          if (!data.erro) {
+            this.atletaForm.get('endereco')?.patchValue({
+              logradouro: data.logradouro || '',
+              localidade: data.localidade || '',
+              UF: data.uf || '',
+            });
+
+            // Desativar os campos preenchidos automaticamente
+            this.atletaForm.get('endereco')?.get('logradouro')?.disable();
+            this.atletaForm.get('endereco')?.get('localidade')?.disable();
+            this.atletaForm.get('endereco')?.get('UF')?.disable();
+          } else {
+            this.toastService.ativarToast('CEP não encontrado.');
+          }
+        },
+        error: () => {
+          this.toastService.ativarToast('Erro ao buscar o CEP. Verifique o valor e tente novamente.');
+        },
       });
     }
   }

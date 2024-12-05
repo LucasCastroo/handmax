@@ -15,6 +15,7 @@ import { TreinoService } from 'src/app/services/treino.service';
 export class NewTreinoPage implements OnInit {
   treinoForm: FormGroup;
   atletas: AtletaTreinoDTO[] = [];
+  categoriasAtletas: any[] = [];
   atletasSelecionados: AtletaTreinoDTO[] = []; // Lista de atletas selecionados
   criarTreinoTodos: boolean = false;
 
@@ -31,14 +32,15 @@ export class NewTreinoPage implements OnInit {
   ) {
     this.treinoForm = this.fb.group({
       local: ['', Validators.required],
-      data: ['', Validators.required],
-      horario: ['', Validators.required],
+      dataHorario: ['', Validators.required],
       criarTreinoTodosAtletas: [false],
+      listarCategorias: [[]], // Controle para categorias
     });
   }
 
   ngOnInit(): void {
     this.carregarAtletas();
+    this.carregarCategorias();
   }
 
   carregarAtletas() {
@@ -48,16 +50,24 @@ export class NewTreinoPage implements OnInit {
     });
   }
 
+  carregarCategorias(){
+    this.atletaService.getCategorias().subscribe({
+      next: (data) => (this.categoriasAtletas = data),
+      error: (err) => console.error('Erro ao carregar categorias: ', err),
+    })
+  }
+
   toggleTreinoTodos() {
     this.criarTreinoTodos = !this.criarTreinoTodos;
     this.atletasSelecionados = this.criarTreinoTodos ? [...this.atletas] : [];
   }
 
   onSubmit() {
+    console.log(this.treinoForm.value)
     if (this.treinoForm.valid) {
       const formData = this.treinoForm.value;
   
-      if (!formData.criarTreinoTodosAtletas && this.atletasSelecionados.length === 0) {
+      if (!formData.criarTreinoTodosAtletas && this.atletasSelecionados.length === 0 && formData.listarCategorias.length.value === 0) {
         this.toastService.ativarToast('Erro: Nenhum atleta selecionado.');
         return;
       }
