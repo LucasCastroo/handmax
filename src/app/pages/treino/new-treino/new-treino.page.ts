@@ -16,6 +16,7 @@ export class NewTreinoPage implements OnInit {
   treinoForm: FormGroup;
   atletas: AtletaTreinoDTO[] = [];
   categoriasAtletas: any[] = [];
+  timesNotificacoes: any[] = [];
   atletasSelecionados: AtletaTreinoDTO[] = []; // Lista de atletas selecionados
   criarTreinoTodos: boolean = false;
 
@@ -32,15 +33,17 @@ export class NewTreinoPage implements OnInit {
   ) {
     this.treinoForm = this.fb.group({
       local: ['', Validators.required],
-      dataHorario: ['', Validators.required],
+      dataHorario: [new Date().toISOString(), Validators.required],
       criarTreinoTodosAtletas: [false],
       listarCategorias: [[]], // Controle para categorias
+      notificarEm: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
     this.carregarAtletas();
     this.carregarCategorias();
+    this.carregarNotificacoes();
   }
 
   carregarAtletas() {
@@ -53,7 +56,14 @@ export class NewTreinoPage implements OnInit {
   carregarCategorias(){
     this.atletaService.getCategorias().subscribe({
       next: (data) => (this.categoriasAtletas = data),
-      error: (err) => console.error('Erro ao carregar categorias: ', err),
+      error: (err) => console.error('Erro ao carregar categorias: ', err)
+    })
+  }
+
+  carregarNotificacoes(){
+    this.atletaService.getTimeNotificacao().subscribe({
+      next: (data) => (this.timesNotificacoes = data),
+      error: (err) => console.error('Erro ao carregar tempos para notificação: ', err)
     })
   }
 

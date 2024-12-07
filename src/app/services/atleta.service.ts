@@ -26,6 +26,15 @@ export class AtletaService {
     }
   }
 
+  createInitialWithTreino(dto: AtletaCadastroInicial, id: number): Observable<Atleta>{
+    const headers = this.sessionTokenService.getSessionHeader();
+    if(headers){
+      return this.httpClient.post<Atleta>(`${this.baseUrl}/initial/${id}`, dto, { headers });
+    }else{
+      return this.httpClient.post<Atleta>(`${this.baseUrl}/initial/${id}`, dto);
+    }
+  }
+
   create(dto: Atleta): Observable<Atleta> {
     const headers = this.sessionTokenService.getSessionHeader();
 
@@ -104,6 +113,11 @@ export class AtletaService {
 
   getCategorias(): Observable<any[]> {
     const url = 'http://localhost:8080/enum/categorias';
+    return this.httpClient.get<any[]>(url);
+  }
+
+  getTimeNotificacao(): Observable<any[]> {
+    const url = 'http://localhost:8080/enum/frequencia-notificacao';
     return this.httpClient.get<any[]>(url);
   }
 }

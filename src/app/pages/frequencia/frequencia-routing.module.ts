@@ -10,6 +10,10 @@ const routes: Routes = [
   },  {
     path: 'frequencia-treino',
     loadChildren: () => import('./frequencia-treino/frequencia-treino.module').then( m => m.FrequenciaTreinoPageModule)
+  },
+  {
+    path: 'pre-cadastro-frequencia',
+    loadChildren: () => import('./pre-cadastro-frequencia/pre-cadastro-frequencia.module').then( m => m.PreCadastroFrequenciaPageModule)
   }
 
 ];
