@@ -1,4 +1,5 @@
-<app-header></app-header>
+<ion-app>
+  <app-header></app-header>
 <ion-content class="ion-padding">
   <div class="container">
     <h1>Selecionar treino</h1>
@@ -6,9 +7,11 @@
       <ion-item *ngFor="let treino of treinos" (click)="abrirFrequenciaTreinoModal(treino.id)">
         <ion-label>
           <h2>Treino #{{ treino.id }}</h2>
-          <p>{{ treino.local }} - {{ treino.data | date }}</p>
+          <p>{{ treino.local }} - {{ treino.dataHorario | date: 'dd/MM/yyyy (HH:mm)' }}</p>
         </ion-label>
       </ion-item>
     </ion-list>  
   </div>
 </ion-content>
+<app-footer></app-footer>
+</ion-app>

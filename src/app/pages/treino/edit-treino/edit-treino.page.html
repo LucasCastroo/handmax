@@ -7,30 +7,41 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-toast [isOpen]="activateToast" message={{toastMessage}} expand="block" [duration]="5000" (didDismiss)="desativarToast()"></ion-toast>
     <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
-      <ion-list>
+      <ion-list [inset]="true">
+        <ion-list-header><h3>Informações do Treino</h3></ion-list-header>
         <ion-item>
           <ion-input label="Local" labelPlacement="floating" formControlName="local" placeholder="Informe o local" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input label="Horário" labelPlacement="floating" formControlName="horario" placeholder="hh:mm" required></ion-input>
+          <ion-label>Horário</ion-label>
+          <ion-datetime-button datetime="datetime" formControlName="dataHorario" ngDefaultControl></ion-datetime-button>
+          <ion-popover [keepContentsMounted]="true">
+              <ng-template>
+                  <ion-datetime
+                  [formatOptions]="{
+                        date: {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric'
+                      },
+                    }"           
+                  id="datetime" formControlName="dataHorario" ngDefaultControl></ion-datetime>
+              </ng-template>
+          </ion-popover>
         </ion-item>
-        <ion-item>
-          <ion-input label="Data" labelPlacement="floating" formControlName="data" presentation="date"></ion-input>
-        </ion-item>  
-      </ion-list>
-      
-        <h3 class="subtitulo">Selecionar Atletas</h3>
-        <ion-list>
+        </ion-list>
+
+        <ion-list [inset]="true">
+          <ion-list-header><h3>Selecionar Atletas</h3></ion-list-header>
           <ion-item *ngFor="let atleta of atletas">
             <ion-checkbox
               [checked]="isAtletaSelecionado(atleta)"
               (ionChange)="toggleAtleta(atleta)"
-            >{{ atleta.nome }}</ion-checkbox>
-          </ion-item>
+              >{{ atleta.nome }} ({{ atleta.categoria }})</ion-checkbox>
+            </ion-item>
         </ion-list>
-        <ion-button expand="full" shape="round" type="submit">
+        <ion-button expand="block" type="submit">
           Atualizar
         </ion-button>
     </form>

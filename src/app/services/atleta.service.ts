@@ -20,9 +20,18 @@ export class AtletaService {
   createInitial(dto: AtletaCadastroInicial): Observable<Atleta> {
     const headers = this.sessionTokenService.getSessionHeader();
     if(headers){
-      return this.httpClient.patch<Atleta>(this.baseUrl, dto, { headers });
+      return this.httpClient.post<Atleta>(`${this.baseUrl}/initial`, dto, { headers });
     }else{
-      return this.httpClient.patch<Atleta>(this.baseUrl, dto);
+      return this.httpClient.post<Atleta>(`${this.baseUrl}/initial`, dto);
+    }
+  }
+
+  createInitialWithTreino(dto: AtletaCadastroInicial, id: number): Observable<Atleta>{
+    const headers = this.sessionTokenService.getSessionHeader();
+    if(headers){
+      return this.httpClient.post<Atleta>(`${this.baseUrl}/initial/${id}`, dto, { headers });
+    }else{
+      return this.httpClient.post<Atleta>(`${this.baseUrl}/initial/${id}`, dto);
     }
   }
 
@@ -100,5 +109,15 @@ export class AtletaService {
 
   updateCadastroInicial(token: string, dados: Atleta){
     return this.httpClient.put<Atleta>(`${this.baseUrl}/token/${token}`, dados);
+  }
+
+  getCategorias(): Observable<any[]> {
+    const url = 'http://localhost:8080/enum/categorias';
+    return this.httpClient.get<any[]>(url);
+  }
+
+  getTimeNotificacao(): Observable<any[]> {
+    const url = 'http://localhost:8080/enum/frequencia-notificacao';
+    return this.httpClient.get<any[]>(url);
   }
 }

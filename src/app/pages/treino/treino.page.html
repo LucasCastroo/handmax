@@ -6,8 +6,8 @@
       <ion-item *ngFor="let treino of treinos">
         <ion-label>
           <h2>Treino #{{ treino.id }}</h2>
-          <p><strong>Data:</strong> {{treino.data}}</p>
-          <p><strong>Horário:</strong> {{treino.horario}}</p>
+          <p><strong>Data:</strong> {{treino.dataHorario | date:'dd/MM/yyyy'}}</p>
+          <p><strong>Horário:</strong> {{treino.dataHorario | date:'HH:mm'}}</p>
           <p><strong>Local:</strong> {{treino.local}}</p>
         </ion-label>
         <ion-icon name="information-circle" slot="end" (click)="verTreino(treino, treino.id)"></ion-icon>

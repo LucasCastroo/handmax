@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: 'delete-atleta',
     loadChildren: () => import('./delete-atleta/delete-atleta.module').then( m => m.DeleteAtletaPageModule)
-  },  {
+  },
+  {
     path: 'view-atleta',
     loadChildren: () => import('./view-atleta/view-atleta.module').then( m => m.ViewAtletaPageModule)
   },

@@ -1,0 +1,43 @@
+<ion-app>
+  <app-header></app-header>
+  <ion-content class="ion-padding">
+    <h1>Atualizar Notícia</h1>
+    <form [formGroup]="updateNewsForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-input 
+          label="Título" 
+          labelPlacement="floating" 
+          formControlName="titulo">
+        </ion-input>
+      </ion-item>
+      <ion-item> 
+        <app-text-editor 
+          [initialContent]="html" 
+          (contentChange)="onContentChange($event)">
+        </app-text-editor>     
+      </ion-item>
+      <ion-item *ngIf="nomeImagemAtual">
+        <ion-label>Imagem existente</ion-label>
+        <div class="existing-image-container">
+          <img *ngIf="nomeImagemAtual" [src]="nomeImagemAtual" alt="{{ nomeImagemAtual }}" style="max-width:150px;" />
+          <p *ngIf="!nomeImagemAtual">{{ nomeImagemAtual }}</p>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>Enviar nova imagem</ion-label>
+          <ion-button slot="end" expand="full" (click)="triggerFileInput()">
+            Escolher Arquivo
+          </ion-button>
+          <input 
+            type="file" 
+            #fileInput 
+            (change)="onFileSelected($event)" 
+            hidden 
+          />     
+          <p slot="end" *ngIf="fileName">{{ fileName }}</p>   
+      </ion-item>
+      <ion-button expand="full" type="submit">Atualizar Notícia</ion-button>
+    </form>
+  </ion-content>
+  <app-footer></app-footer>
+</ion-app>

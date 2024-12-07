@@ -1,17 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Frequência do Treino #{{ treinoId }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="fecharModal()">Fechar</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
-  <ion-list [inset]="true">
-    <ion-item *ngFor="let aluno of alunos">
-      <ion-toggle [(ngModel)]="aluno.frequencia">{{ aluno.nomeAtleta }}</ion-toggle>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="block" (click)="salvarFrequencia()">Salvar Frequência</ion-button>
-</ion-content>
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Frequência do Treino #{{ treinoId }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="fecharModal()">Fechar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-button expand="block" fill="outline" (click)="abrirPreCadastroModal(this.treinoId)">Cadastrar novo atleta</ion-button>
+    <ion-list [inset]="true">      
+      <ion-item *ngFor="let aluno of alunos">
+        <ion-toggle [(ngModel)]="aluno.frequencia">{{ aluno.nomeAtleta }}</ion-toggle>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" (click)="salvarFrequencia()">Salvar Frequência</ion-button>
+  </ion-content>  
+</ion-app>

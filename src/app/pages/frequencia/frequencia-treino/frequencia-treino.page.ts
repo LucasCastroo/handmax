@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FrequenciaService } from 'src/app/services/frequencia.service';
+import { PreCadastroFrequenciaPage } from '../pre-cadastro-frequencia/pre-cadastro-frequencia.page';
 
 @Component({
   selector: 'app-frequencia-treino',
@@ -47,4 +48,20 @@ export class FrequenciaTreinoPage implements OnInit {
   fecharModal(): void {
     this.modalController.dismiss();
   }
+
+  async abrirPreCadastroModal(treinoId: number): Promise<void> {
+    const modal = await this.modalController.create({
+      component: PreCadastroFrequenciaPage,
+      componentProps: { treinoId },
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if(result.data.refresh){
+        this.carregarAlunos();
+      }
+    });
+
+    await modal.present();
+  }
+
 }

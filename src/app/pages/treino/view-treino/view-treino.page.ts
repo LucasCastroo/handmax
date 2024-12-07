@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { ErrorHandlingService } from 'src/app/services/error-handling.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { TreinoService } from 'src/app/services/treino.service';
 
@@ -17,7 +18,8 @@ export class ViewTreinoPage implements OnInit {
     private route: ActivatedRoute,
     private treinoService: TreinoService,
     private modalController: ModalController,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private errorHandlingService: ErrorHandlingService
   ) {}
 
   ngOnInit() {
@@ -30,8 +32,8 @@ export class ViewTreinoPage implements OnInit {
         this.treino = res;
       },
       error: (err) => {
-        console.error('Erro ao carregar o treino:', err);
-        this.toastService.ativarToast('Erro ao carregar treino! Por favor, contate o administrador do sistema');
+        const errorMessage = this.errorHandlingService.handleError(err);
+        this.toastService.ativarToast(errorMessage);      
       },
     });
   }

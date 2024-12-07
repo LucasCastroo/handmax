@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AtletaService } from 'src/app/services/atleta.service';
+import { ErrorHandlingService } from 'src/app/services/error-handling.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-delete-atleta',
@@ -12,7 +14,9 @@ export class DeleteAtletaPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private athleteService: AtletaService
+    private athleteService: AtletaService,
+    private toastService: ToastService,
+    private errorHandlingService: ErrorHandlingService
   ) {}
 
   ngOnInit(): void {  }
@@ -22,11 +26,15 @@ export class DeleteAtletaPage implements OnInit {
   }
 
   async confirmDelete() {
-    try{
-      await this.athleteService.delete(this.atletaId).toPromise(); // Chama o serviço para excluir o atleta
-      this.modalCtrl.dismiss({ confirm: true, atletaId: this.atletaId });
-    } catch (error) {
-      console.error('Erro ao excluir atleta:', error);
-    }    
-  }
+    this.athleteService.delete(this.atletaId).subscribe({
+      next: () => {
+        this.toastService.ativarToast('Treino deletado com sucesso!');
+        this.dismiss();
+      },
+      error: (err) => {
+        const errorMessage = this.errorHandlingService.handleError(err);
+        this.toastService.ativarToast(errorMessage);
+    }}
+  );
+}
 }

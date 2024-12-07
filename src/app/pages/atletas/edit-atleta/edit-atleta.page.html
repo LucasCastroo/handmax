@@ -60,6 +60,7 @@
               label="CEP"
               label-placement="floating"
               formControlName="CEP"
+              (ionBlur)="buscarCep()" 
             ></ion-input>
           </ion-item>
           <ion-item>
@@ -146,4 +147,5 @@
       <ion-button expand="block" type="submit">Salvar</ion-button>
     </form>
   </ion-content>  
+  <app-footer></app-footer>
 </ion-app>

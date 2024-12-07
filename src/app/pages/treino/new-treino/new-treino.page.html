@@ -7,9 +7,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-    <!-- Reactive Form -->
     <form [formGroup]="treinoForm" (ngSubmit)="onSubmit()">
       <ion-list [inset]="true">
+        <ion-list-header><h3>Informações do Treino</h3></ion-list-header>
         <ion-item>
           <ion-input
             label="Local" labelPlacement="floating"
@@ -19,41 +19,68 @@
           ></ion-input>
         </ion-item>
         <ion-item>
-            <ion-input
-            label="Horário" labelPlacement="floating"
-            formControlName="horario"
-            placeholder="hh:mm"
-            required
-          >
-        </ion-input>
+          <ion-label>Horário</ion-label>
+          <ion-datetime-button datetime="datetime" formControlName="dataHorario" ngDefaultControl></ion-datetime-button>
+          <ion-popover [keepContentsMounted]="true">
+              <ng-template>
+                  <ion-datetime 
+                    [formatOptions]="{
+                      date: {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    },
+                  }" 
+                  id="datetime" formControlName="dataHorario" ngDefaultControl></ion-datetime>
+              </ng-template>
+          </ion-popover>
         </ion-item>
-        <!-- Campo Data -->
+      </ion-list>
+      <ion-list [inset]="true">
+        <ion-list-header><h3>Notificações</h3></ion-list-header>
         <ion-item>
-          <ion-input
-            label="Data" labelPlacement="floating"
-            formControlName="data"
-            placeholder="DD/MM/AAAA"
-            presentation="date"
-          ></ion-input>
+          <ion-toggle formControlName="notificarAtletasAgora">Notificar atletas agora</ion-toggle>
+        </ion-item>  
+        <ion-item>
+          <ion-select 
+          label="Notificação pré-treino"
+          formControlName="notificarEm">
+            <ion-select-option *ngFor="let tempo of timesNotificacoes" [value]="tempo">
+              {{ tempo.descricao }}
+            </ion-select-option>
+          </ion-select>
         </ion-item>
+      </ion-list>
+      <!-- Campo Local -->
+      <ion-list [inset]="true">
+        <ion-list-header><h3>Selecionar atletas</h3></ion-list-header>
         <ion-item>
           <ion-toggle formControlName="criarTreinoTodosAtletas">Criar treino com todos os atletas</ion-toggle>
         </ion-item>  
+        <ion-item>
+          <ion-select 
+          label="Selecione as categorias"
+          labelPlacement="floating"
+          [multiple]="true"
+          formControlName="listarCategorias">
+            <ion-select-option *ngFor="let categoria of categoriasAtletas" [value]="categoria">
+              {{ categoria.nome }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-list>
-      <!-- Campo Local -->
-  
       <!-- Listar Atletas (Exibe somente se criarTreinoTodosAtletas for false) -->
-      <div *ngIf="!treinoForm.get('criarTreinoTodosAtletas')?.value">
+      <div *ngIf="!treinoForm.get('criarTreinoTodosAtletas')?.value && (!treinoForm.get('listarCategorias')?.value || treinoForm.get('listarCategorias')?.value.length === 0)">
         <ion-list [inset]="true">
           <ion-list-header>
-            <h3>Selecionar Atletas</h3>
+            <h3>Lista de Atletas</h3>
           </ion-list-header>
           <ion-item *ngFor="let atleta of atletas">
             <ion-checkbox
               labelPlacement="start"
               [checked]="isAtletaSelecionado(atleta)"
               (ionChange)="toggleAtleta(atleta)"
-            >{{ atleta.nome }}</ion-checkbox>
+            >{{ atleta.nome }} ({{ atleta.categoria }})</ion-checkbox>
           </ion-item>
         </ion-list>
       </div>

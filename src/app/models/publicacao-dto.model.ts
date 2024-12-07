@@ -1,8 +1,8 @@
 export interface PublicacaoDTO {
-  id?: number;
+  id?: number; 
   titulo: string;
-  conteudos: string[]; 
-  nomeImagens: string[]; 
-  dataPublicacao?: Date;
-  autorId?: number;
+  conteudo: string;
+  nomeImagem?: string; 
+  dataPublicacao?: Date; 
+  autorId?: number; 
 }

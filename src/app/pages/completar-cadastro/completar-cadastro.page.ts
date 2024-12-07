@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AtletaService } from 'src/app/services/atleta.service';
 import { ActivatedRoute } from '@angular/router';
+import { CepService } from 'src/app/services/cep.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-completar-cadastro',
@@ -18,7 +20,9 @@ export class CompletarCadastroPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private atletaService: AtletaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cepService: CepService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -63,6 +67,36 @@ export class CompletarCadastroPage implements OnInit {
         cadastroNIS: [false, Validators.required],
       }),
     });
+  }
+
+
+  buscarCep(): void {
+    const cep = this.cadastroForm.get('endereco')?.get('CEP')?.value;
+    console.log("CEP digitado: ", cep);
+
+    if (cep) {
+      this.cepService.findByStringCep(cep).subscribe({
+        next: (data) => {
+          if (!data.erro) {
+            this.cadastroForm.get('endereco')?.patchValue({
+              logradouro: data.logradouro || '',
+              localidade: data.localidade || '',
+              UF: data.uf || '',
+            });
+
+            // Desativar os campos preenchidos automaticamente
+            this.cadastroForm.get('endereco')?.get('logradouro')?.disable();
+            this.cadastroForm.get('endereco')?.get('localidade')?.disable();
+            this.cadastroForm.get('endereco')?.get('UF')?.disable();
+          } else {
+            this.toastService.ativarToast('CEP não encontrado.');
+          }
+        },
+        error: () => {
+          this.toastService.ativarToast('Erro ao buscar o CEP. Verifique o valor e tente novamente.');
+        },
+      });
+    }
   }
 
   onSubmit() {

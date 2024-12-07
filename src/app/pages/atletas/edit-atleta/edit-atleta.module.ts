@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EditAtletaPageRoutingModule } from './edit-atleta-routing.module';
 
 import { EditAtletaPage } from './edit-atleta.page';
+import { FooterComponent } from "../../../components/footer/footer.component";
 
 @NgModule({
   imports: [
@@ -14,8 +15,9 @@ import { EditAtletaPage } from './edit-atleta.page';
     FormsModule,
     IonicModule,
     EditAtletaPageRoutingModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    FooterComponent
+],
   declarations: [EditAtletaPage]
 })
 export class EditAtletaPageModule {}

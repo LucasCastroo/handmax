@@ -6,6 +6,7 @@ import { EditTreinoPage } from '../treino/edit-treino/edit-treino.page';
 import { EditAtletaPage } from './edit-atleta/edit-atleta.page';
 import { DeleteAtletaPage } from './delete-atleta/delete-atleta.page';
 import { ViewAtletaPage } from './view-atleta/view-atleta.page';
+import { PreCadastroPage } from './pre-cadastro/pre-cadastro.page';
 
 @Component({
   selector: 'app-atletas',
@@ -34,6 +35,18 @@ export class AtletasPage implements OnInit {
   async abrirModalCadastro(): Promise<void> {
     const modal = await this.modalController.create({
       component: NewAtletaPage,
+    });
+
+    modal.onDidDismiss().then(() => {
+      this.carregarAtletas(); // Recarrega a lista após fechar o modal
+    });
+
+    await modal.present();
+  }
+
+  async abrirModalPreCadastro(): Promise<void> {
+    const modal = await this.modalController.create({
+      component: PreCadastroPage,
     });
 
     modal.onDidDismiss().then(() => {

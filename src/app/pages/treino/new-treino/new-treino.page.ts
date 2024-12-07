@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { AtletaTreinoDTO } from 'src/app/models/atleta-treino-dtomodel';
 import { AtletaService } from 'src/app/services/atleta.service';
+import { ErrorHandlingService } from 'src/app/services/error-handling.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { TreinoService } from 'src/app/services/treino.service';
 
@@ -14,6 +15,8 @@ import { TreinoService } from 'src/app/services/treino.service';
 export class NewTreinoPage implements OnInit {
   treinoForm: FormGroup;
   atletas: AtletaTreinoDTO[] = [];
+  categoriasAtletas: any[] = [];
+  timesNotificacoes: any[] = [];
   atletasSelecionados: AtletaTreinoDTO[] = []; // Lista de atletas selecionados
   criarTreinoTodos: boolean = false;
 
@@ -25,18 +28,22 @@ export class NewTreinoPage implements OnInit {
     private treinoService: TreinoService,
     private atletaService: AtletaService,
     private modalController: ModalController, 
-    private toastService: ToastService
+    private toastService: ToastService,
+    private errorHandlingService: ErrorHandlingService
   ) {
     this.treinoForm = this.fb.group({
       local: ['', Validators.required],
-      data: ['', Validators.required],
-      horario: ['', Validators.required],
+      dataHorario: [new Date().toISOString(), Validators.required],
       criarTreinoTodosAtletas: [false],
+      listarCategorias: [[]], // Controle para categorias
+      notificarEm: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
     this.carregarAtletas();
+    this.carregarCategorias();
+    this.carregarNotificacoes();
   }
 
   carregarAtletas() {
@@ -46,16 +53,31 @@ export class NewTreinoPage implements OnInit {
     });
   }
 
+  carregarCategorias(){
+    this.atletaService.getCategorias().subscribe({
+      next: (data) => (this.categoriasAtletas = data),
+      error: (err) => console.error('Erro ao carregar categorias: ', err)
+    })
+  }
+
+  carregarNotificacoes(){
+    this.atletaService.getTimeNotificacao().subscribe({
+      next: (data) => (this.timesNotificacoes = data),
+      error: (err) => console.error('Erro ao carregar tempos para notificação: ', err)
+    })
+  }
+
   toggleTreinoTodos() {
     this.criarTreinoTodos = !this.criarTreinoTodos;
     this.atletasSelecionados = this.criarTreinoTodos ? [...this.atletas] : [];
   }
 
   onSubmit() {
+    console.log(this.treinoForm.value)
     if (this.treinoForm.valid) {
       const formData = this.treinoForm.value;
   
-      if (!formData.criarTreinoTodosAtletas && this.atletasSelecionados.length === 0) {
+      if (!formData.criarTreinoTodosAtletas && this.atletasSelecionados.length === 0 && formData.listarCategorias.length.value === 0) {
         this.toastService.ativarToast('Erro: Nenhum atleta selecionado.');
         return;
       }
@@ -103,22 +125,9 @@ export class NewTreinoPage implements OnInit {
     this.treinoService.create(treinoDTO).subscribe({
       next: () => this.toastService.ativarToast('Treino criado com sucesso!'),
       error: (err) => {
-        console.error('Erro ao salvar treino: ', err)
-        if(err.error?.message === undefined){
-          this.toastService.ativarToast('Erro ao salvar treino. Verifique os campos e contate o administrador, caso preciso.')
-        }else{
-          this.toastService.ativarToast('Erro ao salvar treino: '+  err.error?.details)}
-
-        }
-    });
-  }
-
-  ativarToast(message: string): void{
-    this.toastMessage = message;
-    this.activateToast = true;
-  }
-
-  desativarToast(){
-    this.activateToast = false;
+        const errorMessage = this.errorHandlingService.handleError(err);
+        this.toastService.ativarToast(errorMessage);
+    }}
+  );
   }
 }
