@@ -9,7 +9,7 @@ import br.org.handmaxx.dto.atleta.AtletaCadastroInicialDTO;
 import br.org.handmaxx.dto.atleta.AtletaDTO;
 import br.org.handmaxx.dto.atleta.AtletaResponseDTO;
 import br.org.handmaxx.dto.atleta.AtletaTreinoDTO;
-=import br.org.handmaxx.dto.resetpassword.PasswordResetResponseDTO;
+import br.org.handmaxx.dto.resetpassword.PasswordResetResponseDTO;
 import br.org.handmaxx.service.atleta.AtletaService;
 import io.quarkus.security.Authenticated;
 import jakarta.annotation.security.PermitAll;
