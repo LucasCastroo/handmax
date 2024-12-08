@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from '../../components/header/header.component';
-import { HomePage } from './home.page';
-import { HomePageRoutingModule } from './home-routing.module';
+
+import { IonicModule } from '@ionic/angular';
+
+import { RelatorioSocialPageRoutingModule } from './relatorio-social-routing.module';
+
+import { RelatorioSocialPage } from './relatorio-social.page';
+import { HeaderComponent } from "../../../components/header/header.component";
 import { BaseChartDirective } from 'ng2-charts';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
 
@@ -13,11 +16,11 @@ import { FooterComponent } from 'src/app/components/footer/footer.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    RelatorioSocialPageRoutingModule,
     HeaderComponent,
     BaseChartDirective,
     FooterComponent
-  ],
-  declarations: [HomePage]
+],
+  declarations: [RelatorioSocialPage]
 })
-export class HomePageModule {}
+export class RelatorioSocialPageModule {}

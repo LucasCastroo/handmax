@@ -35,6 +35,7 @@ export class NewTreinoPage implements OnInit {
       local: ['', Validators.required],
       dataHorario: [new Date().toISOString(), Validators.required],
       criarTreinoTodosAtletas: [false],
+      notificarAtletasAgora: [true],
       listarCategorias: [[]], // Controle para categorias
       notificarEm: ['', Validators.required]
     });

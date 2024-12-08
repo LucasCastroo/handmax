@@ -122,6 +122,46 @@ export class AtletaService {
     return this.httpClient.put<Atleta>(`${this.baseUrl}/token/${token}`, dados);
   }
 
+  getCondicoesMoradia(): Observable<{ condicao: string; total: number }[]> {
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.get<{ condicao: string; total: number }[]>(`${this.baseUrl}/chart/condicoes-moradia`, { headers });
+    }else{
+      return this.httpClient.get<{ condicao: string; total: number }[]>(`${this.baseUrl}/chart/condicoes-moradia`);
+    }
+  }
+
+  getPessoasEmCasa(): Observable<{ faixa: string; total: number }[]> {
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.get<{ faixa: string; total: number }[]>(`${this.baseUrl}/chart/pessoas-em-casa`, { headers });
+    }else{
+      return this.httpClient.get<{ faixa: string; total: number }[]>(`${this.baseUrl}/chart/pessoas-em-casa`);
+    }
+  }
+
+  getRendaFamiliar(): Observable<{ faixa: string; total: number }[]> {
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.get<{ faixa: string; total: number }[]>(`${this.baseUrl}/chart/renda-familiar`, { headers });
+    }else{
+      return this.httpClient.get<{ faixa: string; total: number }[]>(`${this.baseUrl}/chart/renda-familiar`);
+    }
+  }
+
+  getCadastroNIS(): Observable<{ cadastroNIS: string; total: number }[]> {
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.get<{ cadastroNIS: string; total: number }[]>(`${this.baseUrl}/chart/cadastro-nis`, { headers });
+    }else{
+      return this.httpClient.get<{ cadastroNIS: string; total: number }[]>(`${this.baseUrl}/chart/cadastro-nis`);
+    }
+  }
+
   getCategorias(): Observable<any[]> {
     const url = 'http://localhost:8080/enum/categorias';
     return this.httpClient.get<any[]>(url);
