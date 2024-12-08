@@ -1,0 +1,35 @@
+<ion-app>
+    <ion-header>
+        <app-header></app-header>
+    </ion-header>
+    <ion-content>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title>Quantidade de alunos:</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-text><h1>{{ totalAtletas }}</h1></ion-text>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+                <ion-col>
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title>Próximos treinos:</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-list>
+                                <ion-item *ngFor="let treino of treinosCarregados">
+                                    {{treino.dataHorario | date: "dd/MM/yyyy (HH:mm)" }} - {{treino.local}}
+                                </ion-item>
+                            </ion-list>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+</ion-app>

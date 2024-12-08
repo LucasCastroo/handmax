@@ -64,4 +64,15 @@ export class TreinoService {
       return this.httpClient.get<TreinoResponse[]>(`${this.baseUrl}`);
     }
   }
+
+  findNextThree(): Observable<TreinoResponse[]> {
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.get<TreinoResponse[]>(`${this.baseUrl}/next-3`, { headers });
+    }else{
+      return this.httpClient.get<TreinoResponse[]>(`${this.baseUrl}/next-3`);
+    }
+  }
+
 }
