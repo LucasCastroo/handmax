@@ -103,6 +103,17 @@ export class AtletaService {
     }
   }
 
+  countAll(): Observable<number> {
+    const headers = this.sessionTokenService.getSessionHeader();
+
+    if(headers){
+      return this.httpClient.get<number>(`${this.baseUrl}/count/all`, { headers });
+    }else{
+      return this.httpClient.get<number>(`${this.baseUrl}/count/all`);
+    }
+  }
+
+
   validarToken(token: string): Observable<boolean>{
     return this.httpClient.get<boolean>(`${this.baseUrl}/validar-token/${token}`);
   }
