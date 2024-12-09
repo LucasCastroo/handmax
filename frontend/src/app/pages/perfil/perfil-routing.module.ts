@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '', component: PerfilComponent,
   },
+  {
+    path: 'new-perfil',
+    loadChildren: () => import('./new-perfil/new-perfil.module').then(m => m.NewPerfilPageModule)
+  }
 ];
 
 @NgModule({

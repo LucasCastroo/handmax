@@ -2,16 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: center;
 }
 
 .photo-icon {
-  margin-bottom: 15px;
 }
 
 .profile-icon {
-  font-size: 100px;
+  font-size: 80px;
   color: #888;
 }
 
@@ -22,10 +21,9 @@ h2 {
 
 .container {
   max-width: 400px;
-  height: 50%;
   width: 90%;
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-bottom: 200px;
   padding: 200px;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -38,7 +36,7 @@ h2 {
 }
 
 .custom-input {
-  margin-top: 15px;
+  margin-top: 100px;
 }
 
 .button-container {
@@ -46,7 +44,7 @@ h2 {
   flex-direction: column;
   height: 180px;
   gap: 15px;
-  margin-top: 2px;
+  margin-top: 50px;
 }
 
 .full-width {
@@ -60,7 +58,6 @@ h2 {
   --placeholder-color: #888;
   --ion-color: #000000;
   --highlight-color-focused: #333;
-  margin-bottom: 15px;
   display: flex;
   width: 100%;
   --border-radius: 18px;
@@ -80,4 +77,6 @@ h2 {
   font-size: 16px;
   height: 40px;
   border-radius: 25px;
+  width: 250px;
+  margin-top: 15px;
 }

@@ -7,6 +7,8 @@ import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 import {NgIf} from "@angular/common";
 import {TransitionScreenComponent} from "../transition-screen/transition-screen.component";
+import {Usuario} from "../../models/usuario.model";
+import {LocalStorageService} from "../../services/local-storage.service";
 
 @Component({
   selector: 'app-header',
@@ -26,7 +28,11 @@ import {TransitionScreenComponent} from "../transition-screen/transition-screen.
 export class HeaderComponent{
   showTransitionScreen = false;
 
-  constructor(private router: Router, private loadingController: LoadingController) { }
+  private usuarioLogadoKey = 'usuarioLogado';
+  usuarioLogado = this.localStorageService.getItem<Usuario>(this.usuarioLogadoKey);
+
+  constructor(private router: Router, private loadingController: LoadingController,
+              private localStorageService: LocalStorageService) { }
 
   async logout() {
     const load = await this.loadingController.create({

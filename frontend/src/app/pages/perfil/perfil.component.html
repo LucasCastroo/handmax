@@ -5,27 +5,21 @@
   <div class="photo-icon">
     <ion-icon name="person-circle-outline" class="profile-icon"></ion-icon>
   </div>
-  
+
   <!-- Nome da pessoa abaixo do ícone -->
-  <h2>Hildenildes Pinto Alves Leite</h2>
+  <h2>{{usuarioLogado?.login}}</h2>
 </div>
 
 <div class="container">
   <ion-item class="custom-input">
-    <ion-input labelPlacement="stacked" label="Email">
-      <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
-    </ion-input>
-  </ion-item>
-
-  <ion-item class="custom-input">
-    <ion-input labelPlacement="stacked" label="Senha">
-      <ion-icon slot="start" name="key" aria-hidden="true"></ion-icon>
-      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+    <ion-input labelPlacement="stacked"
+               label="Email"
+               [value]="usuarioLogado?.email">
     </ion-input>
   </ion-item>
 
   <div class="button-container">
-    <button mat-raised-button class="save-button full-width">Salvar</button>
-    <button mat-raised-button class="add-user-button full-width">Adicionar novo usuário</button>
+    <button mat-raised-button class="add-user-button full-width" (click)="abrirModalCadastro()">Adicionar novo usuário</button>
   </div>
 </div>
