@@ -3,11 +3,20 @@ package br.org.handmaxx.service.treino;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.quartz.JobBuilder;
+import org.quartz.JobDataMap;
+import org.quartz.JobDetail;
+import org.quartz.SchedulerException;
+import org.quartz.TriggerBuilder;
+import org.quartz.core.QuartzScheduler;
 
 import br.org.handmaxx.app.error.custom.CustomException;
 import br.org.handmaxx.app.error.global.ErrorResponse;
@@ -26,6 +35,9 @@ import br.org.handmaxx.repository.AtletaRepository;
 import br.org.handmaxx.repository.CategoriaRepository;
 import br.org.handmaxx.repository.TreinoRepository;
 import br.org.handmaxx.resource.WhatsappResource;
+import io.quarkus.scheduler.Scheduled;
+import io.quarkus.scheduler.Scheduler;
+import io.quarkus.scheduler.Trigger;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceException;
@@ -33,7 +45,9 @@ import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 public class TreinoServiceImpl implements TreinoService {
-
+    @Inject
+    QuartzScheduler scheduler;
+    
     @Inject
     TreinoRepository treinoRepository;
 
@@ -199,6 +213,35 @@ public class TreinoServiceImpl implements TreinoService {
 
         notificarTodosAtletasUpdate(treino);
         return TreinoFullResponseDTO.valueOf(treino);
+    }
+
+    @Override
+    @Scheduled(every = "1m")
+    public void verificarNotificacoes() {
+        // Obtenha todos os treinos
+        var treinos = treinoRepository.findAll().list();
+
+        // Verifique cada treino para ver se precisa ser notificado
+        treinos.forEach(treino -> {
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime dataHorarioNotificacao = treino.getDataHorarioNotificacao();
+            if (dataHorarioNotificacao.isEqual(now)) {
+                notificarTodosAtletas(treino);
+            }
+        });
+    }
+
+    private void notificarTodosAtletas(Treino treino) {
+        for (Atleta atleta : treino.getListaAtletas()) {
+            whatsAppResource.sendTextMessage(
+                new MensagemDTO(
+                    "55" + retirarPrimeiroNove(atleta.getTelefone()) + "@c.us",
+                    criarMensagemTreinoCadastro(atleta, treino),
+                    "default"
+                )
+            );
+            System.out.println("Enviado para " + retirarPrimeiroNove(atleta.getTelefone()) + "!");
+        }
     }
 
     private void notificarTodosAtletasCreate(Treino treino) {
