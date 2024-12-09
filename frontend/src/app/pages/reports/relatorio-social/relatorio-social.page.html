@@ -1,0 +1,61 @@
+<ion-content [fullscreen]="true">
+  <ion-button expand="full" (click)="generatePDF()">Imprimir Relatório</ion-button>
+  <div id="relatorio-content">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Condições de Moradia:</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas id="canvasMoradia" baseChart [data]="condicoesMoradiaData" [type]="condicoesMoradiaType" [options]="{
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'right' } },
+          layout: { padding: { left: 50, right: 50, top: 50, bottom: 50 } }
+        }">
+        </canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pessoas em casa:</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas id="canvasPessoas" baseChart [data]="pessoasEmCasaData" [type]="pessoasEmCasaType" [options]="{
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'right' } },
+          layout: { padding: { left: 50, right: 50, top: 50, bottom: 50 } }
+        }">
+        </canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Renda familiar:</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas id="canvasRenda" baseChart [data]="rendaFamiliarData" [type]="rendaFamiliarType" [options]="{
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'right' } },
+        layout: { padding: { left: 50, right: 50, top: 50, bottom: 50 } }
+      }">
+      </canvas>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Pessoas com cadastro NIS:</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas id="canvasNIS" baseChart [data]="cadastroNISData" [type]="cadastroNISType" [options]="{
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'right' } },
+      layout: { padding: { left: 50, right: 50, top: 50, bottom: 50 } }
+    }">
+      </canvas>
+    </ion-card-content>
+  </ion-card>
+</div>
+</ion-content>

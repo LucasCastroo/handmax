@@ -1,11 +1,16 @@
 package br.org.handmaxx.service.atleta;
 
 import java.util.List;
+import java.util.Map;
 
 import br.org.handmaxx.dto.atleta.AtletaCadastroInicialDTO;
 import br.org.handmaxx.dto.atleta.AtletaDTO;
 import br.org.handmaxx.dto.atleta.AtletaResponseDTO;
 import br.org.handmaxx.dto.atleta.AtletaTreinoDTO;
+import br.org.handmaxx.dto.graphics.CadastroNISGraphicsDTO;
+import br.org.handmaxx.dto.graphics.CondicoesMoradiaGraphicsDTO;
+import br.org.handmaxx.dto.graphics.PessoasEmCasaGraphicsDTO;
+import br.org.handmaxx.dto.graphics.RendaFamiliarGraphicsDTO;
 
 public interface AtletaService {
     public AtletaResponseDTO findById(Long id);
@@ -21,4 +26,8 @@ public interface AtletaService {
     public boolean validarToken(String token);
     public AtletaResponseDTO completarCadastroToken(AtletaDTO dto, String token);
     public Long countTodosAtletas();
+    public List<CondicoesMoradiaGraphicsDTO> getCondicoesMoradia();
+    public List<PessoasEmCasaGraphicsDTO> getPessoasEmCasa();
+    public List<RendaFamiliarGraphicsDTO> getRendaFamiliar();
+    public List<CadastroNISGraphicsDTO> getCadastroNIS();
 }
