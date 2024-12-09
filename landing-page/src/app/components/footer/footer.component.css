@@ -1,0 +1,112 @@
+/* Footer */
+.footer {
+  background-color: #1e1e1e; /* Cinza escuro */
+  color: #b3b3b3; /* Cinza claro */
+  padding: 25px 0; /* Aumenta o padding para dar mais espaço */
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: auto;
+  font-size: 1rem; /* Tamanho de fonte padrão */
+}
+
+.footer-content {
+  margin-bottom: 20px; /* Espaço entre o texto e os ícones */
+}
+
+.footer-content p {
+  margin: 5px 0;
+  transition: color 0.3s ease;
+}
+
+/* Hover em textos */
+.footer-content p:hover {
+  color: #ffc107; /* Amarelo ouro no hover */
+}
+
+
+
+/* OOP CSS CODE from Zaeni Ahmad */
+.socials {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 35px;
+  gap: 35px;
+}
+
+/* for all social containers*/
+.socials a {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(117, 117, 117, 0);
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.socials a:hover {
+  transform: scale(1.2);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/*instagram*/
+.socials a:nth-child(1):hover {
+  background-color: #d62976;
+}
+/* Whatsapp*/
+.socials a:nth-child(2):hover {
+  background-color: #25d366;
+}
+
+.socials a:active {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
+
+/*first-child*/
+.socials a svg:first-child {
+  display: flex;
+  scale: 1.3;
+  position: absolute;
+  width: 26px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 0.4s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.socials a svg:first-child path {
+  fill: rgb(255, 255, 255);
+}
+
+.socials a:hover svg:first-child {
+  transform: translateY(-40px);
+  opacity: 0;
+}
+/*last-child*/
+.socials a svg:last-child {
+  display: flex;
+  position: absolute;
+  width: 17px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+.socials a svg:last-child path {
+  fill: rgb(255, 255, 255);
+}
+
+.socials a:hover svg:last-child {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+

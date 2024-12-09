@@ -9,12 +9,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   providedIn: 'root'
 })
 export class NewsService {
-  private apiUrl = 'http://localhost:8080/homepage'; 
+  private apiUrl = 'http://localhost:8080/noticias';
 
   constructor(private http: HttpClient,
   ) {}
 
-  
+
   getNews(page: number = 0, pageSize: number = 100): Observable<PublicacaoDTO[]> {
     const params = { page: page.toString(), pageSize: pageSize.toString() };
     return this.http.get<PublicacaoDTO[]>(this.apiUrl, { params });

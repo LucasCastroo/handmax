@@ -1,0 +1,468 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* Home Section */
+.section-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  background: black; /* Fundo preto */
+  color: white; /* Texto branco */
+}
+
+.section-home .content {
+  flex: 1;
+  text-align: left;
+  max-width: 50%; /* Limita o texto a metade da tela */
+  margin-left: 50px;
+  margin-top: -50px; /* Ajusta o content para subir */
+}
+
+.section-home .image {
+  flex: 1;
+  display: flex;
+}
+
+span {
+  font-weight: 100;
+}
+
+#image-jogador {
+  margin-bottom: 1px;
+  max-width: 100%;
+  height: auto;
+}
+
+.section-home .content .tagline {
+  font-size: 7rem; /* Tamanho médio para a tagline */
+  font-weight: bold;
+  color: #ffb42a; /* Amarelo ouro */
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink 0.7s step-end infinite;
+  margin-bottom: 20px; /* Reduz a margem inferior */
+}
+
+.section-home .content .description {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-top: 50px;
+}
+
+/* Keyframes for typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  from {
+    border-right-color: transparent;
+  }
+  to {
+    border-right-color: white;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-home {
+    flex-direction: column; /* Empilha o conteúdo e a imagem */
+    justify-content: center;
+    padding: 0 50px;
+    text-align: center; /* Centraliza o texto */
+  }
+
+  .section-home .content {
+    max-width: 100%; /* Ocupa toda a largura */
+    margin: 100px 5px 20px;
+  }
+
+  .section-home .content .tagline {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  .section-home .content .description {
+    font-size: 1.8rem; /* Reduz o tamanho da descrição */
+    line-height: 1.5; /* Melhora a legibilidade */
+    margin-top: 20px;
+  }
+
+  .section-home .image {
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  #image-jogador {
+    width:  100%; /* Reduz a largura da imagem */
+    height: auto; /* Mantém a proporção */
+  }
+}
+
+@media (max-width: 480px) {
+  .section-home .content .tagline {
+    font-size: 2.5rem; /* Reduz ainda mais o tamanho do texto */
+  }
+
+  .section-home .content .description {
+    font-size: 1.5rem; /* Ajusta o tamanho da descrição para telas muito pequenas */
+    margin-top: 15px;
+  }
+
+  #image-jogador {
+    max-width: 90%; /* Ajusta a imagem para telas pequenas */
+  }
+}
+
+
+/* Classes de animação */
+.typing-active {
+  animation: typing 3s steps(40, end), blink 0.7s step-end infinite;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid white;
+}
+
+
+/* Notícias Section */
+.section-noticias {
+  background: #ffb42a;
+  color: black;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+#sub-titulo-noticias {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 0 20px;
+  justify-items: center;
+}
+
+.cards .card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 300px;
+  height: 350px;
+}
+
+.card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px; /* Altura ajustável */
+  object-fit: contain; /* Centraliza a imagem sem cortar */
+  object-position: center; /* Garante que a imagem fique centralizada */
+  border-radius: 8px 8px 0 0; /* Mantém os cantos arredondados */
+  background-color: #f5f5f5; /* Fundo para imagens menores */
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #555;
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* Paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination button {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+.pagination button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .card {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .card {
+    max-width: 220px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .card-img-top {
+    height: 180px;
+  }
+
+  .pagination button {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}
+
+/* Sobre Section */
+.section-sobre {
+  position: relative;
+  display: flex; /* Centraliza os elementos na seção */
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  overflow: hidden;
+  padding: 50px;
+}
+
+/* Camada de blur aplicada apenas na imagem de fundo */
+.background-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/images/fundo-sobre.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px); /* Aplica o blur */
+  z-index: 1; /* Camada mais baixa */
+}
+
+/* Camada semi-transparente */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparente preta */
+  z-index: 2; /* Acima do blur */
+}
+
+/* Subtítulo */
+.sub-titulo {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff; /* Cor branca */
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  position: relative; /* Garante que o subtítulo fique acima das camadas de blur e overlay */
+  z-index: 3;
+  margin-top: 20px; /* Remove qualquer margem extra que possa vir por padrão */
+}
+
+/* Cartões */
+.about-cards {
+  display: grid; /* Usa grid layout */
+  grid-template-columns: repeat(2, 1fr); /* Define duas colunas de tamanhos iguais */
+  gap: 40px; /* Espaçamento entre os cartões */
+  justify-content: center; /* Centraliza as colunas horizontalmente */
+  align-items: start; /* Alinha os cartões ao topo verticalmente */
+  position: relative;
+  z-index: 3;
+  margin-top: 40px;
+}
+
+.card-sobre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Alinha conteúdo verticalmente no centro */
+  align-items: center; /* Alinha conteúdo horizontalmente no centro */
+  width: 480px; /* Largura fixa */
+  height: 350px; /* Altura fixa */
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  background: rgba(121, 121, 121, 0.2);
+  text-align: center;
+  overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites */
+}
+
+.card-sobre img {
+  max-width: 75px; /* Define tamanho máximo do ícone */
+  margin-bottom: 15px;
+}
+
+.card-sobre h3 {
+  font-size: 22px;
+  margin: 8px 0;
+}
+
+.card-sobre p {
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+  overflow: hidden; /* Esconde o texto excedente */
+  text-overflow: ellipsis; /* Adiciona "..." para texto longo */
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* Limita o texto a 3 linhas */
+  -webkit-box-orient: vertical;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .section-sobre {
+    height: 200vh;
+  }
+
+  .about-cards {
+    grid-template-columns: 1fr; /* Em dispositivos menores, ajusta para uma coluna */
+    gap: 20px; /* Reduz o espaçamento */
+  }
+
+  .card-sobre {
+    width: 100%; /* Ajusta a largura para preencher a tela */
+    max-width: 300px; /* Define largura máxima */
+    margin: 0 auto; /* Centraliza o card no mobile */
+  }
+}
+#max {
+  color: #ffb42a;
+  font-weight: bold;
+}
+
+
+/* Contato Section */
+.section-contato {
+  background: #222;
+  color: white;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  padding: 30px;
+}
+
+.description-contato {
+  font-size: 20px;
+}
+
+
+/* From Uiverse.io by alshahwan */
+button {
+  background-color: #222;
+  border: 1px solid #25D366;
+  padding: 5px;
+  position: relative;
+  width: 10em;
+  height: 2.5em;
+  transition: 0.5s;
+  font-size: 17px;
+  border-radius: 0.4em;
+}
+
+button p {
+  position: absolute;
+  top: 0.6em;
+  left: 2.5em;
+  margin: 0;
+  padding: 0;
+  transition: .5s;
+  color: #25D366;
+  font-weight: bold;
+}
+
+button svg {
+  position: absolute;
+  top: 0.6em;
+  right: 1.3em;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: 0.5s;
+  height: 1.3em;
+  fill: #fff
+}
+
+button:hover p {
+  left: 1.3em;
+  color: #fff;
+  font-weight: bold;
+}
+
+button:hover svg {
+  opacity: 1;
+}
+
+button:hover {
+  background-color: #25D366;
+  cursor: pointer;
+}
+
