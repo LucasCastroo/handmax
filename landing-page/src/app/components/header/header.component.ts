@@ -9,5 +9,13 @@ import {Component} from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  menuOpen: boolean = false;
 
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu(): void {
+    this.menuOpen = false;
+  }
 }

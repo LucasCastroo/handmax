@@ -13,5 +13,20 @@
       <a href="/#sobre">Sobre</a>
       <a href="/#contato">Contato</a>
     </nav>
+
+    <!-- Hamburger Menu for Mobile -->
+    <div class="hamburger-menu" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-navigation" [class.open]="menuOpen">
+    <a href="/#home" (click)="closeMenu()">Home</a>
+    <a href="/#noticias" (click)="closeMenu()">Notícias</a>
+    <a href="/#sobre" (click)="closeMenu()">Sobre</a>
+    <a href="/#contato" (click)="closeMenu()">Contato</a>
   </div>
 </header>

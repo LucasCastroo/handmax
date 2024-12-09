@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NoticiaService } from './services/noticia.service';
@@ -26,12 +26,6 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.loadNoticias();
-    this.sections = {
-      home: this.home,
-      noticias: this.noticias,
-      sobre: this.sobre,
-      contato: this.contato,
-    };
   }
 
   ngAfterViewInit(): void {
@@ -73,34 +67,9 @@ export class AppComponent implements AfterViewInit, OnInit {
     return nomeImagem ? `${baseUrl}/${nomeImagem}` : 'assets/images/default.png'; // Substitua pela imagem padrão do projeto
   }
 
-
-  nextPage(): void {
-    this.currentPage++;
-    this.loadNoticias();
-  }
-
-  previousPage(): void {
-    if (this.currentPage > 0) {
-      this.currentPage--;
-      this.loadNoticias();
-    }
-  }
-
-  @ViewChild('home') home!: ElementRef;
-  @ViewChild('noticias') noticias!: ElementRef;
-  @ViewChild('sobre') sobre!: ElementRef;
-  @ViewChild('contato') contato!: ElementRef;
-
-  // Mapeia as seções
-  sections: { [key: string]: ElementRef } = {};
-  scrollToSection(section: string) {
-    const element = this.sections[section]?.nativeElement;
-    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
   openDialog(noticia: Noticia): void {
     this.dialog.open(NoticiaDialogComponent, {
-      width: '500px',
+      width: '750px',
       data: {
         imagem: this.getImagemUrl(noticia.nomeImagem),
         titulo: noticia.titulo,
