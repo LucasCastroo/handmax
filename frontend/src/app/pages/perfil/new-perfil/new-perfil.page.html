@@ -1,0 +1,73 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Novo Usuário</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="fecharModal()">Cancelar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <form [formGroup]="usuarioForm" (ngSubmit)="cadastrarUsuario()">
+      <ion-list [inset]="true" lines="full">
+        <ion-item>
+          <ion-input
+            label="Email"
+            label-placement="floating"
+            placeholder="Digite o email"
+            formControlName="email"
+          ></ion-input>
+        </ion-item>
+        <div *ngIf="usuarioForm.get('email')?.errors && usuarioForm.get('email')?.touched">
+          <small *ngIf="usuarioForm.get('email')?.hasError('required')">O email é obrigatório.</small>
+          <small *ngIf="usuarioForm.get('email')?.hasError('email')">Insira um email válido.</small>
+          <small *ngIf="usuarioForm.get('email')?.hasError('minlength')">
+            O email deve ter no mínimo 3 caracteres.
+          </small>
+        </div>
+
+        <ion-item>
+          <ion-input
+            label="Login"
+            label-placement="floating"
+            placeholder="Digite o login"
+            formControlName="login"
+          ></ion-input>
+        </ion-item>
+        <div *ngIf="usuarioForm.get('login')?.errors && usuarioForm.get('login')?.touched" class="error-messages">
+          <small *ngIf="usuarioForm.get('login')?.hasError('required')">O login é obrigatório.</small>
+          <small *ngIf="usuarioForm.get('login')?.hasError('minlength')">
+            O login deve ter no mínimo 3 caracteres.
+          </small>
+          <small *ngIf="usuarioForm.get('login')?.hasError('maxlength')">
+            O login deve ter no máximo 20 caracteres.
+          </small>
+        </div>
+
+        <ion-item>
+          <ion-input
+            label="Senha"
+            label-placement="floating"
+            placeholder="Digite a senha"
+            formControlName="senha"
+          ></ion-input>
+        </ion-item>
+        <div *ngIf="usuarioForm.get('senha')?.errors && usuarioForm.get('senha')?.touched" class="error-messages">
+          <small *ngIf="usuarioForm.get('senha')?.hasError('required')">A senha é obrigatória.</small>
+          <small *ngIf="usuarioForm.get('senha')?.hasError('minlength')">
+            A senha deve ter no mínimo 6 caracteres.
+          </small>
+          <small *ngIf="usuarioForm.get('senha')?.hasError('maxlength')">
+            A senha deve ter no máximo 20 caracteres.
+          </small>
+          <small *ngIf="usuarioForm.get('senha')?.hasError('pattern')">
+            A senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caractere especial.
+          </small>
+        </div>
+
+      </ion-list>
+      <ion-button expand="block" type="submit" [disabled]="usuarioForm.invalid">Cadastrar</ion-button>
+    </form>
+  </ion-content>
+</ion-app>

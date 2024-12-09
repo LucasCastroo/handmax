@@ -121,4 +121,37 @@ insert into publicacao (
            now(),
            'OIP.jpg',
            'Handmax Conquista o Campeonato Estadual de Handebol em Palmas' ),
+           ( 1,
+           'Fala, galera!
+            Já falamos aqui dos benefícios que o esporte traz, principalmente o Handebol, mas hoje viemos contar uma novidade do Hand Max.
+            Para você que já foi atleta de Hand e gostaria de voltar a praticar esse esporte, abrimos agora os treinos para a categoria ADULTO FEMININO.
+            Time para mulheres que são ativas, que gostam e querem se exercitar e que estão em busca de manter a saúde, o condicionamento e o bem-estar físico e mental.',
+           now(),
+           now(),
+           now(),
+           'Postagem2.jpg',
+           'Handmax abre treinos para categoria ADULTO FEMININO' ),
+            ( 1,
+           'Tem uma história linda de compartilhamento e conquistas dessa MULHER que INSPIRA jovens atletas na
+            SUPERAÇÃO e transformação de suas vidas.
+
+            "Trabalhamos com valores, regras de convivência, saber acolher e participar independente da idade. O nosso principal ensinamento é compartilhar. Os que têm podem ajudar de boa vontade os que necessitam. Muitas vezes trabalhamos com a família, e a estudante Jhemylle foi destaque dentro e fora da quadra"
+            (Hidenildes Alves)
+
+            Confira a matéria completa: https://www.to.gov.br/seduc',
+           now(),
+           now(),
+           now(),
+           'Postagem3.jpg',
+           'Conheça a historia de HIDENILDES ALVES' ),
+           ( 1,
+           'Que dia!..
+            Agora sim, somos a Associação Sócio - Esportiva
+            HandMax - Handebol para Todos.
+            No peito, só alegria e muita gratidão!',
+           now(),
+           now(),
+           now(),
+           'Postagem4.jpg',
+           'Agora somos oficiais!' )
       ;
