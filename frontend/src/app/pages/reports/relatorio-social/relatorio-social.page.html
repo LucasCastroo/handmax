@@ -1,20 +1,17 @@
-<ion-header [translucent]="true">
-  <app-header></app-header>
-</ion-header>
-
 <ion-content [fullscreen]="true">
+  <ion-button expand="full" (click)="generatePDF()">Imprimir Relatório</ion-button>
   <div id="relatorio-content">
     <ion-card>
       <ion-card-header>
         <ion-card-title>Condições de Moradia:</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <canvas baseChart [data]="condicoesMoradiaData" [type]="condicoesMoradiaType" [options]="{
+        <canvas id="canvasMoradia" baseChart [data]="condicoesMoradiaData" [type]="condicoesMoradiaType" [options]="{
           responsive: true,
           maintainAspectRatio: false,
           plugins: { legend: { position: 'right' } },
-          layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } }
-        }" width="200" height="200">
+          layout: { padding: { left: 50, right: 50, top: 50, bottom: 50 } }
+        }">
         </canvas>
       </ion-card-content>
     </ion-card>
@@ -23,12 +20,12 @@
         <ion-card-title>Pessoas em casa:</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <canvas baseChart [data]="pessoasEmCasaData" [type]="pessoasEmCasaType" [options]="{
+        <canvas id="canvasPessoas" baseChart [data]="pessoasEmCasaData" [type]="pessoasEmCasaType" [options]="{
           responsive: true,
           maintainAspectRatio: false,
           plugins: { legend: { position: 'right' } },
-          layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } }
-        }" width="200" height="200">
+          layout: { padding: { left: 50, right: 50, top: 50, bottom: 50 } }
+        }">
         </canvas>
       </ion-card-content>
     </ion-card>
@@ -37,28 +34,28 @@
         <ion-card-title>Renda familiar:</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <canvas baseChart [data]="rendaFamiliarData" [type]="rendaFamiliarType" [options]="{
+        <canvas id="canvasRenda" baseChart [data]="rendaFamiliarData" [type]="rendaFamiliarType" [options]="{
         responsive: true,
         maintainAspectRatio: false,
         plugins: { legend: { position: 'right' } },
-        layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } }
-      }" width="200" height="200">
-        </canvas>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Pessoas com cadastro NIS:</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <canvas baseChart [data]="cadastroNISData" [type]="cadastroNISType" [options]="{
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'right' } },
-        layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } }
-      }" width="200" height="200">
-        </canvas>
-      </ion-card-content>
-    </ion-card>
-  </div>
+        layout: { padding: { left: 50, right: 50, top: 50, bottom: 50 } }
+      }">
+      </canvas>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Pessoas com cadastro NIS:</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas id="canvasNIS" baseChart [data]="cadastroNISData" [type]="cadastroNISType" [options]="{
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'right' } },
+      layout: { padding: { left: 50, right: 50, top: 50, bottom: 50 } }
+    }">
+      </canvas>
+    </ion-card-content>
+  </ion-card>
+</div>
 </ion-content>

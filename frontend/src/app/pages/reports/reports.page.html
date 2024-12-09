@@ -1,13 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Reports</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Reports</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<ion-app>
+  <app-header></app-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-list-header><h1>Selecione um tipo de relatório a ser gerado/visualizado</h1></ion-list-header>
+      <ion-item *ngFor="let report of reports" (click)="openReportModal(report.component)">
+        <ion-label>{{ report.name }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <app-footer></app-footer>
+</ion-app>

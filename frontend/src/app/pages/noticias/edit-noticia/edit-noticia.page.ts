@@ -29,13 +29,14 @@ export class EditNoticiaPage implements OnInit {
   ) {
     this.updateNewsForm = this.formBuilder.group({
       titulo: ['', Validators.required],
-      conteudo: this.html
+      conteudo: [this.html, Validators.required]
     });
   }
 
   ngOnInit(): void {
     const noticiaId = this.route.snapshot.paramMap.get('id');
     if (noticiaId) {
+      this.newsId = noticiaId;
       this.loadNoticia(noticiaId);
     }
   }
@@ -65,7 +66,6 @@ export class EditNoticiaPage implements OnInit {
   onContentChange(htmlContent: string) {
     this.updateNewsForm.patchValue({ conteudo: htmlContent });
   }
-
 
   onFileSelected(event: Event) {
     const fileInput = event.target as HTMLInputElement;
@@ -125,5 +125,4 @@ export class EditNoticiaPage implements OnInit {
     const parsedContent = content.replace(/\\/g, '');
     return this.sanitizer.bypassSecurityTrustHtml(parsedContent);
   }
-  
 }

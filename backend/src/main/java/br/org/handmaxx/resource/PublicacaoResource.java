@@ -64,7 +64,6 @@ public class PublicacaoResource {
             Result result = new Result(e.getConstraintViolations());
             return Response.status(Status.NOT_FOUND).entity(result).build();
         }
-
     }
 
     @DELETE

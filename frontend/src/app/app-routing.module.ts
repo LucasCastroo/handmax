@@ -51,12 +51,15 @@ const routes: Routes = [
       {
         path: 'noticias',
         loadChildren: () =>
-          import('./pages/noticias/noticias-routing.module').then(
-            (m) => m. NoticiasPageRoutingModule
+          import('./pages/noticias/noticias.module').then(
+            (m) => m. NoticiasPageModule
           ),
         },
-    
-      {
+        {
+          path: 'reports',
+          loadChildren: () => import('./pages/reports/reports.module').then( m => m.ReportsPageModule)
+        },
+        {
         path: 'perfil',
         loadChildren: () =>
           import('./pages/perfil/perfil.module').then((m) => m.PerfilModule),
@@ -71,16 +74,6 @@ const routes: Routes = [
     path: 'completar-cadastro/:token',
     loadChildren: () => import('./pages/completar-cadastro/completar-cadastro.module').then( m => m.CompletarCadastroPageModule)
   },
-  {
-    path: 'noticias',
-    loadChildren: () => import('./pages/noticias/noticias.module').then( m => m.NoticiasPageModule)
-  },  {
-    path: 'reports',
-    loadChildren: () => import('./pages/reports/reports.module').then( m => m.ReportsPageModule)
-  },
-
-
-
 ];
 
 
