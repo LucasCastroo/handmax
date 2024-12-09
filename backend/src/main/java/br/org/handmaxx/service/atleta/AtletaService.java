@@ -1,7 +1,6 @@
 package br.org.handmaxx.service.atleta;
 
 import java.util.List;
-import java.util.Map;
 
 import br.org.handmaxx.dto.atleta.AtletaCadastroInicialDTO;
 import br.org.handmaxx.dto.atleta.AtletaDTO;

@@ -1,10 +1,7 @@
 package br.org.handmaxx.service.atleta;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -26,13 +23,11 @@ import br.org.handmaxx.model.QuestionarioSocial;
 import br.org.handmaxx.model.Treino;
 import br.org.handmaxx.repository.AtletaRepository;
 import br.org.handmaxx.repository.CadastroAtletaTokenRepository;
-import br.org.handmaxx.repository.CondicoesMoradiaRepository;
 import br.org.handmaxx.repository.TreinoRepository;
 import br.org.handmaxx.resource.WhatsappResource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceException;
-//import jakarta.validation.Valid;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
@@ -45,11 +40,7 @@ public class AtletaServiceImpl implements AtletaService {
     CadastroAtletaTokenRepository cadastroTokenRepository;
 
     @Inject
-    CondicoesMoradiaRepository condicoesMoradiaRepository;
-
-    @Inject
     TreinoRepository treinoRepository;
-
 
     @Inject
     WhatsappResource whatsAppResource;

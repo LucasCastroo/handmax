@@ -3,20 +3,11 @@ package br.org.handmaxx.service.treino;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.quartz.JobBuilder;
-import org.quartz.JobDataMap;
-import org.quartz.JobDetail;
-import org.quartz.SchedulerException;
-import org.quartz.TriggerBuilder;
-import org.quartz.core.QuartzScheduler;
 
 import br.org.handmaxx.app.error.custom.CustomException;
 import br.org.handmaxx.app.error.global.ErrorResponse;
@@ -37,7 +28,6 @@ import br.org.handmaxx.repository.TreinoRepository;
 import br.org.handmaxx.resource.WhatsappResource;
 import io.quarkus.scheduler.Scheduled;
 import io.quarkus.scheduler.Scheduler;
-import io.quarkus.scheduler.Trigger;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceException;
@@ -46,7 +36,7 @@ import jakarta.transaction.Transactional;
 @ApplicationScoped
 public class TreinoServiceImpl implements TreinoService {
     @Inject
-    QuartzScheduler scheduler;
+    Scheduler scheduler;
     
     @Inject
     TreinoRepository treinoRepository;
@@ -77,6 +67,7 @@ public class TreinoServiceImpl implements TreinoService {
 
         treino.setLocal(treinoDTO.local());
         treino.setDataHorario(treinoDTO.dataHorario());
+        treino.setNotificacaoAntes(NotificacaoAntes.valueOf(treinoDTO.notificarEm().enumName()));
         treino.setDataHorarioNotificacao(
             calcularDataHorarioNotificacao(treinoDTO.dataHorario(), NotificacaoAntes.valueOf(treinoDTO.notificarEm().enumName()))
         );
@@ -204,6 +195,10 @@ public class TreinoServiceImpl implements TreinoService {
 
         treino.setLocal(dto.local());
         treino.setDataHorario(dto.dataHorario());
+        treino.setNotificacaoAntes(NotificacaoAntes.valueOf(dto.notificarEm().enumName()));
+        treino.setDataHorarioNotificacao(
+            calcularDataHorarioNotificacao(dto.dataHorario(), NotificacaoAntes.valueOf(dto.notificarEm().enumName()))
+        );
 
         if (!dto.listarAtletas().isEmpty()) {
             List<Long> ids = dto.listarAtletas().stream().map(AtletaTreinoDTO::id).toList();
