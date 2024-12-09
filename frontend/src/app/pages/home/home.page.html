@@ -11,9 +11,55 @@
                             <ion-card-title>Quantidade de alunos:</ion-card-title>
                         </ion-card-header>
                         <ion-card-content>
-                            <ion-text><h1>{{ totalAtletas }}</h1></ion-text>
+                            <ion-text><h2>{{ totalAtletas }} alunos</h2></ion-text>
                         </ion-card-content>
                     </ion-card>
+                    <ion-row>
+                        <ion-col>
+                            <ion-card>
+                                <ion-card-header>
+                                    <ion-card-title>Condições de Moradia:</ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    <canvas
+                                    baseChart
+                                    [data]="pieChartData"
+                                    [type]="pieChartType"
+                                    [options]="{
+                                      responsive: true,
+                                      maintainAspectRatio: false,
+                                      plugins: { legend: { position: 'right' } },
+                                      layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } }
+                                    }"
+                                    width="200"
+                                    height="200">
+                                  </canvas>
+                                </ion-card-content>                    
+                            </ion-card>    
+                        </ion-col>
+                        <ion-col>
+                            <ion-card>
+                                <ion-card-header>
+                                    <ion-card-title>Pessoas em casa:</ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    <canvas
+                                    baseChart
+                                    [data]="pessoasEmCasaData"
+                                    [type]="pessoasEmCasaType"
+                                    [options]="{
+                                      responsive: true,
+                                      maintainAspectRatio: false,
+                                      plugins: { legend: { position: 'right' } },
+                                      layout: { padding: { left: 0, right: 0, top: 0, bottom: 0 } }
+                                    }"
+                                    width="200"
+                                    height="200">
+                                  </canvas>
+                                </ion-card-content>                    
+                            </ion-card>    
+                        </ion-col>    
+                    </ion-row>          
                 </ion-col>
                 <ion-col>
                     <ion-card>
@@ -30,6 +76,13 @@
                     </ion-card>
                 </ion-col>
             </ion-row>
+            <ion-row>
+                <ion-col>
+                </ion-col>
+            </ion-row>
         </ion-grid>
     </ion-content>
+    <ion-footer>
+        <app-footer></app-footer>
+    </ion-footer>
 </ion-app>

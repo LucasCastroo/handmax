@@ -1,0 +1,23 @@
+.dialog-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.dialog-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.dialog-title {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.dialog-description {
+  font-size: 1rem;
+  color: #555;
+  text-align: justify;
+}

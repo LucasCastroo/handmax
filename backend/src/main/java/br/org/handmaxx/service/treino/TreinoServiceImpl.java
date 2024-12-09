@@ -26,6 +26,8 @@ import br.org.handmaxx.repository.AtletaRepository;
 import br.org.handmaxx.repository.CategoriaRepository;
 import br.org.handmaxx.repository.TreinoRepository;
 import br.org.handmaxx.resource.WhatsappResource;
+import io.quarkus.scheduler.Scheduled;
+import io.quarkus.scheduler.Scheduler;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceException;
@@ -33,7 +35,9 @@ import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 public class TreinoServiceImpl implements TreinoService {
-
+    @Inject
+    Scheduler scheduler;
+    
     @Inject
     TreinoRepository treinoRepository;
 
@@ -63,6 +67,7 @@ public class TreinoServiceImpl implements TreinoService {
 
         treino.setLocal(treinoDTO.local());
         treino.setDataHorario(treinoDTO.dataHorario());
+        treino.setNotificacaoAntes(NotificacaoAntes.valueOf(treinoDTO.notificarEm().enumName()));
         treino.setDataHorarioNotificacao(
             calcularDataHorarioNotificacao(treinoDTO.dataHorario(), NotificacaoAntes.valueOf(treinoDTO.notificarEm().enumName()))
         );
@@ -190,6 +195,10 @@ public class TreinoServiceImpl implements TreinoService {
 
         treino.setLocal(dto.local());
         treino.setDataHorario(dto.dataHorario());
+        treino.setNotificacaoAntes(NotificacaoAntes.valueOf(dto.notificarEm().enumName()));
+        treino.setDataHorarioNotificacao(
+            calcularDataHorarioNotificacao(dto.dataHorario(), NotificacaoAntes.valueOf(dto.notificarEm().enumName()))
+        );
 
         if (!dto.listarAtletas().isEmpty()) {
             List<Long> ids = dto.listarAtletas().stream().map(AtletaTreinoDTO::id).toList();
@@ -199,6 +208,35 @@ public class TreinoServiceImpl implements TreinoService {
 
         notificarTodosAtletasUpdate(treino);
         return TreinoFullResponseDTO.valueOf(treino);
+    }
+
+    @Override
+    @Scheduled(every = "1m")
+    public void verificarNotificacoes() {
+        // Obtenha todos os treinos
+        var treinos = treinoRepository.findAll().list();
+
+        // Verifique cada treino para ver se precisa ser notificado
+        treinos.forEach(treino -> {
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime dataHorarioNotificacao = treino.getDataHorarioNotificacao();
+            if (dataHorarioNotificacao.isEqual(now)) {
+                notificarTodosAtletas(treino);
+            }
+        });
+    }
+
+    private void notificarTodosAtletas(Treino treino) {
+        for (Atleta atleta : treino.getListaAtletas()) {
+            whatsAppResource.sendTextMessage(
+                new MensagemDTO(
+                    "55" + retirarPrimeiroNove(atleta.getTelefone()) + "@c.us",
+                    criarMensagemTreinoCadastro(atleta, treino),
+                    "default"
+                )
+            );
+            System.out.println("Enviado para " + retirarPrimeiroNove(atleta.getTelefone()) + "!");
+        }
     }
 
     private void notificarTodosAtletasCreate(Treino treino) {

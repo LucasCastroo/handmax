@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../components/header/header.component';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
+import { BaseChartDirective } from 'ng2-charts';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -12,7 +14,9 @@ import { HomePageRoutingModule } from './home-routing.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    HeaderComponent
+    HeaderComponent,
+    BaseChartDirective,
+    FooterComponent
   ],
   declarations: [HomePage]
 })

@@ -1,16 +1,15 @@
 package br.org.handmaxx.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.PreRemove;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -30,5 +29,7 @@ public class Treino extends DefaultEntity {
     private List<Atleta> listaAtletas;
     @OneToMany(mappedBy = "treino")
     private List<Frequencia> frequencias;
+    @Enumerated(EnumType.STRING)
+    private NotificacaoAntes notificacaoAntes;
     private LocalDateTime dataHorarioNotificacao;
 }

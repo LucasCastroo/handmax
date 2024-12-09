@@ -34,7 +34,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 import jakarta.ws.rs.core.Response.Status;
 
-@Path("homepage")
+@Path("noticias")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PublicacaoResource {
@@ -64,7 +64,6 @@ public class PublicacaoResource {
             Result result = new Result(e.getConstraintViolations());
             return Response.status(Status.NOT_FOUND).entity(result).build();
         }
-
     }
 
     @DELETE

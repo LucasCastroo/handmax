@@ -1,6 +1,7 @@
 package br.org.handmaxx.resource;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
@@ -160,4 +161,35 @@ public class AtletaResource {
         return Response.ok(atletaService.countTodosAtletas()).build();
     }
 
+    @GET
+    @Path("/chart/condicoes-moradia")
+    @Authenticated
+    @Transactional
+    public Response getCondicoesMoradia() {
+        return Response.ok(atletaService.getCondicoesMoradia()).build();
+    }
+
+    @GET
+    @Path("/chart/pessoas-em-casa")
+    @Authenticated
+    @Transactional
+    public Response getPessoasEmCasa() {
+        return Response.ok(atletaService.getPessoasEmCasa()).build();
+    }
+
+    @GET
+    @Path("/chart/renda-familiar")
+    @Authenticated
+    @Transactional
+    public Response getRendaFamiliar() {
+        return Response.ok(atletaService.getRendaFamiliar()).build();
+    }
+
+    @GET
+    @Path("/chart/cadastro-nis")
+    @Authenticated
+    @Transactional
+    public Response getCadastroNIS() {
+        return Response.ok(atletaService.getCadastroNIS()).build();
+    }
 }

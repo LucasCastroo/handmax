@@ -1,18 +1,22 @@
+/* Estilização padrão da barra de navegação (ion-toolbar) */
 ion-toolbar {
   --background: var(--ion-background-color-light);
   color: #000000;
 }
 
+/* Logo padrão no cabeçalho */
 .logo-img {
   width: 32px;
   margin-left: 10px;
 }
 
+/* Botão do menu */
 ion-menu-button {
   margin-right: 10px;
   color: black;
 }
 
+/* Título do cabeçalho */
 .header-title {
   text-align: center;
   font-weight: bold;
@@ -20,6 +24,7 @@ ion-menu-button {
   flex: 1;
 }
 
+/* Área do usuário no cabeçalho */
 .user-info {
   display: flex;
   align-items: center;
@@ -51,6 +56,7 @@ ion-menu-button {
   margin-right: 4px;
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
   #arrow_drop {
     display: none;
@@ -65,7 +71,7 @@ ion-menu-button {
   }
 
   .user-icon {
-    font-size: 40px;
+    font-size: 36px;
     margin-right: 5px;
     margin-left: 5px;
   }
@@ -83,14 +89,57 @@ ion-menu-button {
     display: block;
   }
 
-  .fixed-fab {
-    position: fixed !important;
-    bottom: 16px;
-    z-index: 9999;
-  }
-
   .menu-trigger-button {
     display: none;
   }
 }
 
+/* Navbar padrão */
+.menu-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Botões da navbar */
+.btns-menu {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.btns-menu:hover {
+  color: #007bff;
+}
+
+.user-icon {
+  margin-right: 5px;
+}
+
+/* Estilização para os ícones */
+ion-icon {
+  font-size: 20px;
+}
+
+/* Responsividade da Navbar */
+@media (max-width: 900px) {
+  .menu-container {
+    display: none; /* Esconde a navbar em resoluções menores que 900px */
+  }
+}
+
+/* Esconder o ícone de menu lateral em resoluções maiores que 900px */
+@media (min-width: 901px) {
+  ion-menu-button.menu.lateral {
+    display: none; /* Esconde o botão do menu lateral acima de 900px */
+  }
+}

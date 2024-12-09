@@ -1,6 +1,5 @@
 package br.org.handmaxx.service.atleta;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -12,9 +11,14 @@ import br.org.handmaxx.dto.atleta.AtletaCadastroInicialDTO;
 import br.org.handmaxx.dto.atleta.AtletaDTO;
 import br.org.handmaxx.dto.atleta.AtletaResponseDTO;
 import br.org.handmaxx.dto.atleta.AtletaTreinoDTO;
+import br.org.handmaxx.dto.graphics.CadastroNISGraphicsDTO;
+import br.org.handmaxx.dto.graphics.CondicoesMoradiaGraphicsDTO;
+import br.org.handmaxx.dto.graphics.PessoasEmCasaGraphicsDTO;
+import br.org.handmaxx.dto.graphics.RendaFamiliarGraphicsDTO;
 import br.org.handmaxx.dto.mensagem.MensagemDTO;
 import br.org.handmaxx.model.Atleta;
 import br.org.handmaxx.model.CadastroAtletaToken;
+import br.org.handmaxx.model.CondicoesMoradia;
 import br.org.handmaxx.model.QuestionarioSocial;
 import br.org.handmaxx.model.Treino;
 import br.org.handmaxx.repository.AtletaRepository;
@@ -24,7 +28,6 @@ import br.org.handmaxx.resource.WhatsappResource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceException;
-//import jakarta.validation.Valid;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
@@ -38,7 +41,6 @@ public class AtletaServiceImpl implements AtletaService {
 
     @Inject
     TreinoRepository treinoRepository;
-
 
     @Inject
     WhatsappResource whatsAppResource;
@@ -199,6 +201,7 @@ public class AtletaServiceImpl implements AtletaService {
 
         return AtletaResponseDTO.valueOf(atleta);
     }
+
 
     @Override
     @Transactional
@@ -415,4 +418,43 @@ public class AtletaServiceImpl implements AtletaService {
             throw new CustomException(new ErrorResponse("Atleta com CPF cadastro já existe.", "AtletaServiceImpl(update)", 404));
         }
     }
+
+    @Override
+    public List<CondicoesMoradiaGraphicsDTO> getCondicoesMoradia() {
+        List<Object[]> results = atletaRepository.contarPorCondicaoMoradia();
+        return results.stream()
+            .map(result -> {
+                CondicoesMoradia condicao = (CondicoesMoradia) result[0];
+                Long count = (Long) result[1];
+                return new CondicoesMoradiaGraphicsDTO(condicao.getDescricao(), count);
+            })
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PessoasEmCasaGraphicsDTO> getPessoasEmCasa() {
+        List<Object[]> results = atletaRepository.contarPorPessoasEmCasa();
+        return results.stream()
+                .map(result -> new PessoasEmCasaGraphicsDTO((String) result[0], (Long) result[1]))
+                .collect(Collectors.toList());
+    }    
+
+    private static final double SALARIO_MINIMO = 1412.00; // Exemplo de valor para o salário mínimo
+    
+    @Override
+    public List<RendaFamiliarGraphicsDTO> getRendaFamiliar() {
+        List<Object[]> results = atletaRepository.contarPorRendaFamiliar(SALARIO_MINIMO);
+            return results.stream()
+                .map(result -> new RendaFamiliarGraphicsDTO((String) result[0], (Long) result[1]))
+                .collect(Collectors.toList());
+    }
+    
+    @Override
+        public List<CadastroNISGraphicsDTO> getCadastroNIS() {
+            List<Object[]> results = atletaRepository.contarPorCadastroNIS();
+            return results.stream()
+                .map(result -> new CadastroNISGraphicsDTO((String) result[0], (Long) result[1]))
+                .collect(Collectors.toList());
+        }
+       
 }
