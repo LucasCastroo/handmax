@@ -8,6 +8,7 @@ import io.quarkus.mailer.Mail;
 import io.quarkus.mailer.Mailer;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -30,6 +31,23 @@ public class EmailServiceImpl implements EmailService {
             log.error("Erro ao enviar o email: {}", e.getMessage());
             throw new RuntimeException("Falha ao enviar email", e);
         }
+    }
+        
+    @Override
+    @Transactional
+    public EmailResponseDTO salvarEnviarEmail(EmailDTO emailDTO) {
+        Email email = new Email(emailDTO.destinatario(), emailDTO.assunto(), emailDTO.corpoMensagem());
+        try {
+            emailRepository.persist(email);
+            log.info("Email salvo no banco de dados com ID {}", email.getId());
+            mailer.send(Mail.withHtml(emailDTO.destinatario(), emailDTO.assunto(), emailDTO.corpoMensagem())
+            .addHeader("Content-Type", "text/html; charset=UTF-8"));
+            log.info("Email enviado para {}", emailDTO.destinatario());
+        } catch (Exception e) {
+            log.error("Erro ao enviar email ou salvar no Banco de Dados: {}", e.getMessage());
+            throw new RuntimeException("Falha ao enviar email ou salvar no banco de dados", e);
+        }
+        return new EmailResponseDTO(email.getId(), email.getDestinatario(), email.getAssunto(), email.getCorpoMensagem());
     }
 
     @Override

@@ -6,4 +6,5 @@ import br.org.handmaxx.dto.email.EmailResponseDTO;
 public interface EmailService {
     public void enviarEmail(EmailDTO emailDTO);
     public EmailResponseDTO salvarEmail(EmailDTO emailDTO);
+    public EmailResponseDTO salvarEnviarEmail(EmailDTO emailDTO);
 }

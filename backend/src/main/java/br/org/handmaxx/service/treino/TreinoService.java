@@ -6,7 +6,6 @@ import br.org.handmaxx.dto.treino.TreinoCreateDTO;
 import br.org.handmaxx.dto.treino.TreinoDTO;
 import br.org.handmaxx.dto.treino.TreinoFullResponseDTO;
 import br.org.handmaxx.dto.treino.TreinoResponseDTO;
-import br.org.handmaxx.model.Treino;
 
 public interface TreinoService {
     public TreinoFullResponseDTO create(TreinoCreateDTO dto);
