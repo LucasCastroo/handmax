@@ -1,59 +1,99 @@
-# LandingPage
+**Aqui está um README específico para a landing page do projeto HandMax, desenvolvida com Angular nativo.** Ele está formatado em Markdown e pronto para uso direto no GitHub.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+---
 
-## Development server
+# 🌐 HandMax Landing Page (Angular)
 
-To start a local development server, run:
+Landing page institucional do projeto HandMax — uma escolinha de handebol sem fins lucrativos que promove inclusão social, saúde e educação por meio do esporte. Esta interface apresenta o projeto ao público, divulga notícias e facilita o contato com interessados e apoiadores.
 
-```bash
-ng serve
+## 🎯 Objetivo
+
+A landing page tem como propósito:
+
+- Apresentar a missão e os valores do HandMax  
+- Divulgar notícias, eventos e conquistas da escolinha  
+- Facilitar o contato com voluntários, pais e patrocinadores  
+- Reforçar a presença digital da iniciativa  
+
+## 🧰 Tecnologias Utilizadas
+
+- **Angular** – Framework para aplicações web  
+- **TypeScript** – Linguagem com tipagem estática  
+- **SCSS / CSS** – Estilização modular e responsiva  
+- **HTML5** – Estrutura semântica  
+- **ScrollReveal.js** – Animações de entrada visual  
+
+## 📦 Estrutura do Projeto
+
+```
+landing-page/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── header/
+│   │   │   ├── footer/
+│   │   │   └── noticia-dialog/
+│   │   ├── models/
+│   │   │   └── noticia.ts
+│   │   ├── services/
+│   │   │   ├── noticia.service.ts
+│   │   │   └── scroll-reveal.service.ts
+│   │   ├── app.component.ts / html / scss
+│   │   ├── app.config.ts
+│   │   └── app.routes.ts
+│   ├── assets/
+│   ├── index.html
+│   ├── main.ts
+│   ├── styles.css
+│   └── custom-theme.scss
+├── .editorconfig
+├── .gitignore
+└── README.md
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🚀 Como Executar
 
-## Code scaffolding
+1. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2. Execute o servidor de desenvolvimento:
+   ```bash
+   ng serve
+   ```
 
-```bash
-ng generate component component-name
-```
+3. Acesse no navegador:
+   ```
+   http://localhost:4200
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📌 Funcionalidades
 
-```bash
-ng generate --help
-```
+- Página institucional com layout responsivo  
+- Exibição de notícias e atualizações  
+- Animações suaves com ScrollReveal  
+- Diálogo modal para detalhes de notícias  
+- Componentes reutilizáveis para cabeçalho e rodapé  
 
-## Building
+## 🛠️ Requisitos
 
-To build the project run:
+- Node.js 18+  
+- Angular CLI  
+- NPM ou Yarn  
 
-```bash
-ng build
-```
+## 👥 Contribuidores
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- [@LucasCastroo](https://github.com/LucasCastroo)  
+- [@JpBllack](https://github.com/JpBllack)  
+- [@danielmariae](https://github.com/danielmariae)  
+- [@kauegm](https://github.com/kauegm)  
+- [@filipebdias](https://github.com/filipebdias)  
 
-## Running unit tests
+## 📄 Licença
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Este projeto está licenciado sob os termos da [MIT License](../LICENSE).
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Se quiser, posso gerar um README para o backend com foco na gestão esportiva e comunitária também.

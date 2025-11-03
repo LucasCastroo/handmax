@@ -1,73 +1,94 @@
-<h1> Olá! Bem-vindo ao projeto HANDMAXX.</h1>
+# 🧠 HandMaxx Backend
 
-Este projeto foi feito usando a plataforma Quarkus e as linguagens: Java, SQL (através do SGBD PostgreSQL), AngularJS, NodeJS.
+Este é o backend do projeto **HandMaxx**, uma plataforma desenvolvida para apoiar a gestão de uma escolinha de handebol sem fins lucrativos. O sistema foi construído com foco em escalabilidade, integração e facilidade de manutenção, utilizando o framework Quarkus e banco de dados PostgreSQL.
 
-Como fazer para executar o projeto:
+## ⚙️ Tecnologias Utilizadas
 
-<h3>BANCO DE DADOS</h3>
+- **Quarkus** – Framework leve e reativo para aplicações Java
+- **Java 17** – Linguagem principal da aplicação
+- **PostgreSQL** – Banco de dados relacional
+- **Docker** – Contêineres para serviços externos (WhatsApp, SMTP)
+- **NodeJS** – Suporte a serviços complementares
 
-*Necessário ter o PostgreSQL instalado, a partir da versão 14.*
+---
 
-**1. Criar usuário no PgAdmin com as seguintes informações de usuário:**
+## 🗄️ Configuração do Banco de Dados
 
-```java
-Nome de usuário: handmaxx_admin
-Senha: 123456
-```
-**2. Criar o banco de dados informando o usuário 'handmaxx_admin' como admin.**
+> Requisito: PostgreSQL 14 ou superior
 
-```
-Nome da base de dados: handmaxx_db
-```
+1. **Criar usuário no PgAdmin**:
+   ```plaintext
+   Nome de usuário: handmaxx_admin
+   Senha: 123456
+   ```
 
-**3. Atualizar endereço do Postgres no arquivo application.propeties no seguinte caminho:**
-```
-.\src\main\resources\application.properties
-```
+2. **Criar o banco de dados**:
+   ```plaintext
+   Nome da base de dados: handmaxx_db
+   ```
 
-<h3>BACKEND</h3>
+3. **Atualizar o arquivo de configuração**:
+   Localize e edite o arquivo:
+   ```
+   ./src/main/resources/application.properties
+   ```
+   Ajuste o endereço de conexão com o PostgreSQL conforme necessário.
 
-*Necessário ter o JDK ou OpenJDK instalado na versão 17.*
+---
 
-**1. Verificar instalação do JDK 17, o suportado por esse projeto. Digite o comando:**
+## 🧩 Execução do Backend
 
-```
-java --version
-```
-**2. Compilar o Quarkus e iniciar execução do servidor através dos comandos (usar Terminal ou PowerShell):**
-```
-./mvnw compile quarkus:dev
+> Requisito: JDK ou OpenJDK 17 instalado
 
-# Caso esteja no Linux ou MacOs, usar:
-mvn compile quarkus:dev
-```
+1. **Verifique a versão do Java**:
+   ```bash
+   java --version
+   ```
 
-<h3>API DO WHATSAPP</h3>
+2. **Compile e execute o servidor Quarkus**:
 
-*Necessário ter o Docker Desktop instalado (em qualquer plataforma).*
+   - No Windows:
+     ```bash
+     ./mvnw compile quarkus:dev
+     ```
 
-**1. Executar os comandos abaixo:**
+   - No Linux ou macOS:
+     ```bash
+     mvn compile quarkus:dev
+     ```
 
-```
-docker pull devlikeapro/waha
-docker run -it -p 3000:3000/tcp -e "WHATSAPP_DEFAULT_ENGINE=NOWEB" devlikeapro/waha
-```
+---
 
-**Fazer a conexão com WhatsApp, acessando o endereço: http://localhost:3000/dashboard**
+## 💬 Integração com API do WhatsApp
 
-<h3>EMAIL (GMAIL)</h3>
+> Requisito: Docker Desktop instalado
 
-*Necessário ter o Docker Desktop instalado (em qualquer plataforma).*
+1. **Executar os comandos abaixo**:
+   ```bash
+   docker pull devlikeapro/waha
+   docker run -it -p 3000:3000/tcp -e "WHATSAPP_DEFAULT_ENGINE=NOWEB" devlikeapro/waha
+   ```
 
-**1. Configurar em application.properties:**
+2. **Acessar o painel de conexão**:
+   ```
+   http://localhost:3000/dashboard
+   ```
 
-```
-quarkus.mailer.from=#@gmail.com // Colocar aqui seu email do Google.
-quarkus.mailer.host=smtp.gmail.com
-quarkus.mailer.port=465
-quarkus.mailer.ssl=true
-quarkus.mailer.username=#@gmail.com // Colocar aqui também seu email do Google.
-quarkus.mailer.password=# // Aqui digitar a senha de aplicativo, obtida nas configurações de segurança do seu gmail.
-quarkus.mailer.mock=false // Se colocar = true, ele não enviará os emails.
-```
+---
 
+## 📧 Configuração de Envio de E-mails (Gmail)
+
+> Requisito: Docker Desktop instalado
+
+1. **Editar o arquivo `application.properties` com as credenciais do Gmail**:
+   ```properties
+   quarkus.mailer.from=seu_email@gmail.com
+   quarkus.mailer.host=smtp.gmail.com
+   quarkus.mailer.port=465
+   quarkus.mailer.ssl=true
+   quarkus.mailer.username=seu_email@gmail.com
+   quarkus.mailer.password=sua_senha_de_aplicativo
+   quarkus.mailer.mock=false
+   ```
+
+> ⚠️ A senha de aplicativo pode ser gerada nas configurações de segurança da sua conta Google.
